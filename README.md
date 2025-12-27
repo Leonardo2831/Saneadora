@@ -1,0 +1,80 @@
+# Saneadora - Certidão de Situação Jurídica
+
+## 📄 Sobre o Projeto
+
+Este projeto foi desenvolvido com o objetivo de otimizar e facilitar  em meu trabalho, no cartório de registro de imóveis. A ferramenta "Saneadora" automotiza e organiza a criação de **Certidões de Situação Jurídica**, garantindo maior agilidade, padronização e redução de erros no processo de análise de matrículas, sendo um processo mais prático e eficiente.
+
+O sistema permite o cadastro estruturado de informações da matrícula (proprietários, ônus, números cadastrais, estremações, etc.) e gera automaticamente o texto final da certidão com base nos dados inseridos.
+
+## 🚀 Funcionalidades Principais
+
+-   **Cadastro de Matrícula:** Interface intuitiva para inserção de dados da matrícula.
+-   **Gestão de Proprietários:** Adição e controle de proprietários e seus respectivos atos.
+-   **Controle de Ônus e Gravames:** Registro detalhado de hipotecas, penhoras, servidões, etc.
+-   **Cálculos Automáticos:** Soma de áreas e porcentagens para validação dos registros.
+-   **Geração de Texto:** Criação automática do texto da certidão formatado para uso.
+-   **Persistência de Dados:** Salvamento local das certidões para consultas futuras.
+
+## 🛠️ Tecnologias Utilizadas
+
+-   **Frontend:** HTML5, CSS3 (Com Tailwind CSS V4.1)
+-   **Linguagem:** TypeScript (JavaScript)
+-   **Editor de Texto:** Quill.js (Para formatação do texto inicial da matrícula)
+
+## 📚 O que Aprendi
+
+Nesta seção, compartilho os principais desafios e conhecimentos adquiridos durante o desenvolvimento deste projeto:
+
+-   **Manipulação do DOM:** Aprendi a manipular o DOM para criar e atualizar a interface do usuário principalmente no uso de salvar dados em JSON.
+-   **TypeScript Avançado:** Aprendi a usar interfaces, tipos genéricos, etc. Sendo um grande início no *TypeScript*.
+-   **Arquitetura de Projetos:** Utilizei uma nova arquitetura, usando a pasta public para a interface e a pasta src para o código back-end que será adicionado no futuro.
+-   **Integração com Bibliotecas:** Aprendi a integrar a biblioteca *Quill.js* e utilizar várias funções relacionadas a ele.
+-   **Gerenciamento de Estados:** Aprendi o conceito de UseState sem utilizar *React*, trazendo uma classe que salva os estados das seções parq quando haver alguma alteração, seja possível utilizar um *ctrl + z* para desfazer alterações feitas. Infelizmente não ficou vigente por agora no projeto, já que preciso de mais conhecimentos para trazer melhorias para ele.
+
+## 📸 Screenshots do Projeto
+
+### Tela Inicial / Cadastro
+
+_(Coloque aqui um print da tela de cadastro)_
+![Tela de Cadastro](caminho/para/imagem1.png)
+
+### Modal de Criação de Valores
+
+_(Coloque aqui um print do modal de novos valores)_
+![Modal Novo Valor](caminho/para/imagem2.png)
+
+### Texto Gerado
+
+_(Coloque aqui um print do texto final gerado)_
+![Texto Gerado](caminho/para/imagem3.png)
+
+## 🔧 Como Executar o Projeto
+
+1.  Clone este repositório:
+    ```bash
+    git clone https://github.com/seu-usuario/projeto-saneadora.git
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+3.  Inicie o servidor de desenvolvimento:
+    ```bash
+    npm run server
+    ```
+4.  Caso necessário, Compile o TypeScript (em outro terminal):
+    ```bash
+    npm run ts
+    ```
+5.  Caso necessário, Compile o Tailwind (em outro terminal):
+    ```bash
+    npm run tailwind
+    ```
+
+## 📝 Autor
+
+Desenvolvido por **[Leonardo Reis Ferraz](https://github.com/Leonardo2831)**.
+
+---
+
+_Projeto desenvolvido para fins de estudo e aplicação prática em meu estágio no cartório de registro de imóveis em cenários reais._
