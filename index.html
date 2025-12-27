@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Saneadora</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
+            rel="stylesheet"
+        />
+        <script type="importmap">
+            {
+                "imports": {
+                    "quill": "https://cdn.jsdelivr.net/npm/quill@2.0.3/+esm"
+                }
+            }
+        </script>
+        <link rel="stylesheet" href="public/css/output.css" />
+    </head>
+    <body>
+        <header>
+            <div class="px-6 py-4">
+                <div class="flex items-center justify-between gap-8">
+                    <h1
+                        class="text-[30px] font-bold leading-[36px] text-gray-900"
+                    >
+                        Saneadora
+                    </h1>
+
+                    <!-- Botões de Ação -->
+                    <section class="flex items-center gap-3">
+                        <!-- Botão Save Changes -->
+                        <button
+                            class="relative flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-sm hover:bg-blue-600 transition-colors"
+                            data-save="saneadora"
+                            title="ctrl + s"
+                        >
+                            <img
+                                src="public/images/save.svg"
+                                alt="Salvar"
+                                class="w-5 h-5"
+                            />
+                            <span class="text-base font-medium leading-6">
+                                Salvar Alterações
+                            </span>
+                            <div
+                                data-notification="save"
+                                class="hidden absolute z-10 -top-[5px] -right-[5px] rounded-full bg-red-400 shadow-xs w-[15px] h-[15px]"
+                            ></div>
+                        </button>
+
+                        <!-- Botão View Documents -->
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow-sm hover:bg-gray-300 transition-colors"
+                            title="ctrl + m"
+                            data-button="viewMatriculas"
+                        >
+                            <img
+                                src="public/images/document-view.svg"
+                                alt="Visualizar Saneadoras Salvas"
+                            />
+                            <span class="text-base font-medium leading-6">
+                                Visualizar Saneadoras
+                            </span>
+                        </button>
+
+                        <!-- Botão New Document -->
+                        <button
+                            class="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow-sm hover:bg-gray-300 transition-colors"
+                            title="ctrl + n"
+                            data-new="saneadora"
+                        >
+                            <img
+                                src="public/images/plus.svg"
+                                alt="Novo Registro"
+                                class="w-5 h-5"
+                            />
+                            <span class="text-base font-medium leading-6">
+                                Nova Saneadora
+                            </span>
+                        </button>
+                    </section>
+                </div>
+            </div>
+        </header>
+
+        <nav class="w-full bg-gray-50 border-b border-gray-200">
+            <div class="px-6">
+                <div class="flex items-center gap-6">
+                    <button class="tabButton activeNav" data-tab="cadastro">
+                        Cadastrar Pessoa
+                    </button>
+                    <button class="tabButton" data-tab="onus">Ônus</button>
+                    <button class="tabButton" data-tab="numeros">
+                        Números Cadastrais
+                    </button>
+                    <button class="tabButton" data-tab="estremacao">
+                        Extremação
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Seção de Cadastro -->
+        <section
+            class="form-section mt-6"
+            data-form="true"
+            data-formContent="cadastro"
+        >
+            <div class="flex flex-wrap gap-x-10 gap-y-5">
+                <!-- Nome da Pessoa -->
+                <div class="input-group">
+                    <label class="label">Nome da Pessoa</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="nameCadastro"
+                        placeholder="Digite o nome"
+                    />
+                </div>
+
+                <!-- CPF da Pessoa -->
+                <div class="input-group">
+                    <label class="label">
+                        CPF da Pessoa
+                        <span class="label-optional">(Opcional)</span>
+                    </label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-inputCPF="cpfCadastro"
+                        data-input="cpf"
+                        placeholder="000.000.000-00"
+                    />
+                </div>
+
+                <!-- Estado Civil -->
+                <div class="input-group relative">
+                    <label class="label">Estado Civil</label>
+                    <div class="relative min-w-[160px]">
+                        <select
+                            class="select absolute z-10"
+                            data-select="stateCadastro"
+                        >
+                            <option value="Casado(a)">Casado(a)</option>
+                            <option value="Solteiro(a)">Solteiro(a)</option>
+                            <option value="Divorciado(a)">Divorciado(a)</option>
+                            <option value="Viúvo(a)">Viúvo(a)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Nome do Cônjuge -->
+                <div class="input-group">
+                    <label class="label">Nome do Cônjuge</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="nameConjugeCadastro"
+                        placeholder="Digite o nome"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="label">
+                        CPF do Conjugê
+                        <span class="label-optional">(Opcional)</span>
+                    </label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-inputCPF="cpfConjugeCadastro"
+                        data-input="cpf"
+                        placeholder="000.000.000-00"
+                    />
+                </div>
+
+                <!-- Registro ou Averbação (ATO) -->
+                <div class="input-group">
+                    <label class="label">Registro ou Averbação (ATO)</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="atoCadastro"
+                        placeholder="Digite o registro"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="label">Valor que a pessoa tem:</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="areaCadastro"
+                        placeholder="Digite o valor da pessoa"
+                    />
+                </div>
+
+                <!-- Área da pessoa -->
+                <div class="input-group gap-1">
+                    <p class="label mb-2">Unidade</p>
+                    <div class="flex items-center">
+                        <input
+                            id="unit-m2-cadastro"
+                            name="area-unit-cadastro"
+                            type="radio"
+                            value="m²"
+                            class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                        />
+                        <label
+                            for="unit-m2-cadastro"
+                            class="ml-2 block text-sm font-medium text-gray-900"
+                        >
+                            m²
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input
+                            id="unit-ha-cadastro"
+                            name="area-unit-cadastro"
+                            type="radio"
+                            value="ha"
+                            class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                            checked
+                        />
+                        <label
+                            for="unit-ha-cadastro"
+                            class="ml-2 block text-sm font-medium text-gray-900"
+                        >
+                            ha
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input
+                            id="unit-%-cadastro"
+                            name="area-unit-cadastro"
+                            type="radio"
+                            value="%"
+                            class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                        />
+                        <label
+                            for="unit-%-cadastro"
+                            class="ml-2 block text-sm font-medium text-gray-900"
+                        >
+                            %
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group" data-content="percentBase">
+                    <label class="label">Valor de Base de Cálculo:</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="valorBaseCadastro"
+                        placeholder="Digite o valor de base"
+                    />
+                </div>
+
+                <div class="flex flex-1 items-end justify-end">
+                    <button
+                        class="btn-add"
+                        data-button="addCadastro"
+                        title="enter"
+                    >
+                        <img
+                            src="public/images/plus-white.svg"
+                            alt="Adicionar"
+                            class="w-7 h-7"
+                        />
+                        <span>Adicionar</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Ônus -->
+        <section class="form-section mt-6" data-form="false">
+            <div class="flex flex-wrap gap-x-10 gap-y-5">
+                <div class="input-group">
+                    <label class="label"
+                        >Nome da Pessoa Afetada pelo ônus</label
+                    >
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="nameOnus"
+                        placeholder="Digite o nome"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="label">
+                        CPF da Pessoa
+                        <span class="label-optional">(Opcional)</span>
+                    </label>
+                    <input
+                        type="text"
+                        class="input flex-1"
+                        data-input="cpf"
+                        data-inputCPF="onus"
+                        placeholder="000.000.000-00"
+                    />
+                </div>
+
+                <!-- Tipo de Ônus -->
+                <div class="input-group relative">
+                    <label class="label">Tipo de Ônus</label>
+                    <div class="relative min-w-[210px]">
+                        <select class="select absolute z-10" data-select="onus">
+                            <option value="Hipoteca">Hipoteca</option>
+                            <option value="Penhora">Penhora</option>
+                            <option value="Usufruto">Usufruto</option>
+                            <option value="Clausulas Restritivas">
+                                Clausulas Restritivas
+                            </option>
+                            <option value="Servidão">Servidão</option>
+                            <option value="Direito de Terceiro">
+                                Direito de Terceiro
+                            </option>
+                            <option value="Indisponibilidade">
+                                Indisponibilidade
+                            </option>
+                            <option value="Alienação Fiduciária">
+                                Alienação Fiduciária
+                            </option>
+                            <option value="Imposto Atrasado">
+                                Imposto Atrasado
+                            </option>
+                            <option value="Reserva Legal">
+                                Reserva Legal
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Registro ou Averbação (ATO) -->
+                <div class="input-group">
+                    <label class="label">Registro ou Averbação (ATO)</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-inputAto="onus"
+                        placeholder="Digite o registro"
+                    />
+                </div>
+
+                <div class="flex flex-1 items-end justify-end">
+                    <button class="btn-add" title="enter" data-button="addOnus">
+                        <img
+                            src="public/images/plus-white.svg"
+                            alt="Adicionar"
+                            class="w-7 h-7"
+                        />
+                        <span>Adicionar</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Números Cadastrais -->
+        <section class="form-section mt-6" data-form="false">
+            <div class="flex flex-wrap gap-x-10 gap-y-5">
+                <div class="input-group">
+                    <label class="label">Número Cadastral</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="number"
+                        placeholder="Digite o nome"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="label">
+                        CPF da Parte
+                        <span class="label-optional">(Opcional)</span>
+                    </label>
+                    <input
+                        type="text"
+                        class="input flex-1"
+                        data-input="cpf"
+                        data-inputCPF="numbers"
+                        placeholder="000.000.000-00"
+                    />
+                </div>
+
+                <!-- Tipo de Número Cadastral -->
+                <div class="input-group relative">
+                    <label class="label" for="select-typeNumber"
+                        >Tipo de Número Cadastral</label
+                    >
+                    <div class="relative min-w-[210px]">
+                        <select
+                            class="select absolute z-10"
+                            data-select="numbers"
+                            id="select-typeNumber"
+                        >
+                            <option value="INCRA">INCRA</option>
+                            <option value="ITR">ITR (Receita Federal)</option>
+                            <option value="CAR">CAR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Registro ou Averbação (ATO) -->
+                <div class="input-group">
+                    <label class="label">Registro ou Averbação (ATO)</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-inputAto="numbers"
+                        placeholder="Digite o registro"
+                    />
+                </div>
+
+                <div class="flex flex-1 items-end justify-end">
+                    <button
+                        class="btn-add"
+                        title="enter"
+                        data-button="addNumbers"
+                    >
+                        <img
+                            src="public/images/plus-white.svg"
+                            alt="Adicionar"
+                            class="w-7 h-7"
+                        />
+                        <span>Adicionar</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estremação -->
+        <section
+            class="form-section mt-6"
+            data-form="false"
+            data-formContent="estremacao"
+        >
+            <div class="flex flex-wrap gap-x-10 gap-y-5">
+                <div class="input-group">
+                    <label class="label">Nome da Pessoa Estremada</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-inputName="estremacao"
+                        placeholder="Digite o nome"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="label">
+                        CPF da Pessoa
+                        <span class="label-optional">(Opcional)</span>
+                    </label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="cpf"
+                        data-inputCPF="cpfEstremacao"
+                        placeholder="000.000.000-00"
+                    />
+                </div>
+
+                <!-- Estado Civil -->
+                <div class="input-group relative">
+                    <label class="label">Estado Civil</label>
+                    <div class="relative min-w-[160px]">
+                        <select
+                            class="select absolute z-10"
+                            data-select="stateEstremacao"
+                        >
+                            <option value="Casado(a)">Casado(a)</option>
+                            <option value="Solteiro(a)">Solteiro(a)</option>
+                            <option value="Divorciado(a)">Divorciado(a)</option>
+                            <option value="Viúvo(a)">Viúvo(a)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Nome do Cônjuge -->
+                <div class="input-group">
+                    <label class="label">Nome do Cônjuge</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-inputName="conjugeEstremacao"
+                        placeholder="Digite o nome"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="label">
+                        CPF do Cônjuge
+                        <span class="label-optional">(Opcional)</span>
+                    </label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="cpf"
+                        data-inputCPF="cpfConjugeEstremacao"
+                        placeholder="000.000.000-00"
+                    />
+                </div>
+
+                <!-- Registro ou Averbação (ATO) -->
+                <div class="input-group">
+                    <label class="label">Registro ou Averbação (ATO)</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="atoEstremacao"
+                        placeholder="Digite o registro"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="label">Área Estremada</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="areaEstremada"
+                        placeholder="Digite a área estremada"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="label">Nova Matrícula</label>
+                    <input
+                        type="text"
+                        class="input"
+                        data-input="newMatricula"
+                        placeholder="Digite a nova matrícula"
+                    />
+                </div>
+
+                <div class="flex flex-1 items-end justify-end">
+                    <button
+                        class="btn-add"
+                        title="enter"
+                        data-button="addEstremacao"
+                    >
+                        <img
+                            src="public/images/plus-white.svg"
+                            alt="Adicionar"
+                            class="w-7 h-7"
+                        />
+                        <span>Adicionar</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção dos dados do cadastro -->
+        <main class="relative mt-13 flex flex-col gap-6 min-h-[50vh]">
+            <div>
+                <div class="relative">
+                    <img
+                        src="public/images/search.svg"
+                        alt="Pesquisar"
+                        class="absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 pointer-events-none z-10"
+                    />
+                    <input
+                        type="text"
+                        name="search"
+                        id="search"
+                        data-input="search"
+                        placeholder="Pesquisar por Nome ou CPF"
+                        class="w-full bg-white border border-gray-300 rounded-md shadow-sm pl-12 pr-6 py-2.5 text-base font-normal text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                </div>
+                <p class="info-searchInfo">
+                    Pressione <span class="font-bold">Enter</span> para
+                    pesquisar
+                </p>
+            </div>
+
+            <!-- Tabela -->
+            <div data-content="tables" class="flex items-center justify-center">
+                <!-- cadastro -->
+                <section data-tableInfos="cadastro" class="table-contentStyle">
+                    <!-- Cabeçalho Superior -->
+                    <div
+                        class="flex justify-center items-center mt-6 pb-6 min-h-fit my-auto"
+                    >
+                        <span
+                            class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"
+                        ></span>
+                    </div>
+                </section>
+
+                <!-- ônus -->
+                <section
+                    data-tableInfos="onus"
+                    class="hidden table-contentStyle"
+                >
+                    <div
+                        class="flex justify-center items-center mt-6 min-h-fit my-auto"
+                    >
+                        <span
+                            class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"
+                        ></span>
+                    </div>
+                </section>
+
+                <!-- números cadastrais -->
+                <section
+                    data-tableInfos="numeros"
+                    class="hidden table-contentStyle"
+                >
+                    <div
+                        class="flex justify-center items-center mt-6 pb-6 min-h-fit my-auto"
+                    >
+                        <span
+                            class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"
+                        ></span>
+                    </div>
+                </section>
+
+                <!-- estremação -->
+                <section
+                    data-tableInfos="estremacao"
+                    class="hidden table-contentStyle"
+                >
+                    <div
+                        class="flex justify-center items-center mt-6 pb-6 min-h-fit my-auto"
+                    >
+                        <span
+                            class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"
+                        ></span>
+                    </div>
+                </section>
+            </div>
+
+            <section data-content="textFinal" class="show flex flex-col gap-8"></section>
+
+            <div class="w-full flex justify-end m-6 ml-0">
+                <button
+                    class="cursor-pointer bg-gray-200 text-gray-700 rounded-lg shadow-sm hover:bg-gray-300 transition-colors px-4 py-2 font-medium text-base flex items-center gap-2"
+                    data-button="generateText"
+                >
+                    <img
+                        src="public/images/convert-text.svg"
+                        alt="Convert Text"
+                        class="w-6 h-6"
+                    />
+                    Gerar Texto
+                </button>
+            </div>
+        </main>
+
+        <!-- Modal Nova Saneadora -->
+        <div
+            class="fixed z-50 hidden"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+        >
+            <!-- Background -->
+            <div class="fixed inset-0 bg-[rgba(0,0,0,0.4)]"></div>
+
+            <div class="fixed inset-0 z-10">
+                <div
+                    class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+                >
+                    <!-- Modal -->
+                    <section
+                        data-modal="new-saneadora"
+                        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-3xl transition-all sm:my-8 sm:w-full sm:max-w-[550px]"
+                    >
+                        <div class="bg-gray-50 px-8 pb-4 pt-5">
+                            <div class="flex flex-col gap-4">
+                                <!-- Matrícula -->
+                                <div class="input-group">
+                                    <label class="label" for="matricula"
+                                        >Matrícula</label
+                                    >
+                                    <input
+                                        type="number"
+                                        id="matricula"
+                                        name="matricula"
+                                        data-input="matricula"
+                                        class="appearance-input modal-input"
+                                        placeholder="Digite a matrícula"
+                                    />
+                                </div>
+
+                                <!-- Área e Unidade -->
+                                <div class="flex gap-4">
+                                    <div class="input-group flex-1">
+                                        <label class="label" for="area"
+                                            >Área</label
+                                        >
+                                        <input
+                                            id="area"
+                                            name="area"
+                                            data-input="area"
+                                            type="number"
+                                            class="appearance-input modal-input"
+                                            placeholder="Digite a área"
+                                        />
+                                    </div>
+
+                                    <div class="input-group gap-1">
+                                        <p class="label mb-2">Unidade</p>
+                                        <div class="flex items-center">
+                                            <input
+                                                id="unit-m2"
+                                                name="area-unit"
+                                                type="radio"
+                                                value="m²"
+                                                data-input="area-unit"
+                                                class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                                            />
+                                            <label
+                                                for="unit-m2"
+                                                class="ml-2 block text-sm font-medium text-gray-900"
+                                            >
+                                                m²
+                                            </label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input
+                                                id="unit-ha"
+                                                name="area-unit"
+                                                type="radio"
+                                                value="ha"
+                                                data-input="area-unit"
+                                                class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                                                checked
+                                            />
+                                            <label
+                                                for="unit-ha"
+                                                class="ml-2 block text-sm font-medium text-gray-900"
+                                            >
+                                                ha
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Botões de criar e fechar -->
+                                <div
+                                    class="bg-gray-50 mt-2 *:min-w-[150px] sm:min-w-0 sm:flex sm:justify-end sm:gap-3"
+                                >
+                                    <button
+                                        data-modal="cancel"
+                                        class="block px-4 py-2 justify-center rounded-md bg-gray-200 text-sm font-semibold text-gray-900 shadow-sm border border-gray-300 hover:bg-red-100 hover:text-red-500 hover:border-red-300 focus:bg-red-100 focus:text-red-500 focus:ring focus:ring-red-300 focus:outline-none"
+                                    >
+                                        Cancelar
+                                    </button>
+                                    <button
+                                        data-modal="new"
+                                        class="block mt-3 px-5 py-2.5 justify-center rounded-md bg-blue-600 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:mt-0"
+                                    >
+                                        Criar Saneadora
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal new data value -->
+        <div
+            class="fixed z-50 hidden"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+        >
+            <!-- Background -->
+            <div class="fixed inset-0 bg-[rgba(0,0,0,0.4)]"></div>
+
+            <div class="fixed inset-0 z-10">
+                <div
+                    class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+                >
+                    <!-- Modal -->
+                    <section
+                        data-modal="newValue"
+                        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-3xl transition-all sm:my-8 sm:w-full sm:max-w-[600px]"
+                    >
+                        <div class="bg-gray-50 px-8 pb-4 pt-5">
+                            <div class="flex flex-col gap-4">
+                                <div class="input-group">
+                                    <label class="label" for="newAto"
+                                        >Ato</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="newAto"
+                                        name="newAto"
+                                        data-input="newAto"
+                                        class="appearance-input modal-input"
+                                        placeholder="Digite o Ato"
+                                    />
+                                </div>
+
+                                <div class="input-group">
+                                    <label class="label" for="newValue"
+                                        >Valor</label
+                                    >
+                                    <input
+                                        type="number"
+                                        id="newValue"
+                                        name="newValue"
+                                        data-input="newValue"
+                                        class="appearance-input modal-input"
+                                        placeholder="Digite a matrícula"
+                                    />
+                                </div>
+
+                                <div class="input-group gap-1">
+                                    <p class="label mb-2">Unidade</p>
+                                    <div class="flex items-center">
+                                        <input
+                                            id="newUnit-ha"
+                                            name="area-unitNew"
+                                            type="radio"
+                                            value="ha"
+                                            data-input="area-unitNew"
+                                            checked
+                                            class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                                        />
+                                        <label
+                                            for="newUnit-ha"
+                                            class="ml-2 block text-sm font-medium text-gray-900"
+                                        >
+                                            ha
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input
+                                            id="newUnit-%"
+                                            name="area-unitNew"
+                                            type="radio"
+                                            value="%"
+                                            data-input="area-unitNew"
+                                            class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                                        />
+                                        <label
+                                            for="newUnit-%"
+                                            class="ml-2 block text-sm font-medium text-gray-900"
+                                        >
+                                            %
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input
+                                            id="newUnit-m2"
+                                            name="area-unitNew"
+                                            type="radio"
+                                            value="m²"
+                                            data-input="area-unitNew"
+                                            class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                                        />
+                                        <label
+                                            for="newUnit-m2"
+                                            class="ml-2 block text-sm font-medium text-gray-900"
+                                        >
+                                            m²
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="input-group"
+                                    data-content="percentBase"
+                                >
+                                    <label class="label" for="percentBase"
+                                        >Valor base de cálculo:</label
+                                    >
+                                    <input
+                                        type="number"
+                                        id="percentBase"
+                                        name="percentBase"
+                                        data-input="percentBase"
+                                        class="appearance-input modal-input"
+                                        placeholder="Digite a área que será usada como base"
+                                    />
+                                </div>
+
+                                <!-- Botões de criar e fechar -->
+                                <div
+                                    class="bg-gray-50 mt-2 *:min-w-[150px] sm:min-w-0 sm:flex sm:justify-end sm:gap-3"
+                                >
+                                    <button
+                                        data-button="newCancel"
+                                        class="block px-4 py-2 justify-center rounded-md bg-gray-200 text-sm font-semibold text-gray-900 shadow-sm border border-gray-300 hover:bg-red-100 hover:text-red-500 hover:border-red-300 focus:bg-red-100 focus:text-red-500 focus:ring focus:ring-red-300 focus:outline-none"
+                                    >
+                                        Cancelar
+                                    </button>
+                                    <button
+                                        data-button="newValue"
+                                        class="block mt-3 px-5 py-2.5 justify-center rounded-md bg-blue-600 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:mt-0"
+                                    >
+                                        Criar Novo Valor
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal new people estremação -->
+        <div
+            class="fixed z-50 hidden"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+        >
+            <!-- Background -->
+            <div class="fixed inset-0 bg-[rgba(0,0,0,0.4)]"></div>
+
+            <div class="fixed inset-0 z-10">
+                <div
+                    class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+                >
+                    <!-- Modal -->
+                    <section
+                        data-modal="newPeopleEstremacao"
+                        class="relative overflow-hidden rounded-lg bg-gray-50 text-left shadow-3xl sm:max-w-[600px]"
+                    >
+                        <div class="bg-gray-50 px-8 pb-4 pt-5">
+                            <div class="flex flex-col gap-8">
+                                <section class="flex gap-5">
+                                    <!-- Nome -->
+                                    <div class="input-group">
+                                        <label class="label" for="nome">
+                                            Nome
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="nome"
+                                            class="modal-input"
+                                            data-input="nameEstremacao"
+                                            placeholder="Digite o nome"
+                                        />
+                                    </div>
+
+                                    <!-- CPF -->
+                                    <div class="input-group">
+                                        <label class="label" for="cpf">
+                                            CPF
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="cpf"
+                                            class="modal-input"
+                                            data-input="cpf"
+                                            data-inputCPF="cpfEstremacao"
+                                            placeholder="Digite o CPF"
+                                        />
+                                    </div>
+                                </section>
+
+                                <section class="flex gap-5">
+                                    <!-- Nome Conjugê -->
+                                    <div class="input-group">
+                                        <label class="label" for="nomeConjuge">
+                                            Nome Conjugê
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="nomeConjuge"
+                                            class="modal-input"
+                                            data-input="nameConjugeEstremacao"
+                                            placeholder="Digite o nome"
+                                        />
+                                    </div>
+
+                                    <!-- CPF -->
+                                    <div class="input-group">
+                                        <label class="label" for="cpf">
+                                            CPF Conjugê
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="cpf"
+                                            class="modal-input"
+                                            data-input="cpfConjugeEstremacao"
+                                            placeholder="Digite o CPF"
+                                        />
+                                    </div>
+                                </section>
+
+                                <!-- Botões de criar e fechar -->
+                                <div
+                                    class="bg-gray-50 mt-2 *:min-w-[150px] sm:min-w-0 sm:flex sm:justify-end sm:gap-3"
+                                >
+                                    <button
+                                        data-button="new-cancelEstremacao"
+                                        class="block px-4 py-2 justify-center rounded-md bg-gray-200 text-sm font-semibold text-gray-900 shadow-sm border border-gray-300 hover:bg-red-100 hover:text-red-500 hover:border-red-300 focus:bg-red-100 focus:text-red-500 focus:ring focus:ring-red-300 focus:outline-none"
+                                    >
+                                        Cancelar
+                                    </button>
+                                    <button
+                                        data-button="new-peopleEstremacao"
+                                        class="block mt-3 px-5 py-2.5 justify-center rounded-md bg-blue-600 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:mt-0"
+                                    >
+                                        Criar Novo Valor
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal saved saneadoras -->
+        <div
+            class="fixed z-50 hidden"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+        >
+            <!-- Background -->
+            <div class="fixed inset-0 bg-[rgba(0,0,0,0.4)]"></div>
+
+            <div class="fixed inset-0 z-10">
+                <div
+                    class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+                >
+                    <!-- Modal -->
+                    <section
+                        data-modal="viewMatriculas"
+                        class="relative overflow-hidden rounded-lg bg-gray-50 text-left shadow-3xl min-h-[400px] min-w-[300px] w-full max-w-[800px]"
+                    >
+                        <svg
+                            data-close="viewMatriculas"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 -960 960 960"
+                            width="24px"
+                            fill="currentColor"
+                            class="absolute top-6 right-8 w-10 h-10 p-1 cursor-pointer text-gray-600 hover:text-red-400 transition-colors"
+                        >
+                            <path
+                                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                            />
+                        </svg>
+                        <div class="bg-gray-50 px-8 py-7">
+                            <h1
+                                class="text-center text-2xl font-semibold text-gray-800"
+                            >
+                                Saneadoras Salvas
+                            </h1>
+
+                            <div class="relative mt-8">
+                                <img
+                                    src="public/images/search.svg"
+                                    alt="Pesquisar"
+                                    class="absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 pointer-events-none z-10"
+                                />
+                                <input
+                                    type="text"
+                                    name="search-matriculas"
+                                    id="search-matriculas"
+                                    data-input="search-matriculas"
+                                    placeholder="Pesquisar pelo número da matrícula"
+                                    class="w-full bg-white border border-gray-300 rounded-md shadow-sm pl-12 pr-6 py-2.5 text-base font-normal text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                />
+                            </div>
+
+                            <div
+                                class="flex justify-center items-center mt-6 min-h-fit my-auto"
+                                data-load="matriculas"
+                            >
+                                <span
+                                    class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"
+                                ></span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal verify delete -->
+        <div
+            class="fixed z-70 hidden"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+        >
+            <div class="fixed inset-0 z-10">
+                <div
+                    class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+                >
+                    <!-- Modal -->
+                    <section
+                        data-modal="verifyDelete"
+                        class="rounded-lg bg-gray-50 shadow-[0_10px_15px_-3px_#00000033] py-6 px-8"
+                    >
+                        <h3 class="text-lg text-semibold mb-8">
+                            Você tem certeza que deseja excluir está saneadora?
+                            <br />
+                            Não é possível recuperar.
+                        </h3>
+                        <div
+                            class="bg-gray-50 mt-2 *:min-w-[150px] sm:min-w-0 sm:flex sm:justify-end sm:gap-4"
+                        >
+                            <button
+                                data-button="deleteCancel"
+                                class="block px-4 py-2 justify-center rounded-md bg-gray-200 text-sm font-semibold text-gray-900 shadow-sm border border-gray-300 hover:bg-gray-100 hover:border-gray-500 focus:bg-gray-100 focus:ring-2 focus:ring-gray-500 focus:outline-none"
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                data-button="deleteAccept"
+                                class="block mt-3 px-5 py-2.5 justify-center rounded-md bg-red-500 text-sm font-semibold text-red-100 shadow-sm hover:bg-red-700 hover:text-red-100 sm:mt-0"
+                            >
+                                Deletar
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- menu click right -->
+        <ul data-menu="clickRight" class="menu-clickRight">
+            <li
+                class="cursor-pointer px-3 py-3 font-semibold text-gray-600 border-b border-gray-300"
+                data-button="addComment"
+            >
+                Adicionar Comentário
+            </li>
+            <li
+                class="cursor-pointer px-3 py-3 font-semibold text-gray-600"
+                data-button="copy"
+            >
+                Copiar
+            </li>
+        </ul>
+
+        <aside
+            data-aside="clipBoard"
+            data-result="saneadora"
+            data-init="saneadora"
+            class="notification-info"
+        >
+            Copiado para a área de transferência.
+        </aside>
+
+        <!-- modal generate text -->
+        <div class="modal-generate" data-modal="generateText">
+            <svg
+                data-close="generateText"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                fill="currentColor"
+                class="cursor-pointer absolute top-6 right-8 w-18 h-18 p-2 text-gray-600 hover:text-red-400 transition-colors animate-showContent"
+            >
+                <path
+                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                />
+            </svg>
+
+            <section
+                class="max-w-[60vw] mx-auto px-8 py-10 animate-showContent"
+            >
+                <h2 class="text-center text-3xl font-semibold text-gray-800">
+                    Gerar Texto de Certidão de Situação Jurídica
+                </h2>
+
+                <label
+                    for="textInitial"
+                    class="block text-xl font-medium text-gray-800 mt-12 mb-4"
+                >
+                    Texto Inicial da Matrícula:
+                </label>
+                <div id="toolbar-container">
+                    <span class="ql-formats">
+                        <select class="ql-font">
+                            <option value="arial" selected>Arial</option>
+                            <option value="inter">Inter</option>
+                            <option value="serif">Serif</option>
+                            <option value="sans-serif">Sans-serif</option>
+                            <option value="monospace">Monospace</option>
+                        </select>
+                        <select class="ql-size"></select>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-bold"></button>
+                        <button class="ql-italic"></button>
+                        <button class="ql-underline"></button>
+                        <button class="ql-strike"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <select class="ql-color"></select>
+                        <select class="ql-background"></select>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-script" value="sub"></button>
+                        <button class="ql-script" value="super"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-header" value="1"></button>
+                        <button class="ql-header" value="2"></button>
+                        <button class="ql-blockquote"></button>
+                        <button class="ql-code-block"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-list" value="ordered"></button>
+                        <button class="ql-list" value="bullet"></button>
+                        <button class="ql-indent" value="-1"></button>
+                        <button class="ql-indent" value="+1"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-direction" value="rtl"></button>
+                        <select class="ql-align"></select>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-link"></button>
+                        <button class="ql-image"></button>
+                        <button class="ql-video"></button>
+                        <button class="ql-formula"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-clean"></button>
+                    </span>
+                </div>
+
+                <div data-initial="textMatricula"></div>
+
+                <div class="cursor-pointer w-full flex justify-end mt-4">
+                    <button class="btn-add" data-button="createInitialText">
+                        <img
+                            src="public/images/plus-white.svg"
+                            alt="Criar Texto"
+                            class="w-7 h-7"
+                        />
+                        <span>Criar Texto</span>
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <article contenteditable="true" data-commentMenu></article>
+
+        <script type="module" src="public/js/typescript/script.js"></script>
+    </body>
+</html>

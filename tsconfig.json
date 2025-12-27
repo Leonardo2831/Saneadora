@@ -1,0 +1,13 @@
+{
+    "exclude": ["node_modules", "src", "css"],
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["ES2016", "DOM"],
+        "module": "es6",
+        "moduleResolution": "node",
+        "rootDirs": ["./public/typescript", "./public/interfaces"],
+        "outDir": "./public/js",
+        "esModuleInterop": true,
+        "strict": true
+    }
+}
