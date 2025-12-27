@@ -1,4 +1,9 @@
 {
+    "name": "saneadora",
+    "version": "1.0.0",
+    "description": "Um projeto focado em auxiliar a gerar certidões de situação jurídica, fazendo todos os cálculos necessários automaticamente, e no final gerando o texto com um padrão base.",
+    "author": "Leonardo Reis Ferraz",
+    "license": "GPL-3.0",
     "scripts": {
         "ts": "npx tsc --watch",
         "tailwind": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch",
