@@ -130,12 +130,12 @@ export default function valuesSaneadora(): boolean {
                 <table class="w-full">
                     <thead>
                         <tr class="bg-gray-50 children-style-cell">
-                            <th>Ato</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Tipo</th>
-                            <th>Situação</th>
-                            <th>Observação</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Ato</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Nome</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">CPF</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Tipo</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Situação</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Observação</th>
                         </tr>
                     </thead>
                     <tbody data-table="items" data-content="onus">
@@ -160,10 +160,10 @@ export default function valuesSaneadora(): boolean {
                 <table class="w-full">
                     <thead>
                         <tr class="bg-gray-50 children-style-cell">
-                            <th>Ato</th>
-                            <th>Número</th>
-                            <th>CPF</th>
-                            <th>Tipo</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Ato</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Número</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">CPF</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Tipo</th>
                         </tr>
                     </thead>
                     <tbody data-table="items" data-content="numbers">
@@ -188,13 +188,13 @@ export default function valuesSaneadora(): boolean {
                 <table class="w-full">
                     <thead>
                         <tr class="bg-gray-50 children-style-cell">
-                            <th>Ato</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Nome Conjugê</th>
-                            <th>CPF Conjugê</th>
-                            <th>Área Extremada</th>
-                            <th>Nova Matrícula</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Ato</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Nome</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">CPF</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Nome Conjugê</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">CPF Conjugê</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Área Extremada</th>
+                            <th class="h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500">Nova Matrícula</th>
                         </tr>
                     </thead>
 
