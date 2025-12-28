@@ -23,13 +23,21 @@ var NewPeopleDocument = /** @class */ (function () {
     }
     NewPeopleDocument.prototype.cleanInputs = function () {
         this.inputName.value = "";
+        this.inputName.classList.remove("invalid");
         this.inputCpf.value = "";
+        this.inputCpf.classList.remove("invalid");
         this.inputNameConjuge.value = "";
+        this.inputNameConjuge.classList.remove("invalid");
         this.inputCpfConjuge.value = "";
+        this.inputCpfConjuge.classList.remove("invalid");
         this.inputAto.value = "";
+        this.inputAto.classList.remove("invalid");
         this.inputArea.value = "";
-        if (this.inputBaseValue.value !== "")
+        this.inputArea.classList.remove("invalid");
+        if (this.inputBaseValue.value !== "") {
             this.inputBaseValue.value = "";
+            this.inputBaseValue.classList.remove("invalid");
+        }
     };
     NewPeopleDocument.prototype.createCol = function () {
         var _a, _b, _c, _d;
@@ -118,6 +126,7 @@ var NewPeopleDocument = /** @class */ (function () {
             this.addEventButton();
         if (this.selectState)
             this.addEventSelect();
+        this.cleanInputs();
         return this;
     };
     return NewPeopleDocument;

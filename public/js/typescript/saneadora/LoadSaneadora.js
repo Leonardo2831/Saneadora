@@ -34,6 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+import initAfterLoad from "../initAfterLoad.js";
 var LoadSaneadora = /** @class */ (function () {
     function LoadSaneadora(url, tableInfosCadastro, tableInfosOnus, tableInfosNumbers, tableInfosEstremacao, contentFinalText, notificationSaveSaneadora, buttonSave) {
         this.url = url;
@@ -43,6 +44,7 @@ var LoadSaneadora = /** @class */ (function () {
         this.tableInfosEstremacao =
             document.querySelector(tableInfosEstremacao);
         this.contentFinalText = document.querySelector(contentFinalText);
+        this.contentMatriculas = null;
         this.notificationSaveSaneadora = document.querySelector(notificationSaveSaneadora);
         this.buttonSave = document.querySelector(buttonSave);
         this.loadingMatricula = this.loadingMatricula.bind(this);
@@ -61,7 +63,7 @@ var LoadSaneadora = /** @class */ (function () {
         this.tableInfosEstremacao.innerHTML = data.tableEstremacao || "";
         this.contentFinalText.innerHTML = data.textSaneadora || "";
         if (this.buttonSave && data.id) {
-            this.buttonSave.setAttribute("data-id", String(data.id));
+            this.buttonSave.setAttribute("data-id", data.id.toString());
         }
         if (this.notificationSaveSaneadora) {
             this.notificationSaveSaneadora.textContent =
@@ -71,6 +73,7 @@ var LoadSaneadora = /** @class */ (function () {
                 var _a;
                 (_a = _this.notificationSaveSaneadora) === null || _a === void 0 ? void 0 : _a.classList.remove("show", "error");
             }, 1500);
+            initAfterLoad();
         }
     };
     LoadSaneadora.prototype.loadingMatricula = function (event) {
@@ -118,6 +121,8 @@ var LoadSaneadora = /** @class */ (function () {
         });
     };
     LoadSaneadora.prototype.addEventDobleClick = function (contentMatriculas) {
+        this.contentMatriculas = contentMatriculas;
+        this.contentMatriculas.removeEventListener("dblclick", this.loadingMatricula);
         contentMatriculas.addEventListener("dblclick", this.loadingMatricula);
     };
     return LoadSaneadora;
