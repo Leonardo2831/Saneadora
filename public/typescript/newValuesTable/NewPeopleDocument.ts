@@ -76,12 +76,27 @@ export default class NewPeopleDocument {
 
     cleanInputs() {
         this.inputName.value = "";
+        this.inputName.classList.remove("invalid");
+
         this.inputCpf.value = "";
+        this.inputCpf.classList.remove("invalid");
+
         this.inputNameConjuge.value = "";
+        this.inputNameConjuge.classList.remove("invalid");
+
         this.inputCpfConjuge.value = "";
+        this.inputCpfConjuge.classList.remove("invalid");
+
         this.inputAto.value = "";
+        this.inputAto.classList.remove("invalid");
+
         this.inputArea.value = "";
-        if (this.inputBaseValue.value !== "") this.inputBaseValue.value = "";
+        this.inputArea.classList.remove("invalid");
+
+        if (this.inputBaseValue.value !== "") {
+            this.inputBaseValue.value = "";
+            this.inputBaseValue.classList.remove("invalid");
+        }
     }
 
     createCol(): HTMLDivElement | null {
@@ -310,6 +325,8 @@ export default class NewPeopleDocument {
     init() {
         if (this.buttonAdd) this.addEventButton();
         if (this.selectState) this.addEventSelect();
+
+        this.cleanInputs();
 
         return this;
     }
