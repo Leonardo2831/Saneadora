@@ -11,55 +11,10 @@ import NewNumber from "./newValuesTable/NewNumber.js";
 import NewOnus from "./newValuesTable/NewOnus.js";
 import NewPeopleDocument from "./newValuesTable/NewPeopleDocument.js";
 import SaveSaneadora from "./saneadora/SaveSaneadora.js";
-import LoadMatriculas from "./saneadora/ViewSaneadora.js";
+
 import sumValue from "./sumValues.js";
 
 export default function initAfterLoad() {
-    // validate CPFs
-    const validateCPFs: ValidateCPF = new ValidateCPF(
-        "[data-input='cpf']",
-        "invalid"
-    );
-    validateCPFs.init();
-
-    // search bar
-    const search: Search = new Search(
-        "[data-table='items']",
-        "[data-input='search']",
-        "selectedSearch",
-        "animationEnter"
-    );
-    search.init();
-
-    // search matriculas
-    const searchMatriculas: SearchMatriculas = new SearchMatriculas(
-        "[data-content='matriculas']",
-        "[data-input='search-matriculas']",
-        "find",
-        "hidden"
-    );
-    searchMatriculas.init();
-
-    // menu saneadora
-    const loadMatriculas: LoadMatriculas = new LoadMatriculas(
-        '[data-button="viewMatriculas"]',
-        '[data-modal="viewMatriculas"]',
-        '[data-close="viewMatriculas"]',
-        "http://localhost:3000/saneadoras",
-        '[data-load="matriculas"]',
-        '[data-result="saneadora"]',
-        '[data-modal="verifyDelete"]',
-        '[data-button="deleteCancel"]',
-        '[data-button="deleteAccept"]',
-        '[data-tableInfos="cadastro"]',
-        '[data-tableInfos="onus"]',
-        '[data-tableInfos="numeros"]',
-        '[data-tableInfos="estremacao"]',
-        '[data-content="textFinal"]',
-        '[data-save="saneadora"]'
-    );
-    loadMatriculas.init();
-
     // save saneadora
     const saveSaneadora: SaveSaneadora = new SaveSaneadora(
         "[data-save='saneadora']",
@@ -183,6 +138,31 @@ export default function initAfterLoad() {
         addPeopleEstremacao
     );
     newInfoEstremacao.init();
+
+    // validate CPFs
+    const validateCPFs: ValidateCPF = new ValidateCPF(
+        "[data-input='cpf']",
+        "invalid"
+    );
+    validateCPFs.init();
+
+    // search bar
+    const search: Search = new Search(
+        "[data-table='items']",
+        "[data-input='search']",
+        "selectedSearch",
+        "animationEnter"
+    );
+    search.init();
+
+    // search matriculas
+    const searchMatriculas: SearchMatriculas = new SearchMatriculas(
+        "[data-content='matriculas']",
+        "[data-input='search-matriculas']",
+        "find",
+        "hidden"
+    );
+    searchMatriculas.init();
 
     // modal generate text
     const generateText: NewText = new NewText(

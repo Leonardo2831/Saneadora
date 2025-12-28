@@ -11,22 +11,9 @@ import NewNumber from "./newValuesTable/NewNumber.js";
 import NewOnus from "./newValuesTable/NewOnus.js";
 import NewPeopleDocument from "./newValuesTable/NewPeopleDocument.js";
 import SaveSaneadora from "./saneadora/SaveSaneadora.js";
-import LoadMatriculas from "./saneadora/ViewSaneadora.js";
 import sumValue from "./sumValues.js";
 export default function initAfterLoad() {
     var _a;
-    // validate CPFs
-    var validateCPFs = new ValidateCPF("[data-input='cpf']", "invalid");
-    validateCPFs.init();
-    // search bar
-    var search = new Search("[data-table='items']", "[data-input='search']", "selectedSearch", "animationEnter");
-    search.init();
-    // search matriculas
-    var searchMatriculas = new SearchMatriculas("[data-content='matriculas']", "[data-input='search-matriculas']", "find", "hidden");
-    searchMatriculas.init();
-    // menu saneadora
-    var loadMatriculas = new LoadMatriculas('[data-button="viewMatriculas"]', '[data-modal="viewMatriculas"]', '[data-close="viewMatriculas"]', "http://localhost:3000/saneadoras", '[data-load="matriculas"]', '[data-result="saneadora"]', '[data-modal="verifyDelete"]', '[data-button="deleteCancel"]', '[data-button="deleteAccept"]', '[data-tableInfos="cadastro"]', '[data-tableInfos="onus"]', '[data-tableInfos="numeros"]', '[data-tableInfos="estremacao"]', '[data-content="textFinal"]', '[data-save="saneadora"]');
-    loadMatriculas.init();
     // save saneadora
     var saveSaneadora = new SaveSaneadora("[data-save='saneadora']", '[data-notification="save"]', '[data-tableInfos="cadastro"]', '[data-tableInfos="onus"]', '[data-tableInfos="numeros"]', '[data-tableInfos="estremacao"]', '[data-content="textFinal"]', '[data-save-result="saneadora"]', "http://localhost:3000/saneadoras", { childList: true, subtree: true, characterData: true });
     saveSaneadora.init();
@@ -62,6 +49,15 @@ export default function initAfterLoad() {
     // new extremacao info
     var newInfoEstremacao = new NewInfoEstremacao('[data-inputName="estremacao"]', '[data-inputCPF="cpfEstremacao"]', '[data-select="stateEstremacao"]', '[data-inputName="conjugeEstremacao"]', '[data-inputCPF="cpfConjugeEstremacao"]', '[data-input="atoEstremacao"]', '[data-input="areaEstremada"]', '[data-input="newMatricula"]', '[data-button="addEstremacao"]', '[data-formContent="estremacao"]', '[data-tableContent="estremacao"]', addPeopleEstremacao);
     newInfoEstremacao.init();
+    // validate CPFs
+    var validateCPFs = new ValidateCPF("[data-input='cpf']", "invalid");
+    validateCPFs.init();
+    // search bar
+    var search = new Search("[data-table='items']", "[data-input='search']", "selectedSearch", "animationEnter");
+    search.init();
+    // search matriculas
+    var searchMatriculas = new SearchMatriculas("[data-content='matriculas']", "[data-input='search-matriculas']", "find", "hidden");
+    searchMatriculas.init();
     // modal generate text
     var generateText = new NewText('[data-content="textFinal"]', '[data-modal="generateText"]', "show-generateText", '[data-close="generateText"]', '[data-button="generateText"]', '[data-button="createInitialText"]', '[data-initial="textMatricula"]', {
         modules: {
