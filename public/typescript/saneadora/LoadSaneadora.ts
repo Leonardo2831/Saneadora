@@ -1,4 +1,5 @@
 import type { Saneadora } from "../../interface/saneadoraFetch.js";
+import initAfterLoad from "../initAfterLoad.js";
 
 export default class LoadSaneadora {
     url: string;
@@ -7,6 +8,8 @@ export default class LoadSaneadora {
     tableInfosOnus: HTMLElement | null;
     tableInfosNumbers: HTMLElement | null;
     tableInfosEstremacao: HTMLElement | null;
+
+    contentMatriculas: HTMLElement | null;
 
     contentFinalText: HTMLElement | null;
 
@@ -32,6 +35,7 @@ export default class LoadSaneadora {
             document.querySelector(tableInfosEstremacao);
 
         this.contentFinalText = document.querySelector(contentFinalText);
+        this.contentMatriculas = null;
 
         this.notificationSaveSaneadora = document.querySelector(
             notificationSaveSaneadora
@@ -59,7 +63,7 @@ export default class LoadSaneadora {
         this.contentFinalText.innerHTML = data.textSaneadora || "";
 
         if (this.buttonSave && data.id) {
-            this.buttonSave.setAttribute("data-id", String(data.id));
+            this.buttonSave.setAttribute("data-id", data.id.toString());
         }
 
         if (this.notificationSaveSaneadora) {
@@ -73,6 +77,8 @@ export default class LoadSaneadora {
                     "error"
                 );
             }, 1500);
+
+            initAfterLoad();
         }
     }
 
@@ -113,6 +119,8 @@ export default class LoadSaneadora {
     }
 
     addEventDobleClick(contentMatriculas: HTMLElement) {
+        this.contentMatriculas = contentMatriculas;
+        this.contentMatriculas.removeEventListener("dblclick", this.loadingMatricula);
         contentMatriculas.addEventListener("dblclick", this.loadingMatricula);
     }
 }
