@@ -2,7 +2,7 @@ import arrayContentRow from "./getContentRow.js";
 export default function generateOnus(tableOnus, matricula, type) {
     var contentRowOnus = arrayContentRow(tableOnus);
     var filteredType = contentRowOnus.filter(function (onus) {
-        return onus.includes(type);
+        return onus.includes(type) && onus.includes("Ativo");
     });
     if (type == "Estremação") {
         filteredType = contentRowOnus;

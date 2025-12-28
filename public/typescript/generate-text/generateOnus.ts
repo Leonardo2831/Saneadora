@@ -8,7 +8,7 @@ export default function generateOnus(
     const contentRowOnus: string[][] = arrayContentRow(tableOnus);
 
     let filteredType: string[][] = contentRowOnus.filter((onus) => {
-        return onus.includes(type);
+        return onus.includes(type) && onus.includes("Ativo");
     });
 
     if (type == "Estremação") {
