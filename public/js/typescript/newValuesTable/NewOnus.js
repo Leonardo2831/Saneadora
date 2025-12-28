@@ -14,14 +14,16 @@ var NewOnus = /** @class */ (function () {
     }
     NewOnus.prototype.addEventChangeActive = function () {
         var atoCancel = document.querySelector('[data-ato="cancel"]');
-        var activeOnus = false;
-        atoCancel.addEventListener("click", function () {
+        if (!atoCancel)
+            return;
+        var activeOnus = atoCancel.classList.contains("table-value-red") ? false : true;
+        atoCancel.onclick = function () {
             activeOnus = !activeOnus;
             var toggleActive = activeOnus ? "red" : "green";
             var inverseToggleActive = !activeOnus ? "red" : "green";
             atoCancel.classList.replace("table-value-".concat(toggleActive), "table-value-".concat(inverseToggleActive));
             atoCancel.textContent = activeOnus ? "Cancelado" : "Ativo";
-        });
+        };
     };
     NewOnus.prototype.createRow = function () {
         var _a;
@@ -73,6 +75,7 @@ var NewOnus = /** @class */ (function () {
     NewOnus.prototype.init = function () {
         if (this.buttonAdd)
             this.addEventButtonAdd();
+        this.addEventChangeActive();
         return this;
     };
     return NewOnus;
