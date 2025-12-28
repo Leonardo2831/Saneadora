@@ -35,8 +35,6 @@ Nesta seção, compartilho os principais desafios e conhecimentos adquiridos dur
 ## 📸 Screenshots do Projeto
 
 ### Design inicial utilizando IA para criação 
-![Imagens Referente ao Design do Projeto]
-<br>
 <img width="875" height="549" alt="image" src="https://github.com/user-attachments/assets/7d3b9abb-5dfc-4cd1-bcbe-1eb8f9309c44" />
 <br>
 <img width="958" height="756" alt="image" src="https://github.com/user-attachments/assets/123d5bd4-0f8e-4d02-9878-e351463cd592" />
@@ -44,22 +42,16 @@ Nesta seção, compartilho os principais desafios e conhecimentos adquiridos dur
 
 ### Tela Inicial / Cadastro
 
-![Tela de Cadastro] 
-<br>
 <img width="1905" height="916" alt="image" src="https://github.com/user-attachments/assets/a1f2821f-5395-4bf9-bc89-dacfdee428ca" />
 
 
 ### Modal de Criação de Valores
 
-![Modal Novo Valor] 
-<br>
 <img width="1904" height="912" alt="image" src="https://github.com/user-attachments/assets/8fca2961-612c-4ac0-ba9f-487cb76d3e62" />
 
 
 ### Texto Gerado
 
-![Texto Gerado] 
-<br>
 <img width="1904" height="917" alt="image" src="https://github.com/user-attachments/assets/89ed91d9-d696-4ab9-b5a5-f32089c9e001" />
 
 
