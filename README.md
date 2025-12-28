@@ -25,6 +25,7 @@ O sistema permite o cadastro estruturado de informações da matrícula (proprie
 
 Nesta seção, compartilho os principais desafios e conhecimentos adquiridos durante o desenvolvimento deste projeto:
 
+-   **Criação de Design com IA:** O design iniciamente usado para projeto foi feito com a *IA stitch* da *Google* e posteriormente repassado ao figma para detalhes finais.
 -   **Manipulação do DOM:** Aprendi a manipular o DOM para criar e atualizar a interface do usuário principalmente no uso de salvar dados em JSON.
 -   **TypeScript Avançado:** Aprendi a usar interfaces, tipos genéricos, etc. Sendo um grande início no *TypeScript*.
 -   **Arquitetura de Projetos:** Utilizei uma nova arquitetura, usando a pasta public para a interface e a pasta src para o código back-end que será adicionado no futuro.
@@ -33,20 +34,26 @@ Nesta seção, compartilho os principais desafios e conhecimentos adquiridos dur
 
 ## 📸 Screenshots do Projeto
 
+### Design inicial utilizando IA para criação 
+![Imagens Referente ao Design do Projeto](<img width="875" height="549" alt="image" src="https://github.com/user-attachments/assets/7d3b9abb-5dfc-4cd1-bcbe-1eb8f9309c44" />
+)
+(<img width="958" height="756" alt="image" src="https://github.com/user-attachments/assets/123d5bd4-0f8e-4d02-9878-e351463cd592" />
+)
+
 ### Tela Inicial / Cadastro
 
-_(Coloque aqui um print da tela de cadastro)_
-![Tela de Cadastro](caminho/para/imagem1.png)
+![Tela de Cadastro](<img width="1905" height="919" alt="image" src="https://github.com/user-attachments/assets/e3da264f-0767-4a9f-815f-12e108a7b734" />
+)
 
 ### Modal de Criação de Valores
 
-_(Coloque aqui um print do modal de novos valores)_
-![Modal Novo Valor](caminho/para/imagem2.png)
+![Modal Novo Valor](<img width="1905" height="919" alt="image" src="https://github.com/user-attachments/assets/1438e09c-8519-413e-ad85-6f22ffdbb527" />
+)
 
 ### Texto Gerado
 
-_(Coloque aqui um print do texto final gerado)_
-![Texto Gerado](caminho/para/imagem3.png)
+![Texto Gerado](<img width="1904" height="918" alt="image" src="https://github.com/user-attachments/assets/775503da-a2c2-4a02-a613-39c829659207" />
+)
 
 ## 🔧 Como Executar o Projeto
 
