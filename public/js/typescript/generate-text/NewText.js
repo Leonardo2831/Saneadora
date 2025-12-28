@@ -40,7 +40,7 @@ var NewText = /** @class */ (function () {
             textInitialMatricula = this.quill.value;
         }
         else if (this.quill instanceof Quill) {
-            textInitialMatricula = this.quill.getText();
+            textInitialMatricula = this.quill.root.innerHTML;
         }
         if (!this.textFinalContent)
             return;

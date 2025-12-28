@@ -75,10 +75,10 @@ export default class NewText {
         if (this.quill instanceof HTMLTextAreaElement) {
             textInitialMatricula = this.quill.value;
         } else if (this.quill instanceof Quill) {
-            textInitialMatricula = this.quill.getText();
+            textInitialMatricula = this.quill.root.innerHTML;
         }
 
-        if(!this.textFinalContent) return;
+        if (!this.textFinalContent) return;
 
         this.textFinalContent.innerHTML = contentText(textInitialMatricula);
         this.closeModal();
