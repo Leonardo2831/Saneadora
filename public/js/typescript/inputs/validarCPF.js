@@ -1,5 +1,22 @@
 var ValidateCPF = /** @class */ (function () {
     function ValidateCPF(inputsCPF, classError) {
+        var _this = this;
+        this.eventBlur = function (event) {
+            var input = event.currentTarget;
+            if (input.textContent && input.textContent.length >= 11) {
+                input.textContent = _this.formatar(input.textContent);
+            }
+        };
+        this.eventInput = function (event) {
+            var input = event.currentTarget;
+            input.classList.remove(_this.classError);
+            _this.justNumbers(input);
+            _this.validateChange(input);
+        };
+        this.eventClick = function (event) {
+            var input = event.currentTarget;
+            input.textContent = _this.clean(input.textContent || "");
+        };
         this.inputsCPF = document.querySelectorAll(inputsCPF);
         this.classError = classError;
     }
@@ -35,7 +52,9 @@ var ValidateCPF = /** @class */ (function () {
     };
     ValidateCPF.prototype.verifyExistCPF = function (cpf) {
         var cpfBase = cpf.replace(/[.-]/g, "");
-        var cpfNumbers = cpfBase.split("").map(function (number) { return parseInt(number); });
+        var cpfNumbers = cpfBase
+            .split("")
+            .map(function (number) { return parseInt(number); });
         var allEqual = cpfNumbers.every(function (number) { return number === cpfNumbers[0]; });
         if (allEqual)
             return false;
@@ -46,9 +65,7 @@ var ValidateCPF = /** @class */ (function () {
     ValidateCPF.prototype.validate = function (cpf) {
         var cpfFormatted = this.formatar(cpf);
         var matchCpf = cpfFormatted.match(/(?:\d{3}[.-]?){3}\d{2}/g);
-        var verifyCpf = (matchCpf && matchCpf[0] == cpfFormatted)
-            &&
-                this.verifyExistCPF(cpf);
+        var verifyCpf = matchCpf && matchCpf[0] == cpfFormatted && this.verifyExistCPF(cpf);
         return verifyCpf;
     };
     ValidateCPF.prototype.justNumbers = function (input) {
@@ -92,24 +109,13 @@ var ValidateCPF = /** @class */ (function () {
     };
     ValidateCPF.prototype.addEvent = function () {
         var _this = this;
-        // Deve deixar como arrow function, caso mudar para uma função padrão anônima, o this não irá apontar para o objeto
         this.inputsCPF.forEach(function (input) {
-            input.addEventListener("input", function () {
-                input.classList.remove(_this.classError);
-                _this.justNumbers(input);
-                _this.validateChange(input);
-            });
-        });
-        this.inputsCPF.forEach(function (input) {
-            if (input instanceof HTMLParagraphElement) {
-                input.addEventListener('click', function () {
-                    input.textContent = _this.clean(input.textContent);
-                });
-                input.addEventListener('blur', function () {
-                    if (input.textContent.length >= 11) {
-                        input.textContent = _this.formatar(input.textContent);
-                    }
-                });
+            if (input instanceof HTMLInputElement) {
+                input.oninput = _this.eventInput;
+            }
+            else if (input instanceof HTMLParagraphElement) {
+                input.onclick = _this.eventClick;
+                input.onblur = _this.eventBlur;
             }
         });
     };

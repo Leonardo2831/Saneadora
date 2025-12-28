@@ -1,26 +1,26 @@
 export default class ValidateCPF {
-    private inputsCPF : NodeListOf<HTMLInputElement | HTMLParagraphElement>;
-    private classError : string;
+    private inputsCPF: NodeListOf<HTMLInputElement | HTMLParagraphElement>;
+    private classError: string;
 
-    constructor(inputsCPF : string, classError : string) {
+    constructor(inputsCPF: string, classError: string) {
         this.inputsCPF = document.querySelectorAll(inputsCPF);
         this.classError = classError;
     }
 
-    clean(cpf : string) : string {
+    clean(cpf: string): string {
         return cpf.replace(/\D/g, "");
     }
 
-    build(cpf : string) : string {
+    build(cpf: string): string {
         return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "$1.$2.$3-$4");
     }
 
-    formatar(cpf : string) : string {
+    formatar(cpf: string): string {
         const cpfLimpo = this.clean(cpf);
         return this.build(cpfLimpo);
     }
 
-    validateFirstNumber(cpf : number[]){
+    validateFirstNumber(cpf: number[]) {
         let sum = 0;
 
         for (let i = 0; i < 9; i++) {
@@ -34,7 +34,7 @@ export default class ValidateCPF {
         return cpf[9] == 0;
     }
 
-    validateSecondNumber(cpf : number[]) {
+    validateSecondNumber(cpf: number[]) {
         let sum = 0;
 
         for (let i = 0; i < 10; i++) {
@@ -48,46 +48,48 @@ export default class ValidateCPF {
         return cpf[10] == 0;
     }
 
-    verifyExistCPF(cpf : string) : boolean {
+    verifyExistCPF(cpf: string): boolean {
         const cpfBase = cpf.replace(/[.-]/g, "");
 
-        const cpfNumbers : number[] = cpfBase.split("").map((number) => parseInt(number));
+        const cpfNumbers: number[] = cpfBase
+            .split("")
+            .map((number) => parseInt(number));
 
-        const allEqual : boolean = cpfNumbers.every((number) => number === cpfNumbers[0]);
+        const allEqual: boolean = cpfNumbers.every(
+            (number) => number === cpfNumbers[0]
+        );
         if (allEqual) return false;
 
-        const validateFirst : boolean = this.validateFirstNumber(cpfNumbers);
-        const validateSecond : boolean = this.validateSecondNumber(cpfNumbers);
+        const validateFirst: boolean = this.validateFirstNumber(cpfNumbers);
+        const validateSecond: boolean = this.validateSecondNumber(cpfNumbers);
 
         return validateFirst && validateSecond;
     }
 
-    validate(cpf : string) : boolean | null {
+    validate(cpf: string): boolean | null {
         const cpfFormatted = this.formatar(cpf);
         const matchCpf = cpfFormatted.match(/(?:\d{3}[.-]?){3}\d{2}/g);
 
-        const verifyCpf : boolean | null =
-                (matchCpf && matchCpf[0] == cpfFormatted) 
-                    && 
-                this.verifyExistCPF(cpf);
+        const verifyCpf: boolean | null =
+            matchCpf && matchCpf[0] == cpfFormatted && this.verifyExistCPF(cpf);
 
         return verifyCpf;
     }
 
-    justNumbers(input : HTMLInputElement | HTMLParagraphElement){
-        if(input instanceof HTMLInputElement) {
+    justNumbers(input: HTMLInputElement | HTMLParagraphElement) {
+        if (input instanceof HTMLInputElement) {
             const cleaned = this.clean(input.value);
-            if(input.value !== cleaned) input.value = cleaned;
+            if (input.value !== cleaned) input.value = cleaned;
         }
-        if(input instanceof HTMLParagraphElement) {
+        if (input instanceof HTMLParagraphElement) {
             const content = input.textContent || "";
             const cleaned = this.clean(content);
-            if(content !== cleaned) input.textContent = cleaned;
+            if (content !== cleaned) input.textContent = cleaned;
         }
     }
 
-    validateChange(cpfElement : HTMLInputElement | HTMLParagraphElement) {
-        let cpfSize : number = 0;
+    validateChange(cpfElement: HTMLInputElement | HTMLParagraphElement) {
+        let cpfSize: number = 0;
 
         if(cpfElement instanceof HTMLInputElement) cpfSize = cpfElement.value.length;
         else if(cpfElement instanceof HTMLParagraphElement) cpfSize = cpfElement.textContent.length;
@@ -115,32 +117,38 @@ export default class ValidateCPF {
 
     }
 
-    addEvent() {
-        // Deve deixar como arrow function, caso mudar para uma função padrão anônima, o this não irá apontar para o objeto
-        this.inputsCPF.forEach((input) => {
-            input.addEventListener("input", () => {
-                input.classList.remove(this.classError);
-                this.justNumbers(input);
-                this.validateChange(input);
-            });
-        });
+    eventBlur = (event: Event) => {
+        const input = event.currentTarget as HTMLParagraphElement;
+        if (input.textContent && input.textContent.length >= 11) {
+            input.textContent = this.formatar(input.textContent);
+        }
+    };
 
+    eventInput = (event: Event) => {
+        const input = event.currentTarget as HTMLInputElement;
+        input.classList.remove(this.classError);
+        this.justNumbers(input);
+        this.validateChange(input);
+    };
+
+    eventClick = (event: Event) => {
+        const input = event.currentTarget as HTMLParagraphElement;
+        input.textContent = this.clean(input.textContent || "");
+    };
+
+    addEvent() {
         this.inputsCPF.forEach((input) => {
-            if(input instanceof HTMLParagraphElement){
-                input.addEventListener('click', () => {
-                    input.textContent = this.clean(input.textContent);
-                });
-                input.addEventListener('blur', () => {
-                    if(input.textContent.length >= 11){
-                        input.textContent = this.formatar(input.textContent);
-                    }
-                });
+            if (input instanceof HTMLInputElement) {
+                input.oninput = this.eventInput;
+            } else if (input instanceof HTMLParagraphElement) {
+                input.onclick = this.eventClick;
+                input.onblur = this.eventBlur;
             }
         });
     }
 
     init() {
-        if(this.inputsCPF.length) this.addEvent();
+        if (this.inputsCPF.length) this.addEvent();
 
         return this;
     }
