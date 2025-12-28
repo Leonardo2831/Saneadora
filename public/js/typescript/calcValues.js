@@ -1,14 +1,19 @@
+// Helper to fix floating point precision issues
+function fixFloat(value) {
+    return parseFloat(value.toFixed(10));
+}
 export function calcPercentPeople(areaReal, value) {
     if (value && areaReal) {
         var calcPercent = (value * 100) / areaReal;
-        return calcPercent;
+        return fixFloat(calcPercent);
     }
     return;
 }
 export function calcNewAreaPercent(value, valueBase) {
     if (valueBase) {
-        var calcPercent = (Number(valueBase) * value) / 100;
-        return calcPercent;
+        // const calcPercent: number = (Number(valueBase) * value) / 100;
+        var calcPercent = Number(valueBase) * (value / 100);
+        return fixFloat(calcPercent);
     }
     return;
 }
@@ -24,28 +29,34 @@ export function calcNewArea(contentArea, value, unit, inputCell) {
     if (unit == "%") {
         var inputBase = document.querySelector('[data-input="percentBase"]');
         var calcPercentArea = calcNewAreaPercent(replacedValue, Number(inputBase.value.replace(/,/g, ".")));
-        if (inputCell) {
-            inputCell.value = "".concat(calcPercentArea === null || calcPercentArea === void 0 ? void 0 : calcPercentArea.toString().replace(".", ",")).concat(newUnit);
+        if (inputCell && calcPercentArea !== undefined) {
+            inputCell.value = "".concat(fixFloat(calcPercentArea)
+                .toString()
+                .replace(".", ",")).concat(newUnit);
         }
         if (calcPercentArea && calcPercentArea < 0) {
-            contentArea.children[1].textContent = "".concat((valueCell - Math.abs(calcPercentArea))
+            var result = valueCell - Math.abs(calcPercentArea);
+            contentArea.children[1].textContent = "".concat(fixFloat(result)
                 .toString()
                 .replace(".", ",")).concat(newUnit);
         }
         else if (calcPercentArea && calcPercentArea > 0) {
-            contentArea.children[1].textContent = "".concat((valueCell + Math.abs(calcPercentArea))
+            var result = valueCell + Math.abs(calcPercentArea);
+            contentArea.children[1].textContent = "".concat(fixFloat(result)
                 .toString()
                 .replace(".", ",")).concat(newUnit);
         }
     }
     else {
         if (replacedValue < 0) {
-            contentArea.children[1].textContent = "".concat((valueCell - Math.abs(replacedValue))
+            var result = valueCell - Math.abs(replacedValue);
+            contentArea.children[1].textContent = "".concat(fixFloat(result)
                 .toString()
                 .replace(".", ",")).concat(newUnit);
         }
         else if (replacedValue > 0) {
-            contentArea.children[1].textContent = "".concat((valueCell + Math.abs(replacedValue))
+            var result = valueCell + Math.abs(replacedValue);
+            contentArea.children[1].textContent = "".concat(fixFloat(result)
                 .toString()
                 .replace(".", ",")).concat(newUnit);
         }
@@ -65,7 +76,7 @@ export function calcNewPercent(areaReal, selectorPercent) {
         var replacedArea = Number((_c = (_b = (_a = percent.parentElement) === null || _a === void 0 ? void 0 : _a.previousElementSibling) === null || _b === void 0 ? void 0 : _b.children[1].textContent) === null || _c === void 0 ? void 0 : _c.replace(/%|ha|m²|m2/g, "").replace(/,/g, "."));
         // calculando porcentagem com área
         var calcPercent = (replacedArea * 100) / areaReal;
-        return calcPercent;
+        return fixFloat(calcPercent);
     });
     percents.forEach(function (percent, index) {
         var _a;

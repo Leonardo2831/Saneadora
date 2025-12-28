@@ -1,3 +1,8 @@
+// Helper to fix floating point precision issues
+function fixFloat(value: number): number {
+    return parseFloat(value.toFixed(10));
+}
+
 export function calcPercentPeople(
     areaReal: number,
     value: number
@@ -5,7 +10,7 @@ export function calcPercentPeople(
     if (value && areaReal) {
         const calcPercent: number = (value * 100) / areaReal;
 
-        return calcPercent;
+        return fixFloat(calcPercent);
     }
 
     return;
@@ -16,9 +21,10 @@ export function calcNewAreaPercent(
     valueBase: number
 ): number | void {
     if (valueBase) {
-        const calcPercent: number = (Number(valueBase) * value) / 100;
+        // const calcPercent: number = (Number(valueBase) * value) / 100;
+        const calcPercent: number = Number(valueBase) * (value / 100);
 
-        return calcPercent;
+        return fixFloat(calcPercent);
     }
 
     return;
@@ -60,36 +66,32 @@ export function calcNewArea(
             Number(inputBase.value.replace(/,/g, "."))
         );
 
-        if (inputCell) {
-            inputCell.value = `${calcPercentArea
-                ?.toString()
+        if (inputCell && calcPercentArea !== undefined) {
+            inputCell.value = `${fixFloat(calcPercentArea)
+                .toString()
                 .replace(".", ",")}${newUnit}`;
         }
 
         if (calcPercentArea && calcPercentArea < 0) {
-            contentArea.children[1].textContent = `${(
-                valueCell - Math.abs(calcPercentArea)
-            )
+            const result = valueCell - Math.abs(calcPercentArea);
+            contentArea.children[1].textContent = `${fixFloat(result)
                 .toString()
                 .replace(".", ",")}${newUnit}`;
         } else if (calcPercentArea && calcPercentArea > 0) {
-            contentArea.children[1].textContent = `${(
-                valueCell + Math.abs(calcPercentArea)
-            )
+            const result = valueCell + Math.abs(calcPercentArea);
+            contentArea.children[1].textContent = `${fixFloat(result)
                 .toString()
                 .replace(".", ",")}${newUnit}`;
         }
     } else {
         if (replacedValue < 0) {
-            contentArea.children[1].textContent = `${(
-                valueCell - Math.abs(replacedValue)
-            )
+            const result = valueCell - Math.abs(replacedValue);
+            contentArea.children[1].textContent = `${fixFloat(result)
                 .toString()
                 .replace(".", ",")}${newUnit}`;
         } else if (replacedValue > 0) {
-            contentArea.children[1].textContent = `${(
-                valueCell + Math.abs(replacedValue)
-            )
+            const result = valueCell + Math.abs(replacedValue);
+            contentArea.children[1].textContent = `${fixFloat(result)
                 .toString()
                 .replace(".", ",")}${newUnit}`;
         }
@@ -132,7 +134,7 @@ export function calcNewPercent(areaReal: number, selectorPercent: string) {
 
         // calculando porcentagem com área
         const calcPercent: number = (replacedArea * 100) / areaReal;
-        return calcPercent;
+        return fixFloat(calcPercent);
     });
 
     percents.forEach((percent, index) => {
