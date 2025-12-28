@@ -104,6 +104,15 @@ export default function contentText(textInitialMatricula: string): string {
 
             <section>
                 <h4 class="text-lg font-bold text-gray-800 mb-4">
+                    Usufruto:
+                </h4>
+                <ul class="list-disc list-inside">
+                    ${generateOnus(tables.tableOnus, matricula, "Usufruto")}
+                </ul>
+            </section>
+
+            <section>
+                <h4 class="text-lg font-bold text-gray-800 mb-4">
                     CLÁUSULA RESOLUTIVA EXPRESSA ou CLÁUSULA RESOLUTIVA
                     TÁCITA (AUSÊNCIA DE QUITAÇÃO):
                 </h4>
