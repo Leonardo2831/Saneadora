@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Saneadora</title>
+        <link rel="icon" href="public/images/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -36,11 +37,18 @@
         <header>
             <div class="px-6 py-4">
                 <div class="flex items-center justify-between gap-8">
-                    <h1
-                        class="text-[30px] font-bold leading-[36px] text-gray-900"
-                    >
-                        Saneadora
-                    </h1>
+                    <figure class="flex items-center gap-3">
+                        <img
+                            class="w-10 h-10"
+                            src="public/images/logo.png"
+                            alt="Saneadora"
+                        />
+                        <h1
+                            class="text-[30px] font-bold leading-[36px] text-gray-900"
+                        >
+                            Saneadora
+                        </h1>
+                    </figure>
 
                     <!-- Botões de Ação -->
                     <section class="flex items-center gap-3">
@@ -342,9 +350,7 @@
                             <option value="Imposto Atrasado">
                                 Imposto Atrasado
                             </option>
-                            <option value="Reserva Legal">
-                                Reserva Legal
-                            </option>
+                            <option value="Reserva Legal">Reserva Legal</option>
                         </select>
                     </div>
                 </div>
@@ -647,7 +653,10 @@
                 </section>
             </div>
 
-            <section data-content="textFinal" class="show flex flex-col gap-8"></section>
+            <section
+                data-content="textFinal"
+                class="show flex flex-col gap-8"
+            ></section>
 
             <div class="w-full flex justify-end m-6 ml-0">
                 <button
@@ -1257,6 +1266,82 @@
                     </button>
                 </div>
             </section>
+        </div>
+
+        <!-- button open news -->
+        <figure class="fixed z-70 top-[25%] right-[5%] rounded-full shadow-xs">
+            <div class="relative">
+                <svg
+                    data-delete="newsAlert"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill="currentColor"
+                    class="cursor-pointer absolute top-[-15%] right-[-5%] w-8 h-8 p-1 text-gray-600 hover:text-red-400 transition-colors animate-showContent"
+                >
+                    <path
+                        d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                    />
+                </svg>
+                <img
+                    class="w-20 h-20"
+                    src="public/images/logo.png"
+                    alt="Notícias"
+                />
+            </div>
+        </figure>
+        <!-- modal news -->
+        <div
+            class="fixed z-70 hidden"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+        >
+            <div class="fixed inset-0 z-10">
+                <div
+                    class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+                >
+                    <!-- Modal -->
+                    <section
+                        data-modal="news"
+                        class="relative rounded-lg bg-gray-50 shadow-[0_10px_15px_-3px_#00000033] py-6 px-8"
+                    >
+                        <svg
+                            data-close="news"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 -960 960 960"
+                            fill="currentColor"
+                            class="cursor-pointer absolute top-6 right-8 w-18 h-18 p-2 text-gray-600 hover:text-red-400 transition-colors animate-showContent"
+                        >
+                            <path
+                                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                            />
+                        </svg>
+                        <article>
+                            <h2 class="text-lg text-semibold mb-8">
+                                Novo Patch 1.0.1
+                            </h2>
+                            <h4>Atualização de 28/12/2025</h4>
+                            <h3>Mudanças</h3>
+                            <ul>
+                                <li>Correção de bugs</li>
+                                <li>Correção de bugs</li>
+                                <li>Correção de bugs</li>
+                            </ul>
+                            <h3>Correções de Bugs</h3>
+                            <ul>
+                                <li>Correção de bugs</li>
+                                <li>Correção de bugs</li>
+                                <li>Correção de bugs</li>
+                            </ul>
+                            <h3>Sobre o Patch</h3>
+                            <p>
+                                Este patch foi feito para corrigir bugs e
+                                melhorar a experiência do usuário.
+                            </p>
+                        </article>
+                    </section>
+                </div>
+            </div>
         </div>
 
         <article contenteditable="true" data-commentMenu></article>
