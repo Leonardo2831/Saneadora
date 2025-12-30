@@ -42,8 +42,7 @@ export default class AddCommentItem {
 
         event.stopPropagation();
 
-        const commentValue: string =
-            buttonComment.getAttribute("title") || "";
+        const commentValue: string = buttonComment.getAttribute("title") || "";
 
         this.comment.innerHTML = commentValue.replace("\n", "<br>");
         this.comment.classList.add("show");
@@ -96,7 +95,7 @@ export default class AddCommentItem {
 
         // Adicionando imagem ao botão de comentário
         const img = document.createElement("img");
-        img.src = "public/images/comment.svg";
+        img.src = "public/images/icons/comment.svg";
         img.alt = "Adicionar Comentário";
         img.classList.add("w-4", "h-4");
 

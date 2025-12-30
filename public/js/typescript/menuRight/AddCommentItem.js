@@ -55,7 +55,7 @@ var AddCommentItem = /** @class */ (function () {
         button.setAttribute("data-comment", "button");
         // Adicionando imagem ao botão de comentário
         var img = document.createElement("img");
-        img.src = "public/images/comment.svg";
+        img.src = "public/images/icons/comment.svg";
         img.alt = "Adicionar Comentário";
         img.classList.add("w-4", "h-4");
         button.appendChild(img);

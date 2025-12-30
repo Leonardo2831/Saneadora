@@ -199,7 +199,7 @@ export default class NewInfoEstremacao {
                 >
                     <img
                         class="w-4 h-4"
-                        src="public/images/plus-white.svg"
+                        src="public/images/icons/plus-white.svg"
                         alt="Adicionar Pessoa"
                     />
                 </button>

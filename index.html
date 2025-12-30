@@ -59,7 +59,7 @@
                             title="ctrl + s"
                         >
                             <img
-                                src="public/images/save.svg"
+                                src="public/images/icons/save.svg"
                                 alt="Salvar"
                                 class="w-5 h-5"
                             />
@@ -79,7 +79,7 @@
                             data-button="viewMatriculas"
                         >
                             <img
-                                src="public/images/document-view.svg"
+                                src="public/images/icons/document-view.svg"
                                 alt="Visualizar Saneadoras Salvas"
                             />
                             <span class="text-base font-medium leading-6">
@@ -94,7 +94,7 @@
                             data-new="saneadora"
                         >
                             <img
-                                src="public/images/plus.svg"
+                                src="public/images/icons/plus.svg"
                                 alt="Novo Registro"
                                 class="w-5 h-5"
                             />
@@ -287,7 +287,7 @@
                         title="enter"
                     >
                         <img
-                            src="public/images/plus-white.svg"
+                            src="public/images/icons/plus-white.svg"
                             alt="Adicionar"
                             class="w-7 h-7"
                         />
@@ -369,7 +369,7 @@
                 <div class="flex flex-1 items-end justify-end">
                     <button class="btn-add" title="enter" data-button="addOnus">
                         <img
-                            src="public/images/plus-white.svg"
+                            src="public/images/icons/plus-white.svg"
                             alt="Adicionar"
                             class="w-7 h-7"
                         />
@@ -442,7 +442,7 @@
                         data-button="addNumbers"
                     >
                         <img
-                            src="public/images/plus-white.svg"
+                            src="public/images/icons/plus-white.svg"
                             alt="Adicionar"
                             class="w-7 h-7"
                         />
@@ -562,7 +562,7 @@
                         data-button="addEstremacao"
                     >
                         <img
-                            src="public/images/plus-white.svg"
+                            src="public/images/icons/plus-white.svg"
                             alt="Adicionar"
                             class="w-7 h-7"
                         />
@@ -577,7 +577,7 @@
             <div>
                 <div class="relative">
                     <img
-                        src="public/images/search.svg"
+                        src="public/images/icons/search.svg"
                         alt="Pesquisar"
                         class="absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 pointer-events-none z-10"
                     />
@@ -664,7 +664,7 @@
                     data-button="generateText"
                 >
                     <img
-                        src="public/images/convert-text.svg"
+                        src="public/images/icons/convert-text.svg"
                         alt="Convert Text"
                         class="w-6 h-6"
                     />
@@ -1079,7 +1079,7 @@
 
                             <div class="relative mt-8">
                                 <img
-                                    src="public/images/search.svg"
+                                    src="public/images/icons/search.svg"
                                     alt="Pesquisar"
                                     class="absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 pointer-events-none z-10"
                                 />
@@ -1258,7 +1258,7 @@
                 <div class="cursor-pointer w-full flex justify-end mt-4">
                     <button class="btn-add" data-button="createInitialText">
                         <img
-                            src="public/images/plus-white.svg"
+                            src="public/images/icons/plus-white.svg"
                             alt="Criar Texto"
                             class="w-7 h-7"
                         />
@@ -1269,33 +1269,42 @@
         </div>
 
         <!-- button open news -->
-        <figure class="fixed z-70 top-[25%] right-[5%] rounded-full shadow-xs">
+        <figure
+            data-button="news"
+            class="animate-showRight cursor-pointer fixed z-50 top-[25%] right-[5%] rounded-full shadow-xs"
+        >
             <div class="relative">
                 <svg
                     data-delete="newsAlert"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 -960 960 960"
                     fill="currentColor"
-                    class="cursor-pointer absolute top-[-15%] right-[-5%] w-8 h-8 p-1 text-gray-600 hover:text-red-400 transition-colors animate-showContent"
+                    class="cursor-pointer absolute z-100 -top-4 -right-3 w-12 h-12 p-1 text-gray-600 hover:text-red-400 transition-colors"
                 >
                     <path
                         d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
                     />
                 </svg>
-                <img
-                    class="w-20 h-20"
-                    src="public/images/logo.png"
-                    alt="Notícias"
-                />
+                <video
+                    class="rounded-full w-35 h-35 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.4)] object-cover"
+                    src="public/images/video/video-new-update.mp4"
+                    type="video/mp4"
+                    autoplay
+                    muted
+                    playsinline
+                    poster="public/images/video/icon-new-update.png"
+                ></video>
             </div>
         </figure>
         <!-- modal news -->
         <div
-            class="fixed z-70 hidden"
+            class="fixed z-50 hidden"
             aria-labelledby="modal-title"
             role="dialog"
             aria-modal="true"
         >
+            <!-- Background -->
+            <div class="fixed inset-0 bg-[rgba(0,0,0,0.4)]"></div>
             <div class="fixed inset-0 z-10">
                 <div
                     class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
@@ -1303,40 +1312,70 @@
                     <!-- Modal -->
                     <section
                         data-modal="news"
-                        class="relative rounded-lg bg-gray-50 shadow-[0_10px_15px_-3px_#00000033] py-6 px-8"
+                        class="relative rounded-lg bg-gray-50 shadow-[0_10px_15px_-3px_#00000033] p-8"
                     >
                         <svg
                             data-close="news"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 -960 960 960"
                             fill="currentColor"
-                            class="cursor-pointer absolute top-6 right-8 w-18 h-18 p-2 text-gray-600 hover:text-red-400 transition-colors animate-showContent"
+                            class="cursor-pointer absolute top-4 right-6 w-12 h-12 p-2 text-gray-600 hover:text-red-400 transition-colors"
                         >
                             <path
                                 d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
                             />
                         </svg>
-                        <article>
-                            <h2 class="text-lg text-semibold mb-8">
+                        <article class="text-left">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-1">
                                 Novo Patch 1.0.1
                             </h2>
-                            <h4>Atualização de 28/12/2025</h4>
-                            <h3>Mudanças</h3>
-                            <ul>
-                                <li>Correção de bugs</li>
-                                <li>Correção de bugs</li>
-                                <li>Correção de bugs</li>
+                            <h4 class="text-sm font-medium text-gray-500 mb-6">
+                                Atualização de 28/12/2025
+                            </h4>
+
+                            <h3
+                                class="text-lg font-semibold text-gray-800 mt-6 mb-2"
+                            >
+                                Mudanças
+                            </h3>
+                            <ul
+                                class="list-disc list-inside text-gray-600 space-y-1 ml-2"
+                            >
+                                <li>
+                                    Adição da área de informações sobre as
+                                    atualizações.
+                                </li>
                             </ul>
-                            <h3>Correções de Bugs</h3>
-                            <ul>
-                                <li>Correção de bugs</li>
-                                <li>Correção de bugs</li>
-                                <li>Correção de bugs</li>
+
+                            <h3
+                                class="text-lg font-semibold text-gray-800 mt-6 mb-2"
+                            >
+                                Correções de Bugs
+                            </h3>
+                            <ul
+                                class="list-disc list-inside text-gray-600 space-y-1 ml-2"
+                            >
+                                <li>
+                                    Corrigimos o caso de não pegar a formatação
+                                    do texto na área de digitar o texto inicial
+                                    da matrícula.
+                                </li>
+                                <li>
+                                    Corrigimos a falta do Ônus Usufruto na
+                                    geração do texto.
+                                </li>
                             </ul>
-                            <h3>Sobre o Patch</h3>
-                            <p>
-                                Este patch foi feito para corrigir bugs e
-                                melhorar a experiência do usuário.
+
+                            <h3
+                                class="text-lg font-semibold text-gray-800 mt-6 mb-3"
+                            >
+                                Sobre o Patch
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Este patch foi feito principalmente para a
+                                correção de bugs e melhoras da usabilidade do
+                                site. Tendo apenas a mudança da comunicação
+                                sobre as atualizações.
                             </p>
                         </article>
                     </section>
@@ -1345,6 +1384,14 @@
         </div>
 
         <article contenteditable="true" data-commentMenu></article>
+
+        <a
+            href="https://github.com/Leonardo2831"
+            target="_blank"
+            class="mt-5 p-2 block text-end text-xs text-gray-600 font-medium cursor-pointer hover:text-gray-800 transition-colors"
+        >
+            <b class="font-semibold">Autor:</b> Leonardo Reis Ferraz
+        </a>
 
         <script type="module" src="public/js/typescript/script.js"></script>
     </body>
