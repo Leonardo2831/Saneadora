@@ -32,6 +32,8 @@ Nesta seção, compartilho os principais desafios e conhecimentos adquiridos dur
 -   **Integração com Bibliotecas:** Aprendi a integrar a biblioteca *Quill.js* e utilizar várias funções relacionadas a ele.
 -   **Gerenciamento de Estados:** Aprendi o conceito de UseState sem utilizar *React*, trazendo uma classe que salva os estados das seções parq quando haver alguma alteração, seja possível utilizar um *ctrl + z* para desfazer alterações feitas. Infelizmente não ficou vigente por agora no projeto, já que preciso de mais conhecimentos para trazer melhorias para ele.
 
+**Observação:** Recomendo utilizar em uma tela grande, pois não houve responsividade, já que para se fazer uma certidão de situação jurídica se ocupa muito espaço, sendo inprodutivo fazer algo em uma tela pequena como telefone.
+
 ## 📸 Screenshots do Projeto
 
 ### Design inicial utilizando IA para criação 
