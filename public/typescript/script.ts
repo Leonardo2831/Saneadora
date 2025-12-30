@@ -1,5 +1,6 @@
 import DocumentSaneadora from "./document-saneadora/NewDocument.js";
 import eventSelect from "./inputs/eventSelect.js";
+import NewUpdate from "./NewUpadte.js";
 import initSaneadoraDocument from "./saneadora/initSaneadora.js";
 import LoadMatriculas from "./saneadora/ViewSaneadora.js";
 
@@ -36,6 +37,9 @@ const loadMatriculas: LoadMatriculas = new LoadMatriculas(
     '[data-save="saneadora"]'
 );
 loadMatriculas.init();
+
+const newUpdate = new NewUpdate('[data-modal="news"]', '[data-button="news"]', '[data-close="news"]', '[data-delete="newsAlert"]');
+newUpdate.init();
 
 initSaneadoraDocument(
     "http://localhost:3000/saneadoras",
