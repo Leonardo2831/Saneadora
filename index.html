@@ -72,6 +72,14 @@
                             ></div>
                         </button>
 
+                        <button
+                            class="btn-add cursor-pointer"
+                            data-export="table"
+                        >
+                            Exportar como Tabela
+                        </button>
+                        
+
                         <!-- Botão View Documents -->
                         <button
                             class="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow-sm hover:bg-gray-300 transition-colors"
@@ -635,6 +643,7 @@
                         <span
                             class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"
                         ></span>
+                        <button class=" ">Exportar como Tabela</button>
                     </div>
                 </section>
 
@@ -1327,10 +1336,10 @@
                         </svg>
                         <article class="text-left">
                             <h2 class="text-2xl font-bold text-gray-900 mb-1">
-                                Novo Patch 1.0.1
+                                Novo Patch 1.1.0
                             </h2>
                             <h4 class="text-sm font-medium text-gray-500 mb-6">
-                                Atualização de 28/12/2025
+                                Atualização de 08/01/2026
                             </h4>
 
                             <h3
@@ -1342,11 +1351,10 @@
                                 class="list-disc list-inside text-gray-600 space-y-1 ml-2"
                             >
                                 <li>
-                                    Adição da área de informações sobre as
-                                    atualizações.
+                                    Adição de exportação de dados para tabela.
                                 </li>
                             </ul>
-
+<!-- 
                             <h3
                                 class="text-lg font-semibold text-gray-800 mt-6 mb-2"
                             >
@@ -1355,16 +1363,7 @@
                             <ul
                                 class="list-disc list-inside text-gray-600 space-y-1 ml-2"
                             >
-                                <li>
-                                    Corrigimos o caso de não pegar a formatação
-                                    do texto na área de digitar o texto inicial
-                                    da matrícula.
-                                </li>
-                                <li>
-                                    Corrigimos a falta do Ônus Usufruto na
-                                    geração do texto.
-                                </li>
-                            </ul>
+                            </ul> -->
 
                             <h3
                                 class="text-lg font-semibold text-gray-800 mt-6 mb-3"
@@ -1372,10 +1371,7 @@
                                 Sobre o Patch
                             </h3>
                             <p class="text-gray-600 leading-relaxed">
-                                Este patch foi feito principalmente para a
-                                correção de bugs e melhoras da usabilidade do
-                                site. Tendo apenas a mudança da comunicação
-                                sobre as atualizações.
+                                Este patch foi feito para adicionar melhor portabilidade dos projetos criados, podendo exportar dados para tabela e manipular como preferir.
                             </p>
                         </article>
                     </section>
@@ -1393,6 +1389,7 @@
             <b class="font-semibold">Autor:</b> Leonardo Reis Ferraz
         </a>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
         <script type="module" src="public/js/typescript/script.js"></script>
     </body>
 </html>
