@@ -18,5 +18,8 @@
         "tailwindcss": "^4.1.17",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.50.0"
+    },
+    "dependencies": {
+        "quill": "^2.0.3"
     }
 }
