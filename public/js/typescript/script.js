@@ -1,5 +1,6 @@
 import DocumentSaneadora from "./document-saneadora/NewDocument.js";
 import eventSelect from "./inputs/eventSelect.js";
+import ExportTable from "./export-table/ExportTable.js";
 import NewUpdate from "./NewUpadte.js";
 import initSaneadoraDocument from "./saneadora/initSaneadora.js";
 import LoadMatriculas from "./saneadora/ViewSaneadora.js";
@@ -13,3 +14,5 @@ loadMatriculas.init();
 var newUpdate = new NewUpdate('[data-modal="news"]', '[data-button="news"]', '[data-close="news"]', '[data-delete="newsAlert"]');
 newUpdate.init();
 initSaneadoraDocument("http://localhost:3000/saneadoras", '[data-tableInfos="cadastro"]', '[data-tableInfos="onus"]', '[data-tableInfos="numeros"]', '[data-tableInfos="estremacao"]', '[data-content="textFinal"]', '[data-save="saneadora"]', '[data-init="saneadora"]');
+var exportTable = new ExportTable('[data-export="table"]', '[data-tableInfos="cadastro"]', '[data-tableInfos="onus"]', '[data-tableInfos="numeros"]', '[data-tableInfos="estremacao"]');
+exportTable.init();
