@@ -4,6 +4,7 @@ import initValueInputs from "./inputs/initValueInputs.js";
 import Search from "./inputs/Search.js";
 import SearchMatriculas from "./inputs/SearchMatriculas.js";
 import ValidateCPF from "./inputs/validarCPF.js";
+import { addEventMenuClickRight } from "./menuRight/eventMenuClickRight.js";
 import AddPeopleEstremacao from "./newValuesTable/AddPeopleEstremacao.js";
 import CreateNewValue from "./newValuesTable/CreateNewValue.js";
 import NewInfoEstremacao from "./newValuesTable/NewInfoEstremacao.js";
@@ -96,4 +97,5 @@ export default function initAfterLoad() {
     // calculando porcentagem
     sumValue('[data-area="percent"]', '[data-sum="percent"]', "%");
     initValueInputs();
+    addEventMenuClickRight();
 }
