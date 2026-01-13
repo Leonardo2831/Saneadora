@@ -95,8 +95,6 @@ export default class CreateNewValue {
 
         divValue.appendChild(inputNewValue);
         divValue.appendChild(cloneButton);
-
-        console.log(inputNewValue, inputNewValue.value);
     }
 
     addNewValueInTable(): void {
@@ -145,6 +143,7 @@ export default class CreateNewValue {
             "aria-label",
             inputValue.value.replace(/m²|m2|ha|%|-|\+/g, "")
         );
+        divCell.setAttribute("data-remove", valueWithUnit);
 
         const insertLocal = col.children[
             col.children.length - 2

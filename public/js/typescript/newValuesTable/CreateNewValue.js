@@ -39,7 +39,6 @@ var CreateNewValue = /** @class */ (function () {
         inputNewValue.setAttribute("aria-label", valueInput);
         divValue.appendChild(inputNewValue);
         divValue.appendChild(cloneButton);
-        console.log(inputNewValue, inputNewValue.value);
     };
     CreateNewValue.prototype.addNewValueInTable = function () {
         var _a, _b;
@@ -70,6 +69,7 @@ var CreateNewValue = /** @class */ (function () {
         (_a = divCell.classList).add.apply(_a, classDivCell);
         divCell.setAttribute("data-menu", "");
         divCell.setAttribute("aria-label", inputValue.value.replace(/m²|m2|ha|%|-|\+/g, ""));
+        divCell.setAttribute("data-remove", valueWithUnit);
         var insertLocal = col.children[col.children.length - 2];
         // td ato
         var pAto = document.createElement("p");
