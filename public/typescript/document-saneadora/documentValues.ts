@@ -15,7 +15,8 @@ export default function valuesSaneadora(): boolean {
         '[data-save="saneadora"]'
     ) as HTMLElement;
 
-    if(buttonSave) buttonSave.removeAttribute('data-id');;
+    if (buttonSave) buttonSave.removeAttribute("data-id");
+    buttonSave?.setAttribute("data-id", new Date().getTime().toString());
 
     const tableContent = document.querySelector(
         '[data-content="tables"]'
@@ -71,7 +72,7 @@ export default function valuesSaneadora(): boolean {
                         class="text-base font-bold text-gray-800"
                         data-matricula
                     >
-                        ${inputMatricula.value.replace(' ', '')}
+                        ${inputMatricula.value.replace(" ", "")}
                     </span>
                 </div>
                 <div>
@@ -80,7 +81,9 @@ export default function valuesSaneadora(): boolean {
                         class="text-base font-bold text-gray-800"
                         data-real="area"
                     >
-                        ${inputArea.value.replace(".", ",")}${radioAreaUnitChecked.value}
+                        ${inputArea.value.replace(".", ",")}${
+            radioAreaUnitChecked.value
+        }
                     </span>
                 </div>
                 <div>
@@ -122,7 +125,7 @@ export default function valuesSaneadora(): boolean {
                     <span
                         class="text-base w-fit font-bold text-gray-800 rounded-lg py-[5px] px-[6px] focus:outline-none focus:ring-2 focus:ring-blue-600"
                     >
-                        ${inputMatricula.value.replace(' ', '')}
+                        ${inputMatricula.value.replace(" ", "")}
                     </span>
                 </div>
             </header>
@@ -152,7 +155,7 @@ export default function valuesSaneadora(): boolean {
                     <span
                         class="text-base w-fit font-bold text-gray-800 rounded-lg py-[5px] px-[6px] focus:outline-none focus:ring-2 focus:ring-blue-600"
                     >
-                        ${inputMatricula.value.replace(' ', '')}
+                        ${inputMatricula.value.replace(" ", "")}
                     </span>
                 </div>
             </header>
@@ -180,7 +183,7 @@ export default function valuesSaneadora(): boolean {
                     <span
                         class="text-base w-fit font-bold text-gray-800 rounded-lg py-[5px] px-[6px] focus:outline-none focus:ring-2 focus:ring-blue-600"
                         >
-                            ${inputMatricula.value.replace(' ', '')}
+                            ${inputMatricula.value.replace(" ", "")}
                     </span>
                 </div>
             </header>

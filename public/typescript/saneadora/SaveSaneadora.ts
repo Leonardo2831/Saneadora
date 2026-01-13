@@ -90,7 +90,10 @@ export default class SaveSaneadora {
             return;
         }
 
-        const idAttribute = this.buttonSave?.getAttribute("data-id");
+        let idAttribute : string | null | undefined;
+        console.log(this.countObserver);
+        
+        if(this.countObserver > 1) idAttribute = this.buttonSave?.getAttribute("data-id");
 
         const saneadoraObject: Saneadora = {
             id: idAttribute ? idAttribute : new Date().getTime().toString(),
@@ -177,7 +180,7 @@ export default class SaveSaneadora {
             this.notificationSelector
         );
 
-        if (!notification) return;        
+        if (!notification) return;
         if (this.countObserver > 1) notification.classList.remove("hidden");
 
         if (this.buttonSave?.getAttribute("data-id")) this.automaticSave(notification);
@@ -210,6 +213,7 @@ export default class SaveSaneadora {
 
     init() {
         if (this.buttonSave) this.verifyChange();
+        this.addInfoChange();
 
         return this;
     }
