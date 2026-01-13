@@ -65,13 +65,15 @@ export default class NewOnus {
 
     createRow(): HTMLTableRowElement | null {
         if (
-            this.inputName.value == "" ||
-            (this.inputCpf.value.length < 11 && this.inputCpf.value !== "") ||
-            this.inputAto.value == ""
+            this.inputAto.value == "" || (this.inputCpf.value.length > 0 && this.inputCpf.value.length < 11)
         ) {
             const inputs: HTMLInputElement[] = [
                 this.inputAto,
+                this.inputCpf,
             ];
+
+            console.log('entrou');
+            
 
             verifyExistValueInput(inputs);
 
