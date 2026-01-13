@@ -16,6 +16,7 @@ import SaveSaneadora from "./saneadora/SaveSaneadora.js";
 import sumValue from "./sumValues.js";
 
 export default function initAfterLoad() {
+    const countObserver = 0;
     // save saneadora
     const saveSaneadora: SaveSaneadora = new SaveSaneadora(
         "[data-save='saneadora']",
@@ -27,7 +28,8 @@ export default function initAfterLoad() {
         '[data-content="textFinal"]',
         '[data-save-result="saneadora"]',
         "http://localhost:3000/saneadoras",
-        { childList: true, subtree: true, characterData: true }
+        { childList: true, subtree: true, characterData: true },
+        countObserver
     );
     saveSaneadora.init();
 

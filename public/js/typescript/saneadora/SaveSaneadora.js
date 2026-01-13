@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var SaveSaneadora = /** @class */ (function () {
-    function SaveSaneadora(buttonSave, notificationSelector, tableInfosCadastro, tableInfosOnus, tableInfosNumbers, tableInfosEstremacao, contentFinalText, notificationSaveSaneadora, url, configObserver) {
+    function SaveSaneadora(buttonSave, notificationSelector, tableInfosCadastro, tableInfosOnus, tableInfosNumbers, tableInfosEstremacao, contentFinalText, notificationSaveSaneadora, url, configObserver, countObserver) {
         this.buttonSave = document.querySelector(buttonSave);
         this.notificationSelector = notificationSelector;
         this.selectorCadastro = tableInfosCadastro;
@@ -51,7 +51,7 @@ var SaveSaneadora = /** @class */ (function () {
         this.url = url;
         this.observerChange = null;
         this.configObserver = configObserver;
-        this.countObserver = 0;
+        this.countObserver = countObserver;
         this.addInfoChange = this.addInfoChange.bind(this);
         this.save = this.save.bind(this);
     }

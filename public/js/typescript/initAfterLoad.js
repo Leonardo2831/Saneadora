@@ -15,8 +15,9 @@ import SaveSaneadora from "./saneadora/SaveSaneadora.js";
 import sumValue from "./sumValues.js";
 export default function initAfterLoad() {
     var _a;
+    var countObserver = 0;
     // save saneadora
-    var saveSaneadora = new SaveSaneadora("[data-save='saneadora']", '[data-notification="save"]', '[data-tableInfos="cadastro"]', '[data-tableInfos="onus"]', '[data-tableInfos="numeros"]', '[data-tableInfos="estremacao"]', '[data-content="textFinal"]', '[data-save-result="saneadora"]', "http://localhost:3000/saneadoras", { childList: true, subtree: true, characterData: true });
+    var saveSaneadora = new SaveSaneadora("[data-save='saneadora']", '[data-notification="save"]', '[data-tableInfos="cadastro"]', '[data-tableInfos="onus"]', '[data-tableInfos="numeros"]', '[data-tableInfos="estremacao"]', '[data-content="textFinal"]', '[data-save-result="saneadora"]', "http://localhost:3000/saneadoras", { childList: true, subtree: true, characterData: true }, countObserver);
     saveSaneadora.init();
     // ctrl + z
     // const undoEvent : Undo = new Undo("[data-content='tables']", { childList: true, subtree: true, characterData: true });

@@ -35,7 +35,8 @@ export default class SaveSaneadora {
         contentFinalText: string,
         notificationSaveSaneadora: string,
         url: string,
-        configObserver: object
+        configObserver: object,
+        countObserver: number
     ) {
         this.buttonSave = document.querySelector(buttonSave);
         this.notificationSelector = notificationSelector;
@@ -63,7 +64,7 @@ export default class SaveSaneadora {
         this.observerChange = null;
         this.configObserver = configObserver;
 
-        this.countObserver = 0;
+        this.countObserver = countObserver;
 
         this.addInfoChange = this.addInfoChange.bind(this);
         this.save = this.save.bind(this);
@@ -176,7 +177,7 @@ export default class SaveSaneadora {
             this.notificationSelector
         );
 
-        if (!notification) return;
+        if (!notification) return;        
         if (this.countObserver > 1) notification.classList.remove("hidden");
 
         if (this.buttonSave?.getAttribute("data-id")) this.automaticSave(notification);
