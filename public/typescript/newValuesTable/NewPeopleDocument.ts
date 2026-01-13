@@ -147,7 +147,7 @@ export default class NewPeopleDocument {
         this.areaInfos = [areaReal, unitArea];
 
         let [typeAto, valueAto]: string[] =
-            this.inputAto.value.match(/\d+|[a-zA-Z]+/g) || [];
+            this.inputAto.value.match(/\d+|[a-zA-Z\u00C0-\u00FF]+/g) || [];
 
         if (!valueAto && /^\d+$/.test(typeAto)) {
             valueAto = typeAto;
@@ -156,7 +156,7 @@ export default class NewPeopleDocument {
 
         const dataContent: string = `
             <header class="uppercase h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500 tracking-wider">
-                ${typeAto}.${valueAto}
+                ${typeAto}${valueAto ? "." + valueAto : ""}
             </header>
             <div data-menu class="relative" aria-label="${
                 this.inputName.value
@@ -212,9 +212,9 @@ export default class NewPeopleDocument {
                     }"
                 />
             </div>
-            <div class="min-h-[100px] relative" data-menu data-remove="${this.inputArea.value}${unitArea}" aria-label="${
+            <div class="min-h-[100px] relative" data-menu data-remove="${
                 this.inputArea.value
-            }">
+            }${unitArea}" aria-label="${this.inputArea.value}">
                 <p
                     class="text-center text-xs font-medium text-gray-600 uppercase mb-1.5"
                 >
