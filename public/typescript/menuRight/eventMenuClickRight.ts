@@ -1,15 +1,18 @@
 import AddCommentItem from "./AddCommentItem.js";
 import ClickOutside from "../ClickOutside.js";
 import CopyTextItem from "./CopyTextItem.js";
+import RemoveValue from "./RemoveValue.js";
 
 let clickOutside: ClickOutside | null = null;
 let copyTextItem: CopyTextItem | null = null;
 let addCommentItem: AddCommentItem | null = null;
+let removeValue: RemoveValue | null = null;
 
 function openMenuClickRight(event: MouseEvent): void {
     addCommentItem = null;
     copyTextItem = null;
     clickOutside = null;
+    removeValue = null;
 
     const menuClickRight = document.querySelector(
         '[data-menu="clickRight"]'
@@ -20,6 +23,23 @@ function openMenuClickRight(event: MouseEvent): void {
     if (!menuClickRight || !cellTable) return;
 
     event.preventDefault();
+
+    if(cellTable.getAttribute('data-remove')){
+        const verifyExistItem = menuClickRight.querySelector('[data-button="removeValue"]');
+
+        if(verifyExistItem) verifyExistItem.remove();
+
+        const newItemMenu = document.createElement('li');
+        newItemMenu.setAttribute('data-button', "removeValue");
+        newItemMenu.classList.add('cursor-pointer', 'px-3', 'py-3', 'font-semibold', 'text-gray-600', 'border-t', 'border-gray-300');
+        newItemMenu.textContent = "Apagar Valor";
+
+        menuClickRight.appendChild(newItemMenu);
+    } else {
+        const verifyExistItem = menuClickRight.querySelector('[data-button="removeValue"]');
+
+        if(verifyExistItem) verifyExistItem.remove();
+    }
 
     menuClickRight.classList.add("show");
 
@@ -58,10 +78,13 @@ function openMenuClickRight(event: MouseEvent): void {
         event,
         '[data-button="addComment"]',
         "[data-menu]",
-        '[data-commentMenu]',
-        'Escreva seu comentário...',
+        "[data-commentMenu]",
+        "Escreva seu comentário..."
     );
     addCommentItem.init();
+
+    removeValue = new RemoveValue(event, '[data-button="removeValue"]', menuClickRight);
+    removeValue.init();
 }
 
 export function removeEventMenuClickRight() {
