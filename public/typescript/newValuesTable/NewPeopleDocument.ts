@@ -212,7 +212,7 @@ export default class NewPeopleDocument {
                     }"
                 />
             </div>
-            <div class="min-h-[100px] relative" data-menu aria-label="${
+            <div class="min-h-[100px] relative" data-menu data-remove="${this.inputArea.value}${unitArea}" aria-label="${
                 this.inputArea.value
             }">
                 <p
