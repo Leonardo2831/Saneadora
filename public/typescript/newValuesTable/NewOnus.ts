@@ -100,12 +100,12 @@ export default class NewOnus {
                 ${typeAto}.${valueAto}
             </td>
             <td class="px-4 py-4 relative" data-menu aria-label="${
-                this.inputName.value
+                this.inputName.value || "Não Definido"
             }">
                 <input
                     type="text"
                     class="table-input"
-                    value="${this.inputName.value}"
+                    value="${this.inputName.value || "Não Definido"}"
                 />
             </td>
             <td class="px-4 py-4 relative" data-menu aria-label="${
