@@ -23,6 +23,8 @@ export default class SaveSaneadora {
     url: string;
     configObserver: object;
 
+    countObserver: number;
+
     constructor(
         buttonSave: string,
         notificationSelector: string,
@@ -60,6 +62,8 @@ export default class SaveSaneadora {
 
         this.observerChange = null;
         this.configObserver = configObserver;
+
+        this.countObserver = 0;
 
         this.addInfoChange = this.addInfoChange.bind(this);
         this.save = this.save.bind(this);
@@ -148,7 +152,19 @@ export default class SaveSaneadora {
         }
     }
 
+    automaticSave(notification: HTMLElement) {
+        if(notification.classList.contains('hidden')) return;
+
+        const timeSave = 5 * 60 * 1000;
+
+        setTimeout(async () => {
+            await this.save();
+        }, timeSave);
+    }
+
     addInfoChange(): void {
+        this.countObserver++;
+
         this.tableInfosCadastro = document.querySelector(this.selectorCadastro);
         this.tableInfosOnus = document.querySelector(this.selectorOnus);
         this.tableInfosNumbers = document.querySelector(this.selectorNumbers);
@@ -156,13 +172,14 @@ export default class SaveSaneadora {
             this.selectorEstremacao
         );
 
-        const notification = this.buttonSave?.querySelector(
+        const notification: HTMLElement | null | undefined = this.buttonSave?.querySelector(
             this.notificationSelector
         );
 
         if (!notification) return;
+        if (this.countObserver > 1) notification.classList.remove("hidden");
 
-        notification.classList.remove("hidden");
+        if (this.buttonSave?.getAttribute("data-id")) this.automaticSave(notification);
 
         this.buttonSave?.removeEventListener("click", this.save);
         this.buttonSave?.addEventListener("click", this.save);

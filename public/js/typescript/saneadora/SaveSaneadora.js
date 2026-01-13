@@ -51,6 +51,7 @@ var SaveSaneadora = /** @class */ (function () {
         this.url = url;
         this.observerChange = null;
         this.configObserver = configObserver;
+        this.countObserver = 0;
         this.addInfoChange = this.addInfoChange.bind(this);
         this.save = this.save.bind(this);
     }
@@ -129,8 +130,25 @@ var SaveSaneadora = /** @class */ (function () {
             });
         });
     };
+    SaveSaneadora.prototype.automaticSave = function (notification) {
+        var _this = this;
+        if (notification.classList.contains('hidden'))
+            return;
+        var timeSave = 5 * 60 * 1000;
+        setTimeout(function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.save()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); }, timeSave);
+    };
     SaveSaneadora.prototype.addInfoChange = function () {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
+        this.countObserver++;
         this.tableInfosCadastro = document.querySelector(this.selectorCadastro);
         this.tableInfosOnus = document.querySelector(this.selectorOnus);
         this.tableInfosNumbers = document.querySelector(this.selectorNumbers);
@@ -138,9 +156,12 @@ var SaveSaneadora = /** @class */ (function () {
         var notification = (_a = this.buttonSave) === null || _a === void 0 ? void 0 : _a.querySelector(this.notificationSelector);
         if (!notification)
             return;
-        notification.classList.remove("hidden");
-        (_b = this.buttonSave) === null || _b === void 0 ? void 0 : _b.removeEventListener("click", this.save);
-        (_c = this.buttonSave) === null || _c === void 0 ? void 0 : _c.addEventListener("click", this.save);
+        if (this.countObserver > 1)
+            notification.classList.remove("hidden");
+        if ((_b = this.buttonSave) === null || _b === void 0 ? void 0 : _b.getAttribute("data-id"))
+            this.automaticSave(notification);
+        (_c = this.buttonSave) === null || _c === void 0 ? void 0 : _c.removeEventListener("click", this.save);
+        (_d = this.buttonSave) === null || _d === void 0 ? void 0 : _d.addEventListener("click", this.save);
     };
     SaveSaneadora.prototype.verifyChange = function () {
         var _a, _b, _c, _d;
