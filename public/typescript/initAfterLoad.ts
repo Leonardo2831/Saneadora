@@ -12,6 +12,7 @@ import NewNumber from "./newValuesTable/NewNumber.js";
 import NewOnus from "./newValuesTable/NewOnus.js";
 import NewPeopleDocument from "./newValuesTable/NewPeopleDocument.js";
 import SaveSaneadora from "./saneadora/SaveSaneadora.js";
+import AddCommentItem from "./menuRight/AddCommentItem.js";
 
 import sumValue from "./sumValues.js";
 
@@ -222,4 +223,6 @@ export default function initAfterLoad() {
 
     initValueInputs();
     addEventMenuClickRight();
+
+    AddCommentItem.initListener("[data-commentMenu]");
 }

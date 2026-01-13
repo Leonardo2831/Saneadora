@@ -132,6 +132,58 @@ export default class AddCommentItem {
         this.buttonAddComment?.addEventListener("click", this.addEventComment);
     }
 
+    static initListener(commentSelector: string): void {
+        const comment = document.querySelector(commentSelector) as HTMLElement;
+        if (!comment) return;
+
+        let clickOutside: ClickOutside | null = null;
+
+        const openComment = (event: MouseEvent) => {
+            const buttonComment = (event.target as HTMLElement).closest(
+                '[data-comment="button"]'
+            ) as HTMLElement;
+            if (!buttonComment) return;
+
+            event.stopPropagation();
+            event.preventDefault(); // Added preventDefault just in case
+
+            const commentValue: string =
+                buttonComment.getAttribute("title") || "";
+
+            comment.innerHTML = commentValue.replace(/\n/g, "<br>"); // Fixed replace to global
+            comment.classList.add("show");
+
+            const pointers = {
+                x: event.pageX,
+                y: event.pageY,
+            };
+
+            comment.style.left = `${pointers.x + 20}px`;
+            comment.style.top = `${pointers.y - comment.offsetHeight - 20}px`;
+
+            if (clickOutside) clickOutside = null;
+
+            clickOutside = new ClickOutside(
+                comment,
+                "data-outside",
+                "click",
+                () => {
+                    if (buttonComment) {
+                        buttonComment.setAttribute(
+                            "title",
+                            comment.innerHTML.replace(/<br>/g, "\n") || ""
+                        );
+                    }
+                    comment.classList.remove("show");
+                    clickOutside = null;
+                }
+            );
+            clickOutside.init();
+        };
+
+        window.addEventListener("click", openComment);
+    }
+
     init() {
         if (this.buttonAddComment) this.addEventButtonComment();
 

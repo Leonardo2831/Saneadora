@@ -74,15 +74,6 @@ function openMenuClickRight(event: MouseEvent): void {
     );
     copyTextItem.init();
 
-    addCommentItem = new AddCommentItem(
-        event,
-        '[data-button="addComment"]',
-        "[data-menu]",
-        "[data-commentMenu]",
-        "Escreva seu comentário..."
-    );
-    addCommentItem.init();
-
     removeValue = new RemoveValue(event, '[data-button="removeValue"]', menuClickRight);
     removeValue.init();
 }
