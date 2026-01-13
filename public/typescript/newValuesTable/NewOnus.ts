@@ -70,8 +70,6 @@ export default class NewOnus {
             this.inputAto.value == ""
         ) {
             const inputs: HTMLInputElement[] = [
-                this.inputName,
-                this.inputCpf,
                 this.inputAto,
             ];
 
