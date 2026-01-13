@@ -71,10 +71,7 @@ export default class NewOnus {
                 this.inputAto,
                 this.inputCpf,
             ];
-
-            console.log('entrou');
             
-
             verifyExistValueInput(inputs);
 
             return null;
