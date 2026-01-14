@@ -39,8 +39,8 @@ export default class NewOnus {
         this.addRow = this.addRow.bind(this);
     }
 
-    addEventChangeActive() : void{
-        const atoCancel = document.querySelector(
+    addEventChangeActive(row : HTMLTableRowElement) : void{
+        const atoCancel = row.querySelector(
             '[data-ato="cancel"]'
         ) as HTMLDivElement;
 
@@ -162,7 +162,7 @@ export default class NewOnus {
         if (!row) return;
 
         this.tableContent.appendChild(row);
-        this.addEventChangeActive();
+        this.addEventChangeActive(row);
 
         this.inputName.value = "";
         this.inputCpf.value = "";
