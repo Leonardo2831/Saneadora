@@ -104,7 +104,9 @@ export default class AddCommentItem {
         return button;
     }
 
-    addEventComment(): void {
+    addEventComment(event: MouseEvent): void {
+        event.stopPropagation();
+        
         const tableCell = (this.eventClickRight.target as HTMLElement).closest(
             this.datasetMenuRight
         );

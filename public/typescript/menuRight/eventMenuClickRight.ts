@@ -9,6 +9,9 @@ let addCommentItem: AddCommentItem | null = null;
 let removeValue: RemoveValue | null = null;
 
 function openMenuClickRight(event: MouseEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
+    
     addCommentItem = null;
     copyTextItem = null;
     clickOutside = null;
@@ -21,8 +24,6 @@ function openMenuClickRight(event: MouseEvent): void {
         "[data-menu]"
     ) as HTMLElement;
     if (!menuClickRight || !cellTable) return;
-
-    event.preventDefault();
 
     if(cellTable.getAttribute('data-remove')){
         const verifyExistItem = menuClickRight.querySelector('[data-button="removeValue"]');
