@@ -105,7 +105,7 @@ export default class SaveSaneadora {
             textSaneadora: this.contentFinalText?.innerHTML || "",
         };
 
-        this.buttonSave?.setAttribute("data-id", saneadoraObject.id.toString());
+        if(!idAttribute) this.buttonSave?.setAttribute("data-id", saneadoraObject.id.toString());
 
         const method = idAttribute ? "PUT" : "POST";
         const urlReq = idAttribute ? `${this.url}/${idAttribute}` : this.url;
