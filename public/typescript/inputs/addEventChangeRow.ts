@@ -1,9 +1,8 @@
 export function addEventChangeActive(event: MouseEvent): void {
     event.stopPropagation();
-    const row = (event.target as HTMLTableRowElement).closest('tr');
-    const atoCancel = row?.querySelector(
+    const atoCancel = (event.target as HTMLTableRowElement).closest(
         '[data-ato="cancel"]'
-    ) as HTMLDivElement;
+    );
 
     if (!atoCancel) return;
 
@@ -24,6 +23,6 @@ export function addEventChangeActive(event: MouseEvent): void {
     atoCancel.textContent = activeOnus ? "Cancelado" : "Ativo";
 }
 
-export function addEventWindowChangeActive(){
-    window.addEventListener('click', addEventChangeActive);
+export function addEventWindowChangeActive() {
+    window.addEventListener("click", addEventChangeActive);
 }
