@@ -1,0 +1,29 @@
+export function addEventChangeActive(event: MouseEvent): void {
+    event.stopPropagation();
+    const row = (event.target as HTMLTableRowElement).closest('tr');
+    const atoCancel = row?.querySelector(
+        '[data-ato="cancel"]'
+    ) as HTMLDivElement;
+
+    if (!atoCancel) return;
+
+    let activeOnus = atoCancel.classList.contains("table-value-red")
+        ? false
+        : true;
+
+    activeOnus = !activeOnus;
+
+    const toggleActive = activeOnus ? "red" : "green";
+    const inverseToggleActive = !activeOnus ? "red" : "green";
+
+    atoCancel.classList.replace(
+        `table-value-${toggleActive}`,
+        `table-value-${inverseToggleActive}`
+    );
+
+    atoCancel.textContent = activeOnus ? "Cancelado" : "Ativo";
+}
+
+export function addEventWindowChangeActive(){
+    window.addEventListener('click', addEventChangeActive);
+}

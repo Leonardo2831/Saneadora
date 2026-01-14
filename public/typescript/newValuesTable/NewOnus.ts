@@ -39,30 +39,6 @@ export default class NewOnus {
         this.addRow = this.addRow.bind(this);
     }
 
-    addEventChangeActive(row : HTMLTableRowElement) : void{
-        const atoCancel = row.querySelector(
-            '[data-ato="cancel"]'
-        ) as HTMLDivElement;
-
-        if (!atoCancel) return;
-
-        let activeOnus = atoCancel.classList.contains("table-value-red") ? false : true ;
-
-        atoCancel.onclick = () => {
-            activeOnus = !activeOnus;
-
-            const toggleActive = activeOnus ? "red" : "green";
-            const inverseToggleActive = !activeOnus ? "red" : "green";
-
-            atoCancel.classList.replace(
-                `table-value-${toggleActive}`,
-                `table-value-${inverseToggleActive}`
-            );
-
-            atoCancel.textContent = activeOnus ? "Cancelado" : "Ativo";
-        };
-    }
-
     createRow(): HTMLTableRowElement | null {
         if (
             this.inputAto.value == "" || (this.inputCpf.value.length > 0 && this.inputCpf.value.length < 11)
@@ -162,7 +138,6 @@ export default class NewOnus {
         if (!row) return;
 
         this.tableContent.appendChild(row);
-        this.addEventChangeActive(row);
 
         this.inputName.value = "";
         this.inputCpf.value = "";
@@ -178,7 +153,6 @@ export default class NewOnus {
 
     init() {
         if (this.buttonAdd) this.addEventButtonAdd();
-        this.addEventChangeActive();
 
         return this;
     }

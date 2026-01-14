@@ -13,8 +13,8 @@ import NewOnus from "./newValuesTable/NewOnus.js";
 import NewPeopleDocument from "./newValuesTable/NewPeopleDocument.js";
 import SaveSaneadora from "./saneadora/SaveSaneadora.js";
 import AddCommentItem from "./menuRight/AddCommentItem.js";
-
 import sumValue from "./sumValues.js";
+import { addEventWindowChangeActive } from "./inputs/addEventChangeRow.js";
 
 export default function initAfterLoad() {
     const countObserver = 0;
@@ -225,4 +225,6 @@ export default function initAfterLoad() {
     addEventMenuClickRight();
 
     AddCommentItem.initListener("[data-commentMenu]");
+
+    addEventWindowChangeActive();
 }
