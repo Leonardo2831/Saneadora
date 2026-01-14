@@ -34,6 +34,10 @@ export default class AddCommentItem {
         this.clickOutside = null;
     }
 
+    removeEventComment(){
+        this.buttonAddComment?.removeEventListener("click", this.addEventComment);
+    }
+
     openComment(event: MouseEvent): void {
         const buttonComment = (event.target as HTMLElement).closest(
             '[data-comment="button"]'
@@ -70,6 +74,7 @@ export default class AddCommentItem {
                 }
                 this.comment.classList.remove("show");
                 this.clickOutside = null;
+                this.removeEventComment();
             }
         );
         this.clickOutside.init();

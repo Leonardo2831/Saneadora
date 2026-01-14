@@ -39,6 +39,10 @@ export default class CopyTextItem {
         this.copyText = this.copyText.bind(this);
     }
 
+    removeEventCopy() {
+        this.buttonCopy?.removeEventListener("click", this.copyText);
+    }
+
     async copyText() {
         try {
             const valueCell = (this.eventCopy.target as HTMLElement).closest(
@@ -81,6 +85,8 @@ export default class CopyTextItem {
                     this.classError
                 );
             }, this.timeAnimation);
+        } finally {
+            this.removeEventCopy();
         }
     }
 

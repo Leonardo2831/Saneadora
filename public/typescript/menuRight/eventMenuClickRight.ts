@@ -11,7 +11,7 @@ let removeValue: RemoveValue | null = null;
 function openMenuClickRight(event: MouseEvent): void {
     event.stopPropagation();
     event.preventDefault();
-    
+
     addCommentItem = null;
     copyTextItem = null;
     clickOutside = null;
@@ -25,21 +25,33 @@ function openMenuClickRight(event: MouseEvent): void {
     ) as HTMLElement;
     if (!menuClickRight || !cellTable) return;
 
-    if(cellTable.getAttribute('data-remove')){
-        const verifyExistItem = menuClickRight.querySelector('[data-button="removeValue"]');
+    if (cellTable.getAttribute("data-remove")) {
+        const verifyExistItem = menuClickRight.querySelector(
+            '[data-button="removeValue"]'
+        );
 
-        if(verifyExistItem) verifyExistItem.remove();
+        if (verifyExistItem) verifyExistItem.remove();
 
-        const newItemMenu = document.createElement('li');
-        newItemMenu.setAttribute('data-button', "removeValue");
-        newItemMenu.classList.add('cursor-pointer', 'px-3', 'py-3', 'font-semibold', 'text-gray-600', 'border-t', 'border-gray-300');
+        const newItemMenu = document.createElement("li");
+        newItemMenu.setAttribute("data-button", "removeValue");
+        newItemMenu.classList.add(
+            "cursor-pointer",
+            "px-3",
+            "py-3",
+            "font-semibold",
+            "text-gray-600",
+            "border-t",
+            "border-gray-300"
+        );
         newItemMenu.textContent = "Apagar Valor";
 
         menuClickRight.appendChild(newItemMenu);
     } else {
-        const verifyExistItem = menuClickRight.querySelector('[data-button="removeValue"]');
+        const verifyExistItem = menuClickRight.querySelector(
+            '[data-button="removeValue"]'
+        );
 
-        if(verifyExistItem) verifyExistItem.remove();
+        if (verifyExistItem) verifyExistItem.remove();
     }
 
     menuClickRight.classList.add("show");
@@ -53,17 +65,6 @@ function openMenuClickRight(event: MouseEvent): void {
     menuClickRight.style.top = `${
         pointers.y - menuClickRight.offsetHeight - 10
     }px`;
-
-    clickOutside = new ClickOutside(
-        menuClickRight,
-        "data-outside",
-        "click",
-        () => {
-            menuClickRight.classList.remove("show");
-            clickOutside = null;
-        }
-    );
-    clickOutside.init();
 
     copyTextItem = new CopyTextItem(
         event,
@@ -84,7 +85,24 @@ function openMenuClickRight(event: MouseEvent): void {
     );
     addCommentItem.init();
 
-    removeValue = new RemoveValue(event, '[data-button="removeValue"]', menuClickRight);
+    clickOutside = new ClickOutside(
+        menuClickRight,
+        "data-outside",
+        "click",
+        () => {
+            menuClickRight.classList.remove("show");
+            clickOutside = null;
+            addCommentItem?.removeEventComment();
+            copyTextItem?.removeEventCopy();
+        }
+    );
+    clickOutside.init();
+
+    removeValue = new RemoveValue(
+        event,
+        '[data-button="removeValue"]',
+        menuClickRight
+    );
     removeValue.init();
 }
 
