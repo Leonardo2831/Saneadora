@@ -144,18 +144,8 @@ export default class NewNumber {
         this.buttonAdd.addEventListener("click", this.addRow);
     }
 
-    addEventInputNumber() {
-        this.inputNumber.addEventListener("input", () => {
-            this.inputNumber.value = this.inputNumber.value.replace(
-                /[^0-9.-]/g,
-                ""
-            );
-        });
-    }
-
     init() {
         if (this.buttonAdd) this.addEventButtonAdd();
-        if (this.inputNumber) this.addEventInputNumber();
 
         return this;
     }
