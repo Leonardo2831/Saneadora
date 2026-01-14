@@ -11,13 +11,6 @@ function createSection(
 }
 
 export default function valuesSaneadora(): boolean {
-    const buttonSave = document.querySelector(
-        '[data-save="saneadora"]'
-    ) as HTMLElement;
-
-    if (buttonSave) buttonSave.removeAttribute("data-id");
-    buttonSave?.setAttribute("data-id", new Date().getTime().toString());
-
     const tableContent = document.querySelector(
         '[data-content="tables"]'
     ) as HTMLElement;

@@ -91,7 +91,6 @@ export default class SaveSaneadora {
         }
 
         let idAttribute : string | null | undefined;
-        console.log(this.countObserver);
         
         if(this.countObserver > 1) idAttribute = this.buttonSave?.getAttribute("data-id");
 
@@ -105,6 +104,8 @@ export default class SaveSaneadora {
             tableEstremacao: this.tableInfosEstremacao?.innerHTML,
             textSaneadora: this.contentFinalText?.innerHTML || "",
         };
+
+        this.buttonSave?.setAttribute("data-id", saneadoraObject.id.toString());
 
         const method = idAttribute ? "PUT" : "POST";
         const urlReq = idAttribute ? `${this.url}/${idAttribute}` : this.url;

@@ -71,10 +71,16 @@ export default class DocumentSaneadora {
         this.buttonFormNew?.addEventListener("click", () => {
             const result = valuesSaneadora();
 
+            const buttonSave = document.querySelector(
+                '[data-save="saneadora"]'
+            ) as HTMLElement;
+
             if (result) {
                 this.changeStyleOutside();
                 this.tabNav.changeListTables("[data-tableInfos]");
                 initAfterLoad();
+
+                if (buttonSave) buttonSave.removeAttribute("data-id");
                 this.contentTextFinal.innerHTML = "";
             }
         });
