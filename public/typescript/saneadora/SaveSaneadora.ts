@@ -92,7 +92,7 @@ export default class SaveSaneadora {
 
         let idAttribute : string | null | undefined;
         
-        if(this.countObserver > 1) idAttribute = this.buttonSave?.getAttribute("data-id");
+        idAttribute = this.buttonSave?.getAttribute("data-id");
 
         const saneadoraObject: Saneadora = {
             id: idAttribute ? idAttribute : new Date().getTime().toString(),
