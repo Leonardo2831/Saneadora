@@ -23,6 +23,8 @@ export default class CreateNewValue {
 
     private eventItemAdd: HTMLElement | null;
 
+    static instance: CreateNewValue;
+
     constructor(
         buttonsAdd: string,
         modalNewValue: string,
@@ -32,6 +34,7 @@ export default class CreateNewValue {
         classBaseCalc: string,
         classActiveModal?: string
     ) {
+        CreateNewValue.instance = this;
         this.buttonsAddSelector = buttonsAdd;
 
         this.buttonsAdd = document.querySelectorAll(buttonsAdd);

@@ -1,4 +1,5 @@
 import sumValue from "../sumValues.js";
+import CreateNewValue from "../newValuesTable/CreateNewValue.js";
 
 export default class RemoveValue {
     private eventClick: MouseEvent;
@@ -27,7 +28,8 @@ export default class RemoveValue {
     }
 
     calcPercentColumn(areaReal: string, areaTotal: number) {
-        const percentTotal = (areaTotal * 100) / Number(areaReal.replace(',', '.'));  
+        const percentTotal =
+            (areaTotal * 100) / Number(areaReal.replace(",", "."));
 
         if (
             !this.cellTableTarget?.parentElement?.children[
@@ -74,6 +76,25 @@ export default class RemoveValue {
         this.calcPercentColumn(areaReal, areaTotal);
     }
 
+    cloneButtonAdd() {
+        const buttonAdd = this.cellTableTarget?.querySelector(
+            '[data-button="add"]'
+        );
+
+        if (
+            buttonAdd &&
+            this.cellTableTarget?.parentElement?.children.length !== 8
+        ) {
+            const cloneButtonAdd = buttonAdd.cloneNode(
+                true
+            ) as HTMLButtonElement;
+            CreateNewValue.instance.addEventInButton(cloneButtonAdd);
+            this.cellTableTarget?.previousElementSibling?.appendChild(
+                cloneButtonAdd
+            );
+        }
+    }
+
     removeValue() {
         this.menuClickRight.classList.remove("show");
 
@@ -99,7 +120,14 @@ export default class RemoveValue {
         // calculando porcentagem
         sumValue('[data-area="percent"]', '[data-sum="percent"]', "%");
 
-        this.cellTableTarget?.remove();
+        this.cloneButtonAdd();
+
+        if (this.cellTableTarget?.parentElement?.children.length === 8) {
+            this.cellTableTarget?.parentElement?.remove();
+        } else {
+            this.cellTableTarget?.remove();
+        }
+
         this.removeEventButton();
     }
 
