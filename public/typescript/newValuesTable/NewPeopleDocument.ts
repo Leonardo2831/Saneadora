@@ -300,8 +300,12 @@ export default class NewPeopleDocument {
         addEventMenuClickRight();
     }
 
+    removeEventButton() {
+        this.buttonAdd.onclick = null;
+    }
+
     addEventButton() {
-        this.buttonAdd.addEventListener("click", this.addCol);
+        this.buttonAdd.onclick = this.addCol;
     }
 
     addEventSelect() {
@@ -323,10 +327,11 @@ export default class NewPeopleDocument {
     }
 
     init() {
+        this.removeEventButton();
+        this.cleanInputs();
+
         if (this.buttonAdd) this.addEventButton();
         if (this.selectState) this.addEventSelect();
-
-        this.cleanInputs();
 
         return this;
     }
