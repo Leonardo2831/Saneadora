@@ -1855,6 +1855,24 @@
     animation: var(--animate-showTop);
     opacity: 100%;
   }
+  [data-initial="textMatricula"] .ql-editor {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  [data-initial="textMatricula"] .ql-editor::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  [data-initial="textMatricula"] .ql-editor::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  [data-initial="textMatricula"] .ql-editor::-webkit-scrollbar-thumb {
+    border-radius: calc(infinity * 1px);
+    background-color: var(--color-gray-400);
+  }
+  [data-initial="textMatricula"] .ql-editor::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-gray-500);
+  }
 }
 @property --tw-translate-x {
   syntax: "*";

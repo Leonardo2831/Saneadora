@@ -383,4 +383,26 @@
     [data-content="textFinal"].show {
         @apply block opacity-100 animate-showTop visible;
     }
+
+    /* Scroll Quill */
+    [data-initial="textMatricula"] .ql-editor {
+        @apply max-h-[50vh] overflow-y-auto;
+    }
+
+    [data-initial="textMatricula"] .ql-editor::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    [data-initial="textMatricula"] .ql-editor::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    [data-initial="textMatricula"] .ql-editor::-webkit-scrollbar-thumb {
+        @apply bg-gray-400 rounded-full;
+    }
+
+    [data-initial="textMatricula"] .ql-editor::-webkit-scrollbar-thumb:hover {
+        @apply bg-gray-500;
+    }
 }
