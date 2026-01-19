@@ -3,6 +3,7 @@ import type { Parchment } from "quill";
 import type { QuillOptions } from "quill/core";
 
 import contentText from "./contentText.js";
+import exportText from "../export-item/exportText.js";
 
 export default class NewText {
     private textFinalContent: HTMLElement | null;
@@ -81,6 +82,28 @@ export default class NewText {
         if (!this.textFinalContent) return;
 
         this.textFinalContent.innerHTML = contentText(textInitialMatricula);
+
+        const textFinal: string = this.textFinalContent.innerHTML;
+
+        const matricula: string =
+            document.querySelector("[data-matricula]")?.textContent.trim() || "";
+
+        let buttonExport: HTMLButtonElement | null = document.querySelector(`[data-textExport="${matricula}"]`);
+        if (buttonExport) buttonExport.remove();
+
+        const contentButtonExport: HTMLDivElement = document.createElement("div");
+        contentButtonExport.classList.add("flex", "justify-end", "w-full", "mt-4");
+        
+        buttonExport = document.createElement("button");
+        buttonExport.setAttribute("data-textExport", matricula);
+        buttonExport.classList.add("cursor-pointer", "font-sans", "w-fit", "bg-blue-500", "hover:bg-blue-600", "text-gray-50", "font-semibold", "text-base", "py-2", "px-6", "rounded", "transition-all", "duration-150");
+        buttonExport.textContent = "Exportar";
+
+        contentButtonExport.appendChild(buttonExport);
+        this.textFinalContent.appendChild(contentButtonExport);
+
+        exportText(buttonExport, textFinal);
+
         this.closeModal();
     }
 

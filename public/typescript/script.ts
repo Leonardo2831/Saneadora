@@ -1,6 +1,6 @@
 import DocumentSaneadora from "./document-saneadora/NewDocument.js";
+import ExportTable from "./export-item/ExportTable.js";
 import eventSelect from "./inputs/eventSelect.js";
-import ExportTable from "./export-table/ExportTable.js";
 import NewUpdate from "./NewUpadte.js";
 import initSaneadoraDocument from "./saneadora/initSaneadora.js";
 import LoadMatriculas from "./saneadora/ViewSaneadora.js";
