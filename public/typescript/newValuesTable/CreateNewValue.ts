@@ -32,24 +32,24 @@ export default class CreateNewValue {
         buttonNewCancel: string,
         contentPercentBase: string,
         classBaseCalc: string,
-        classActiveModal?: string
+        classActiveModal?: string,
     ) {
         CreateNewValue.instance = this;
         this.buttonsAddSelector = buttonsAdd;
 
         this.buttonsAdd = document.querySelectorAll(buttonsAdd);
         this.buttonNewValue = document.querySelector(
-            buttonNewValue
+            buttonNewValue,
         ) as HTMLButtonElement;
         this.buttonNewCancel = document.querySelector(
-            buttonNewCancel
+            buttonNewCancel,
         ) as HTMLButtonElement;
 
         this.modalNewValue = document.querySelector(
-            modalNewValue
+            modalNewValue,
         ) as HTMLElement;
         this.contentPercentBase = document.querySelector(
-            contentPercentBase
+            contentPercentBase,
         ) as HTMLElement;
 
         this.classActiveModal = classActiveModal || "hidden";
@@ -61,14 +61,14 @@ export default class CreateNewValue {
             this.modalNewValue,
             "data-outside",
             "click",
-            this.changeStyleOutside
+            this.changeStyleOutside,
         );
     }
 
     changeStyleOutside() {
         this.clickOutsideEvent.removeEventClickOutside();
         this.modalNewValue.parentElement?.parentElement?.parentElement?.classList.add(
-            this.classActiveModal
+            this.classActiveModal,
         );
     }
 
@@ -82,7 +82,7 @@ export default class CreateNewValue {
         divValue: HTMLDivElement,
         cloneButton: Node,
         color: "limon" | "red",
-        valueInput: string
+        valueInput: string,
     ) {
         const inputNewValue: HTMLInputElement = document.createElement("input");
         inputNewValue.type = "text";
@@ -120,7 +120,7 @@ export default class CreateNewValue {
         const inputsRadio: NodeListOf<HTMLInputElement> =
             this.modalNewValue.querySelectorAll('input[type="radio"]');
         const inputRadioChecked = Array.from(inputsRadio).find(
-            (input) => input.checked
+            (input) => input.checked,
         ) as HTMLInputElement;
 
         if (!inputValue || !inputRadioChecked) {
@@ -139,12 +139,16 @@ export default class CreateNewValue {
         }
 
         const divCell = document.createElement("div");
-        const classDivCell: string[] = ["min-h-[100px]", "relative"];
+        const classDivCell: string[] = [
+            "min-w-[180px]",
+            "min-h-[100px]",
+            "relative",
+        ];
         divCell.classList.add(...classDivCell);
         divCell.setAttribute("data-menu", "");
         divCell.setAttribute(
             "aria-label",
-            inputValue.value.replace(/m²|m2|ha|%|-|\+/g, "")
+            inputValue.value.replace(/m²|m2|ha|%|-|\+/g, ""),
         );
         divCell.setAttribute("data-remove", valueWithUnit);
 
@@ -172,17 +176,17 @@ export default class CreateNewValue {
             divCell,
             cloneButton,
             colorInput,
-            valueWithUnit
+            valueWithUnit,
         );
         this.changeStyleOutside();
 
         const areaMatricula = document.querySelector(
-            '[data-real="area"]'
+            '[data-real="area"]',
         ) as HTMLSpanElement;
 
         const [areaReal, unitArea]: string[] =
             areaMatricula.textContent?.match(
-                /([0-9]+[.,]?[0-9]*)+|m2|m²|ha|%|-|\+/g
+                /([0-9]+[.,]?[0-9]*)+|m2|m²|ha|%|-|\+/g,
             ) || [];
 
         if (!unitArea) return;
@@ -191,11 +195,11 @@ export default class CreateNewValue {
             insertLocal,
             inputValue.value,
             inputRadioChecked.value,
-            divCell.children[1] as HTMLInputElement
+            divCell.children[1] as HTMLInputElement,
         );
         calcNewPercent(
             Number(areaReal.replace(",", ".")),
-            '[data-area="percent"]'
+            '[data-area="percent"]',
         );
 
         col.insertBefore(divCell, insertLocal);
@@ -220,7 +224,7 @@ export default class CreateNewValue {
         this.addEventNewValue();
         this.modalNewValue.removeAttribute(this.clickOutsideEvent.dataValue);
         this.modalNewValue.parentElement?.parentElement?.parentElement?.classList.remove(
-            this.classActiveModal
+            this.classActiveModal,
         );
     }
 
@@ -247,7 +251,7 @@ export default class CreateNewValue {
             eventRadioInput(
                 this.modalNewValue,
                 this.classBaseCalc,
-                this.contentPercentBase
+                this.contentPercentBase,
             );
         if (this.buttonNewValue && this.modalNewValue) this.addOpenModal();
         if (this.buttonNewCancel && this.modalNewValue) this.addCancel();
