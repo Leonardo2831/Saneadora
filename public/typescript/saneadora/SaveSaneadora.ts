@@ -102,7 +102,6 @@ export default class SaveSaneadora {
             tableOnus: this.tableInfosOnus?.innerHTML,
             tableNumbers: this.tableInfosNumbers?.innerHTML,
             tableEstremacao: this.tableInfosEstremacao?.innerHTML,
-            textSaneadora: this.contentFinalText?.innerHTML || "",
         };
 
         if(!idAttribute) this.buttonSave?.setAttribute("data-id", saneadoraObject.id.toString());

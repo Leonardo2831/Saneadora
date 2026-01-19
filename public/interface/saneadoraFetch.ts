@@ -5,5 +5,4 @@ export interface Saneadora {
     tableOnus: string;
     tableNumbers: string;
     tableEstremacao: string;
-    textSaneadora: string;
 }

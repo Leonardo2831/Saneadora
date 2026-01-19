@@ -24,7 +24,7 @@ export default class LoadSaneadora {
         tableInfosEstremacao: string,
         contentFinalText: string,
         notificationSaveSaneadora: string,
-        buttonSave: string
+        buttonSave: string,
     ) {
         this.url = url;
 
@@ -38,7 +38,7 @@ export default class LoadSaneadora {
         this.contentMatriculas = null;
 
         this.notificationSaveSaneadora = document.querySelector(
-            notificationSaveSaneadora
+            notificationSaveSaneadora,
         );
 
         this.buttonSave = document.querySelector(buttonSave);
@@ -60,7 +60,6 @@ export default class LoadSaneadora {
         this.tableInfosOnus.innerHTML = data.tableOnus || "";
         this.tableInfosNumbers.innerHTML = data.tableNumbers || "";
         this.tableInfosEstremacao.innerHTML = data.tableEstremacao || "";
-        this.contentFinalText.innerHTML = data.textSaneadora || "";
 
         if (this.buttonSave && data.id) {
             this.buttonSave.setAttribute("data-id", data.id.toString());
@@ -74,7 +73,7 @@ export default class LoadSaneadora {
             setTimeout(() => {
                 this.notificationSaveSaneadora?.classList.remove(
                     "show",
-                    "error"
+                    "error",
                 );
             }, 1500);
 
@@ -82,8 +81,10 @@ export default class LoadSaneadora {
         }
     }
 
-    async loadingMatricula(event : MouseEvent) {
-        const matriculaId: string = (event.target as HTMLElement).closest("[data-matricula='li']")?.id || "";
+    async loadingMatricula(event: MouseEvent) {
+        const matriculaId: string =
+            (event.target as HTMLElement).closest("[data-matricula='li']")
+                ?.id || "";
 
         if (!matriculaId) return;
 
@@ -92,7 +93,7 @@ export default class LoadSaneadora {
                 `${this.url}/${matriculaId}`,
                 {
                     method: "GET",
-                }
+                },
             );
 
             if (!response.ok) throw new Error("Erro ao carregar matrícula");
@@ -111,7 +112,7 @@ export default class LoadSaneadora {
                 setTimeout(() => {
                     this.notificationSaveSaneadora?.classList.remove(
                         "show",
-                        "error"
+                        "error",
                     );
                 }, 1500);
             }
@@ -120,7 +121,10 @@ export default class LoadSaneadora {
 
     addEventDobleClick(contentMatriculas: HTMLElement) {
         this.contentMatriculas = contentMatriculas;
-        this.contentMatriculas.removeEventListener("dblclick", this.loadingMatricula);
+        this.contentMatriculas.removeEventListener(
+            "dblclick",
+            this.loadingMatricula,
+        );
         contentMatriculas.addEventListener("dblclick", this.loadingMatricula);
     }
 }
