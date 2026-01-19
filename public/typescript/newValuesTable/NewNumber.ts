@@ -140,12 +140,19 @@ export default class NewNumber {
         addEventMenuClickRight();
     }
 
+    removeEventButtonAdd() {
+        this.buttonAdd.onclick = null;
+    }
+
     addEventButtonAdd() {
-        this.buttonAdd.addEventListener("click", this.addRow);
+        this.buttonAdd.onclick = this.addRow;
     }
 
     init() {
-        if (this.buttonAdd) this.addEventButtonAdd();
+        if (this.buttonAdd) {
+            this.removeEventButtonAdd();
+            this.addEventButtonAdd();
+        }
 
         return this;
     }

@@ -81,7 +81,8 @@ export default class NewInfoEstremacao {
             this.inputName.value === "" ||
             this.inputAto.value === "" ||
             this.inputArea.value === "" ||
-            (this.inputCPF.value !== "" && this.inputCPF.value.length < 11) ||
+            (this.inputCPF.value !== "" &&
+                this.inputCPF.value.length < 11) ||
             (this.inputConjugeCPF.value !== "" &&
                 this.inputConjugeCPF.value.length < 11 &&
                 this.inputConjugeCPF.value !== "Viúvo(a)")
@@ -215,6 +216,8 @@ export default class NewInfoEstremacao {
         const rowInfo = this.createRowInfoEstremacao();
         if (!rowInfo) return;
 
+        console.log(this.tableContent);
+
         this.tableContent.appendChild(rowInfo);
 
         this.objectNewPeople.addOpenModal();
@@ -226,8 +229,12 @@ export default class NewInfoEstremacao {
         addEventMenuClickRight();
     }
 
+    removeEventButtonAdd() {
+        this.buttonAdd.onclick = null;
+    }
+
     addEventButtonAdd() {
-        this.buttonAdd.addEventListener("click", this.addRowInfoEstremacao);
+        this.buttonAdd.onclick = this.addRowInfoEstremacao;
     }
 
     addEventSelect() {
@@ -249,7 +256,10 @@ export default class NewInfoEstremacao {
     }
 
     init() {
-        if (this.buttonAdd) this.addEventButtonAdd();
+        if (this.buttonAdd) {
+            this.removeEventButtonAdd();
+            this.addEventButtonAdd();
+        }
         if (this.selectType) this.addEventSelect();
 
         return this;
