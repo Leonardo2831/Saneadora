@@ -155,8 +155,12 @@
         padding: 24px 25px 25px 25px;
     }
 
+    .children-style-cell {
+        @apply bg-gray-50;
+    }
+
     .children-style-cell > div {
-        @apply px-4 py-4 h-[100px] flex flex-col items-center justify-center text-left text-xs font-semibold text-gray-500 tracking-wider;
+        @apply px-4 py-4 min-w-[200px] h-[100px] flex flex-col items-center justify-center text-left text-xs font-semibold text-gray-500 tracking-wider;
     }
 
     .children-style-cell > * + * {
