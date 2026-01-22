@@ -1,5 +1,5 @@
 import ClickOutside from "../ClickOutside.js";
-import { calcNewArea, calcNewPercent } from "../calcValues.js";
+import { calcNewArea, calcNewAreaPercent, calcNewPercent } from "../calcValues.js";
 import {
     addEventMenuClickRight,
     removeEventMenuClickRight,
@@ -150,7 +150,26 @@ export default class CreateNewValue {
             "aria-label",
             inputValue.value.replace(/m²|m2|ha|%|-|\+/g, ""),
         );
-        divCell.setAttribute("data-remove", valueWithUnit);
+
+        const inputBaseValue: HTMLInputElement | null =
+            this.contentPercentBase.querySelector('[data-input="percentBase"]');
+
+        console.log(this.contentPercentBase);
+    
+
+        let valueAreaRemove: string = "";
+
+        if(inputBaseValue && inputBaseValue.value !== ""){
+            valueAreaRemove =
+            calcNewAreaPercent(
+                Number(inputBaseValue.value.replace(/,/g, ".")),
+                Number(inputValue.value.replace(/,/g, ".")),
+            )
+                ?.toString()
+                .replace(".", ",") || "";
+        }
+
+        divCell.setAttribute("data-remove", valueAreaRemove || valueWithUnit);
         divCell.setAttribute("data-change", valueWithUnit);
 
         const insertLocal = col.children[
