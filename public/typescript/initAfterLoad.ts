@@ -15,6 +15,7 @@ import SaveSaneadora from "./saneadora/SaveSaneadora.js";
 import AddCommentItem from "./menuRight/AddCommentItem.js";
 import sumValue from "./sumValues.js";
 import { addEventWindowChangeActive } from "./inputs/addEventChangeRow.js";
+import { changeValueItem, removeChangeValueItem } from "./newValuesTable/changeValueItem.js";
 
 export default function initAfterLoad() {
     const countObserver = 0;
@@ -227,4 +228,7 @@ export default function initAfterLoad() {
     AddCommentItem.initListener("[data-commentMenu]");
 
     addEventWindowChangeActive();
+
+    removeChangeValueItem();
+    changeValueItem();
 }

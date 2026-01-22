@@ -151,6 +151,7 @@ export default class CreateNewValue {
             inputValue.value.replace(/m²|m2|ha|%|-|\+/g, ""),
         );
         divCell.setAttribute("data-remove", valueWithUnit);
+        divCell.setAttribute("data-change", valueWithUnit);
 
         const insertLocal = col.children[
             col.children.length - 2
