@@ -33,19 +33,21 @@ export default function contentText(textInitialMatricula: string): string {
         tableEstremacao: HTMLElement | null;
     } = {
         tableCadastro: document.querySelector(
-            '[data-contentColumns="cadastro"]'
+            '[data-contentColumns="cadastro"]',
         ),
         tableOnus: document.querySelector('[data-content="onus"]'),
         tableNumbers: document.querySelector('[data-content="numbers"]'),
         tableEstremacao: document.querySelector(
-            '[data-tableContent="estremacao"]'
+            '[data-tableContent="estremacao"]',
         ),
     };
 
     const matricula: string =
         document.querySelector("[data-matricula]")?.textContent || "";
 
-    const contentArea = tables.tableCadastro?.parentElement?.parentElement?.children[0].children[1].children[1].textContent || "";
+    const contentArea =
+        tables.tableCadastro?.parentElement?.parentElement?.children[0]
+            .children[1].children[1].textContent || "";
 
     if (!matricula || !contentArea) return "";
 
@@ -58,7 +60,7 @@ export default function contentText(textInitialMatricula: string): string {
     textFinal += generateEstremationPart(
         tables.tableEstremacao,
         matricula,
-        area
+        area,
     );
 
     textFinal += `
@@ -72,7 +74,9 @@ export default function contentText(textInitialMatricula: string): string {
             </section>
     `;
 
-    textFinal += tables.tableNumbers?.children.length !== 0 ? `
+    textFinal +=
+        tables.tableNumbers?.children.length !== 0
+            ? `
             <section>
                 <h3 class="text-xl font-bold text-gray-800 mb-4">
                     CADASTROS RURAIS:
@@ -81,12 +85,13 @@ export default function contentText(textInitialMatricula: string): string {
                     ${generateNumbers(tables.tableNumbers).join("")}
                 </ul>
             </section>
-    ` : '';
+    `
+            : "";
 
     textFinal += `
             <section>
                 <h4 class="text-lg font-bold text-gray-800 mb-4">
-                    Hipoteca:
+                    HIPOTECA:
                 </h4>
                 <ul class="list-disc list-inside">
                     ${generateOnus(tables.tableOnus, matricula, "Hipoteca")}
@@ -95,7 +100,7 @@ export default function contentText(textInitialMatricula: string): string {
 
             <section>
                 <h4 class="text-lg font-bold text-gray-800 mb-4">
-                    Servidão:
+                    SERVIDÃO:
                 </h4>
                 <ul class="list-disc list-inside">
                     ${generateOnus(tables.tableOnus, matricula, "Servidão")}
@@ -104,7 +109,7 @@ export default function contentText(textInitialMatricula: string): string {
 
             <section>
                 <h4 class="text-lg font-bold text-gray-800 mb-4">
-                    Usufruto:
+                    USUFRUTO:
                 </h4>
                 <ul class="list-disc list-inside">
                     ${generateOnus(tables.tableOnus, matricula, "Usufruto")}
@@ -120,7 +125,7 @@ export default function contentText(textInitialMatricula: string): string {
                     ${generateOnus(
                         tables.tableOnus,
                         matricula,
-                        "Clausulas Restritivas"
+                        "Clausulas Restritivas",
                     )}
                 </ul>
             </section>
@@ -133,7 +138,7 @@ export default function contentText(textInitialMatricula: string): string {
                     ${generateOnus(
                         tables.tableOnus,
                         matricula,
-                        "Alienação Fiduciária"
+                        "Alienação Fiduciária",
                     )}
                 </ul>
             </section>
@@ -155,7 +160,7 @@ export default function contentText(textInitialMatricula: string): string {
                     ${generateOnus(
                         tables.tableOnus,
                         matricula,
-                        "Indisponibilidade"
+                        "Indisponibilidade",
                     )}
                 </ul>
             </section>
@@ -168,7 +173,20 @@ export default function contentText(textInitialMatricula: string): string {
                     ${generateOnus(
                         tables.tableOnus,
                         matricula,
-                        "Reserva Legal"
+                        "Reserva Legal",
+                    )}
+                </ul>
+            </section>
+
+            <section>
+                <h4 class="text-lg font-bold text-gray-800 mb-4">
+                    AJUIZAMENTO DE EXECUÇÃO:
+                </h4>
+                <ul class="list-disc list-inside">
+                    ${generateOnus(
+                        tables.tableOnus,
+                        matricula,
+                        "Ajuizamento de Execução",
                     )}
                 </ul>
             </section>
@@ -192,7 +210,7 @@ export default function contentText(textInitialMatricula: string): string {
                     ${generateOnus(
                         tables.tableEstremacao,
                         matricula,
-                        "Estremação"
+                        "Estremação",
                     )}
                 </ul>
             </section>
