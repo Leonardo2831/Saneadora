@@ -180,13 +180,18 @@ export default function contentText(textInitialMatricula: string): string {
 
             <section>
                 <h4 class="text-lg font-bold text-gray-800 mb-4">
-                    AJUIZAMENTO DE EXECUÇÃO:
+                    PUBLICIDADE:
                 </h4>
                 <ul class="list-disc list-inside">
                     ${generateOnus(
                         tables.tableOnus,
                         matricula,
                         "Ajuizamento de Execução",
+                    )}
+                    ${generateOnus(
+                        tables.tableOnus,
+                        matricula,
+                        "Ajuizamento de Ação Judicial",
                     )}
                 </ul>
             </section>
