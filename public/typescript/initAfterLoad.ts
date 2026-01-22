@@ -45,7 +45,7 @@ export default function initAfterLoad() {
         '[data-modal="newValue"]',
         '[data-button="newValue"]',
         '[data-button="newCancel"]',
-        '[data-content="percentBase"]',
+        '[data-modal="percentBase"]',
         "activeBaseCalc"
     );
     newValueCadstro.init();
