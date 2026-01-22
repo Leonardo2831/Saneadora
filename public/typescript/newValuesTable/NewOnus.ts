@@ -62,7 +62,7 @@ export default class NewOnus {
         row.classList.add(...classRow);
 
         let [typeAto, valueAto]: string[] =
-            this.inputAto.value.match(/\d+|[a-zA-Z]+/g) || [];
+            this.inputAto.value.match(/\d+|[a-zA-Z\u00C0-\u00FF]+/g) || [];
         if (!valueAto && /^\d+$/.test(typeAto)) {
             valueAto = typeAto;
             typeAto = "R";
@@ -72,7 +72,7 @@ export default class NewOnus {
             <td
                 class="px-4 py-4 text-base font-medium text-gray-600"
             >
-                ${typeAto}.${valueAto}
+                ${typeAto}${valueAto ? "." + valueAto : ""}
             </td>
             <td class="px-4 py-4 relative" data-menu aria-label="${
                 this.inputName.value || "Não Definido"

@@ -108,7 +108,7 @@ export default class NewInfoEstremacao {
         rowInfo.classList.add(...classListRowInfo);
 
         let [typeAto, valueAto]: string[] =
-            this.inputAto.value.match(/\d+|[a-zA-Z]+/g) || [];
+            this.inputAto.value.match(/\d+|[a-zA-Z\u00C0-\u00FF]+/g) || [];
         if (!valueAto && /^\d+$/.test(typeAto)) {
             valueAto = typeAto;
             typeAto = "R";
@@ -124,7 +124,7 @@ export default class NewInfoEstremacao {
             <td
                 class="px-4 py-4 relative text-base font-medium text-gray-600"
             >
-                ${typeAto}.${valueAto}
+                ${typeAto}${valueAto ? "." + valueAto : ""}
             </td>
 
             <td
