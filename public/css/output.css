@@ -508,8 +508,23 @@
   .min-w-\[210px\] {
     min-width: 210px;
   }
+  .min-w-\[270px\] {
+    min-width: 270px;
+  }
+  .min-w-\[276px\] {
+    min-width: 276px;
+  }
+  .min-w-\[280px\] {
+    min-width: 280px;
+  }
   .min-w-\[300px\] {
     min-width: 300px;
+  }
+  .min-w-\[FIT\] {
+    min-width: FIT;
+  }
+  .min-w-fit {
+    min-width: fit-content;
   }
   .flex-1 {
     flex: 1;
