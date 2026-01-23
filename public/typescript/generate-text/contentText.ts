@@ -55,7 +55,7 @@ export default function contentText(textInitialMatricula: string): string {
 
     let textFinal: string = "";
 
-    textFinal += titleTextCertidao(textInitialMatricula);
+    textFinal += titleTextCertidao(textInitialMatricula, matricula);
 
     textFinal += generateEstremationPart(
         tables.tableEstremacao,
