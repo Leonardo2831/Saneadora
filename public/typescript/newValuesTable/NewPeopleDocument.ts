@@ -158,7 +158,7 @@ export default class NewPeopleDocument {
             <header class="uppercase h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500 tracking-wider">
                 ${typeAto}${valueAto ? "." + valueAto : ""}
             </header>
-            <div data-menu class="relative" aria-label="${
+            <div data-menu class="relative" data-change="${this.inputName.value}" aria-label="${
                 this.inputName.value
             }">
                 <input
@@ -167,9 +167,12 @@ export default class NewPeopleDocument {
                     value="${this.inputName.value}"
                 />
             </div>
-            <div data-menu class="relative" aria-label="${
-                this.inputCpf.value == "" ? "Não Consta" : this.inputCpf.value
-            }">
+            <div data-menu class="relative" 
+                data-change="${this.inputCpf.value == "" ? "Não Consta" : this.inputCpf.value}" 
+                aria-label="${
+                    this.inputCpf.value == "" ? "Não Consta" : this.inputCpf.value
+                }"
+            >
                 <input
                     type="text"
                     class="table-input"
@@ -181,7 +184,11 @@ export default class NewPeopleDocument {
                     }"
                 />
             </div>
-            <div data-menu class="relative" aria-label="${
+            <div data-menu data-change="${
+                this.inputNameConjuge.value == ""
+                    ? "Não Consta"
+                    : this.inputNameConjuge.value
+            }" class="relative" aria-label="${
                 this.inputNameConjuge.value == ""
                     ? "Não Consta"
                     : this.inputNameConjuge.value
@@ -196,7 +203,11 @@ export default class NewPeopleDocument {
                     }"
                 />
             </div>
-            <div data-menu class="relative" aria-label="${
+            <div data-menu data-change="${
+                this.inputCpfConjuge.value == ""
+                    ? "Não Consta"
+                    : this.inputCpfConjuge.value
+            }" class="relative" aria-label="${
                 this.inputCpfConjuge.value == ""
                     ? "Não Consta"
                     : this.inputCpfConjuge.value
