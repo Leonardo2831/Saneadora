@@ -27,7 +27,8 @@
         <script type="importmap">
             {
                 "imports": {
-                    "quill": "https://cdn.jsdelivr.net/npm/quill@2.0.3/+esm"
+                    "quill": "https://cdn.jsdelivr.net/npm/quill@2.0.3/+esm",
+                    "big.js": "./node_modules/big.js/big.mjs"
                 }
             }
         </script>
@@ -1339,13 +1340,13 @@
                         </svg>
                         <article class="text-left">
                             <h2 class="text-2xl font-bold text-gray-900 mb-1">
-                                Novo Patch 2.0.0
+                                Novo Patch 2.0.1
                             </h2>
                             <h4 class="text-sm font-medium text-gray-500 mb-6">
-                                Atualização de 19/01/2026
+                                Atualização de 04/02/2026
                             </h4>
 
-                            <h3
+                            <!-- <h3
                                 class="text-lg font-semibold text-gray-800 mt-6 mb-2"
                             >
                                 Mudanças
@@ -1353,19 +1354,7 @@
                             <ul
                                 class="list-disc list-inside text-gray-600 space-y-1 ml-2"
                             >
-                                <li>
-                                    Adição de exportação de texto final para tipo arquivo tipo doc.
-                                </li>
-                                <li>
-                                    Agora não há mais o salvamento do texto final.
-                                </li>
-                                <li>
-                                    Foi adicionado novo valor de ônus (Ajuizamento de Execução e Ajuizamento de Ação Judicial, no qual não chega a ser ônus, mas sim uma informação importante a ser informada na certidão, sendo ele uma <b class="font-semibold">publicidade</b>).
-                                </li>
-                                <li>
-                                    Caso for colocado um valor errado, é possível fazer a mudança apenas clicando no item e digitando, por agora <b class="font-semibold">funciona apenas na aba de cadastro</b>.
-                                </li>
-                            </ul>
+                            </ul> -->
 
                             <h3
                                 class="text-lg font-semibold text-gray-800 mt-6 mb-2"
@@ -1375,8 +1364,7 @@
                             <ul
                                 class="list-disc list-inside text-gray-600 space-y-1 ml-2"
                             >
-                                <li>Agora quando sitar que é o ato do imóvel que ocorre algo, não irá aparecer im.ovel, com um ponto perdido, agora irá formatar com ponto apenas em Averbações e Registros.</li>
-                                <li>Corrigimos o caso de remover um valor e fazer cálculos errados.</li>
+                                <li>Agora os cálculos de área estão mais do que corretos, pois agora usamos mais casas decimais, evitando erros de divergência de valores minúsculos.</li>
                             </ul>
 
                             <h3
@@ -1385,7 +1373,7 @@
                                 Sobre o Patch
                             </h3>
                             <p class="text-gray-600 leading-relaxed">
-                                Este patch foi para criar uma maneira mais fácil da geração de texto, no entanto agora com a falta de necessidade de salvar o texto final, essa função foi removida.
+                                Este patch foi para corrigir o bug de divergências pequenas em calculos matemáticos, que ocorriam devido a falta de casas decimais.
                             </p>
                         </article>
                     </section>
