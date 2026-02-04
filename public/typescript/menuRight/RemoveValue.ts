@@ -10,14 +10,14 @@ export default class RemoveValue {
     constructor(
         eventClick: MouseEvent,
         buttonRemoveValue: string,
-        menuClickRight: HTMLElement
+        menuClickRight: HTMLElement,
     ) {
         this.eventClick = eventClick;
         this.buttonRemoveValue = document.querySelector(buttonRemoveValue);
         this.menuClickRight = menuClickRight;
 
         this.cellTableTarget = (this.eventClick.target as HTMLElement).closest(
-            "[data-remove]"
+            "[data-remove]",
         );
 
         this.removeValue = this.removeValue.bind(this);
@@ -40,6 +40,10 @@ export default class RemoveValue {
 
         this.cellTableTarget.parentElement.children[
             this.cellTableTarget.parentElement.children.length - 1
+        ].children[1].setAttribute("data-full-value", percentTotal.toString());
+
+        this.cellTableTarget.parentElement.children[
+            this.cellTableTarget.parentElement.children.length - 1
         ].children[1].textContent = `${percentTotal}%`;
     }
 
@@ -47,7 +51,7 @@ export default class RemoveValue {
         if (!this.cellTableTarget?.parentElement) return;
         const childrensValues =
             this.cellTableTarget.parentElement.querySelectorAll(
-                "[data-remove]"
+                "[data-remove]",
             );
 
         if (!childrensValues.length) return;
@@ -71,6 +75,10 @@ export default class RemoveValue {
 
         this.cellTableTarget.parentElement.children[
             this.cellTableTarget.parentElement.children.length - 2
+        ].children[1].setAttribute("data-full-value", areaTotal.toString());
+
+        this.cellTableTarget.parentElement.children[
+            this.cellTableTarget.parentElement.children.length - 2
         ].children[1].textContent = `${areaTotal}${unit}`;
 
         this.calcPercentColumn(areaReal, areaTotal);
@@ -78,7 +86,7 @@ export default class RemoveValue {
 
     cloneButtonAdd() {
         const buttonAdd = this.cellTableTarget?.querySelector(
-            '[data-button="add"]'
+            '[data-button="add"]',
         );
 
         if (
@@ -86,11 +94,11 @@ export default class RemoveValue {
             this.cellTableTarget?.parentElement?.children.length !== 8
         ) {
             const cloneButtonAdd = buttonAdd.cloneNode(
-                true
+                true,
             ) as HTMLButtonElement;
             CreateNewValue.instance.addEventInButton(cloneButtonAdd);
             this.cellTableTarget?.previousElementSibling?.appendChild(
-                cloneButtonAdd
+                cloneButtonAdd,
             );
         }
     }
@@ -103,17 +111,18 @@ export default class RemoveValue {
         if (!valueCell) return;
 
         const areaMatricula = document.querySelector(
-            '[data-real="area"]'
+            '[data-real="area"]',
         ) as HTMLSpanElement;
 
         const [areaReal, unitReal]: string[] =
             areaMatricula.textContent?.match(
-                /([0-9]+[.,]?[0-9]*)+|m2|m²|ha|%|-|\+/g
+                /([0-9]+[.,]?[0-9]*)+|m2|m²|ha|%|-|\+/g,
             ) || [];
 
         this.calcAreaColumn(areaReal, unitReal);
 
         const [, unit]: string[] =
+        
             valueCell.match(/([0-9]+[.,]?[0-9]*)+|m2|m²|ha|%|-|\+/g) || [];
         // calculando a área
         sumValue('[data-area="total"]', '[data-sum="area"]', unit);

@@ -1,16 +1,32 @@
-// Helper to fix floating point precision issues
-function fixFloat(value: number): number {
-    return parseFloat(value.toFixed(10));
+import Big from "big.js";
+
+export function getFullPercentPeople(
+    areaReal: number,
+    value: number,
+): string | void {
+    if (value && areaReal) {
+        // (value * 100) / areaReal
+        const val = new Big(value);
+        const area = new Big(areaReal);
+        const calcPercent = val.times(100).div(area);
+
+        return calcPercent.toString();
+    }
+
+    return;
 }
 
 export function calcPercentPeople(
     areaReal: number,
-    value: number
+    value: number,
 ): number | void {
     if (value && areaReal) {
-        const calcPercent: number = (value * 100) / areaReal;
+        // (value * 100) / areaReal
+        const val = new Big(value);
+        const area = new Big(areaReal);
+        const calcPercent = val.times(100).div(area);
 
-        return fixFloat(calcPercent);
+        return parseFloat(calcPercent.toFixed(10));
     }
 
     return;
@@ -18,13 +34,15 @@ export function calcPercentPeople(
 
 export function calcNewAreaPercent(
     value: number,
-    valueBase: number
+    valueBase: number,
 ): number | void {
     if (valueBase) {
-        // const calcPercent: number = (Number(valueBase) * value) / 100;
-        const calcPercent: number = Number(valueBase) * (value / 100);
+        // Number(valueBase) * (value / 100)
+        const base = new Big(valueBase);
+        const val = new Big(value);
+        const calcPercent = base.times(val.div(100));
 
-        return fixFloat(calcPercent);
+        return parseFloat(calcPercent.toFixed(10));
     }
 
     return;
@@ -34,22 +52,34 @@ export function calcNewArea(
     contentArea: HTMLElement,
     value: string,
     unit: string,
-    inputCell?: HTMLInputElement
+    inputCell?: HTMLInputElement,
 ) {
-    const replacedValue: number = Number(
-        value?.replace(/m²|m2|ha|%/g, "").replace(/,/g, ".")
-    );
-
-    const valueCell: number = Number(
-        contentArea.children[1].textContent
-            ?.replace(/m²|m2|ha|%/g, "")
+    const rawReplacedValue = (value || "")
+        .replace(/m²|m2|ha|%/g, "")
+        .replace(/,/g, ".")
+        .trim();
+    const fullValueCell =
+        contentArea.children[1].getAttribute("data-full-value");
+    const rawValueCell =
+        fullValueCell ||
+        (contentArea.children[1].textContent || "")
+            .replace(/m²|m2|ha|%/g, "")
             .replace(/,/g, ".")
-    );
+            .trim();
 
-    if (!replacedValue || !valueCell) return;
+    if (
+        !rawReplacedValue ||
+        !rawValueCell ||
+        isNaN(Number(rawReplacedValue)) ||
+        isNaN(Number(rawValueCell))
+    )
+        return;
+
+    const replacedValue = new Big(rawReplacedValue);
+    const valueCell = new Big(rawValueCell);
 
     const areaMatricula = document.querySelector(
-        '[data-real="area"]'
+        '[data-real="area"]',
     ) as HTMLSpanElement;
 
     const unitArea = areaMatricula.textContent?.replace(/[\d,.\s]/g, "") || "";
@@ -58,40 +88,71 @@ export function calcNewArea(
 
     if (unit == "%") {
         const inputBase = document.querySelector(
-            '[data-input="percentBase"]'
+            '[data-input="percentBase"]',
         ) as HTMLInputElement;
 
-        const calcPercentArea: number | void = calcNewAreaPercent(
-            replacedValue,
-            Number(inputBase.value.replace(/,/g, "."))
+        const inputBaseValue = (inputBase.value || "")
+            .replace(/,/g, ".")
+            .trim();
+
+        if (!inputBaseValue || isNaN(Number(inputBaseValue))) return;
+
+        const calcPercentArea = new Big(inputBaseValue).times(
+            replacedValue.div(100),
         );
 
-        if (inputCell && calcPercentArea !== undefined) {
-            inputCell.value = `${fixFloat(calcPercentArea)
+        if (inputCell) {
+            inputCell.value = `${parseFloat(calcPercentArea.toFixed(10))
                 .toString()
                 .replace(".", ",")}${newUnit}`;
         }
 
-        if (calcPercentArea && calcPercentArea < 0) {
-            const result = valueCell - Math.abs(calcPercentArea);
-            contentArea.children[1].textContent = `${fixFloat(result)
+        const absCalcPercentArea = calcPercentArea.abs();
+
+        if (calcPercentArea.lt(0)) {
+            const result = valueCell.minus(absCalcPercentArea);
+            contentArea.children[1].setAttribute(
+                "data-full-value",
+                result.toString(),
+            );
+            contentArea.children[1].textContent = `${parseFloat(
+                result.toFixed(10),
+            )
                 .toString()
                 .replace(".", ",")}${newUnit}`;
-        } else if (calcPercentArea && calcPercentArea > 0) {
-            const result = valueCell + Math.abs(calcPercentArea);
-            contentArea.children[1].textContent = `${fixFloat(result)
+        } else if (calcPercentArea.gt(0)) {
+            const result = valueCell.plus(absCalcPercentArea);
+            contentArea.children[1].setAttribute(
+                "data-full-value",
+                result.toString(),
+            );
+            contentArea.children[1].textContent = `${parseFloat(
+                result.toFixed(10),
+            )
                 .toString()
                 .replace(".", ",")}${newUnit}`;
         }
     } else {
-        if (replacedValue < 0) {
-            const result = valueCell - Math.abs(replacedValue);
-            contentArea.children[1].textContent = `${fixFloat(result)
+        if (replacedValue.lt(0)) {
+            const result = valueCell.minus(replacedValue.abs());
+            contentArea.children[1].setAttribute(
+                "data-full-value",
+                result.toString(),
+            );
+            contentArea.children[1].textContent = `${parseFloat(
+                result.toFixed(10),
+            )
                 .toString()
                 .replace(".", ",")}${newUnit}`;
-        } else if (replacedValue > 0) {
-            const result = valueCell + Math.abs(replacedValue);
-            contentArea.children[1].textContent = `${fixFloat(result)
+        } else if (replacedValue.gt(0)) {
+            const result = valueCell.plus(replacedValue.abs());
+            contentArea.children[1].setAttribute(
+                "data-full-value",
+                result.toString(),
+            );
+            contentArea.children[1].textContent = `${parseFloat(
+                result.toFixed(10),
+            )
                 .toString()
                 .replace(".", ",")}${newUnit}`;
         }
@@ -99,23 +160,21 @@ export function calcNewArea(
 
     contentArea.previousElementSibling?.children[1].classList.replace(
         "table-value-green",
-        "table-value-orange"
+        "table-value-orange",
     );
 
-    if (
-        parseFloat(
-            contentArea.children[1].textContent?.replace(",", ".") || "0"
-        ) === 0
-    ) {
+    const finalContent =
+        contentArea.children[1].textContent?.replace(",", ".") || "0";
+    if (parseFloat(finalContent) === 0) {
         contentArea.children[1].classList.replace(
             "table-value-green",
-            "table-value-orange"
+            "table-value-orange",
         );
     }
 
     contentArea.setAttribute(
         "aria-label",
-        contentArea.children[1].textContent || ""
+        contentArea.children[1].textContent || "",
     );
 }
 
@@ -125,28 +184,39 @@ export function calcNewPercent(areaReal: number, selectorPercent: string) {
 
     if (!contentsPercent.length) return;
 
-    const percents: number[] = Array.from(contentsPercent).map((percent) => {
-        const replacedArea: number = Number(
-            percent.parentElement?.previousElementSibling?.children[1].textContent
-                ?.replace(/%|ha|m²|m2/g, "")
-                .replace(/,/g, ".")
-        );
+    const areaRealBig = new Big(areaReal);
 
-        // calculando porcentagem com área
-        const calcPercent: number = (replacedArea * 100) / areaReal;
-        return fixFloat(calcPercent);
+    const percents: Big[] = Array.from(contentsPercent).map((percent) => {
+        const areaCell =
+            percent.parentElement?.previousElementSibling?.children[1];
+        const fullAreaValue = areaCell?.getAttribute("data-full-value");
+
+        const rawReplacedArea =
+            fullAreaValue ||
+            (areaCell?.textContent || "")
+                .replace(/%|ha|m²|m2/g, "")
+                .replace(/,/g, ".")
+                .trim();
+
+        const replacedArea = new Big(rawReplacedArea || "0");
+
+        const calcPercent = replacedArea.times(100).div(areaRealBig);
+        return calcPercent;
     });
 
     percents.forEach((percent, index) => {
-        contentsPercent[index].textContent = `${percent
+        const formattedPercent = parseFloat(percent.toFixed(10))
             .toString()
-            .replace(".", ",")}%`;
+            .replace(".", ",");
+
+        contentsPercent[index].setAttribute(
+            "data-full-value",
+            percent.toString(),
+        );
+        contentsPercent[index].textContent = `${formattedPercent}%`;
         contentsPercent[index].parentElement?.setAttribute(
             "aria-label",
-            percent
-                .toString()
-                .replace(/%|ha|m²|m2/g, "")
-                .replace(".", ",") || ""
+            formattedPercent || "",
         );
     });
 }

@@ -1,4 +1,8 @@
-import { calcNewAreaPercent, calcPercentPeople } from "../calcValues.js";
+import {
+    calcNewAreaPercent,
+    calcPercentPeople,
+    getFullPercentPeople,
+} from "../calcValues.js";
 import {
     addEventMenuClickRight,
     removeEventMenuClickRight,
@@ -39,30 +43,30 @@ export default class NewPeopleDocument {
         contentColums: string,
         inputArea: string,
         newValueCadastro: CreateNewValue,
-        inputBaseValue?: string
+        inputBaseValue?: string,
     ) {
         this.inputName = document.querySelector(inputName) as HTMLInputElement;
         this.inputCpf = document.querySelector(inputCpf) as HTMLInputElement;
         this.selectState = document.querySelector(
-            selectState
+            selectState,
         ) as HTMLSelectElement;
         this.inputNameConjuge = document.querySelector(
-            inputNameConjuge
+            inputNameConjuge,
         ) as HTMLInputElement;
         this.inputCpfConjuge = document.querySelector(
-            inputCpfConjuge
+            inputCpfConjuge,
         ) as HTMLInputElement;
         this.inputAto = document.querySelector(inputAto) as HTMLInputElement;
         this.inputArea = document.querySelector(inputArea) as HTMLInputElement;
         this.inputBaseValue = document.querySelector(
-            inputBaseValue || ""
+            inputBaseValue || "",
         ) as HTMLInputElement;
 
         this.buttonAdd = document.querySelector(buttonAdd) as HTMLButtonElement;
 
         this.selectorContentColumns = contentColums;
         this.contentColums = document.querySelector(
-            contentColums
+            contentColums,
         ) as HTMLElement;
 
         this.dataColumn = "";
@@ -126,7 +130,7 @@ export default class NewPeopleDocument {
             this.inputArea.value =
                 calcNewAreaPercent(
                     Number(this.inputBaseValue.value.replace(/,/g, ".")),
-                    Number(this.inputArea.value.replace(/,/g, "."))
+                    Number(this.inputArea.value.replace(/,/g, ".")),
                 )
                     ?.toString()
                     .replace(".", ",") || "";
@@ -136,12 +140,12 @@ export default class NewPeopleDocument {
         col.classList.add("children-style-cell");
 
         const areaMatricula = document.querySelector(
-            '[data-real="area"]'
+            '[data-real="area"]',
         ) as HTMLSpanElement;
 
         const [areaReal, unitArea]: string[] =
             areaMatricula.textContent?.match(
-                /([0-9]+[.,]?[0-9]*)+|m2|m²|ha|%|-|\+/g
+                /([0-9]+[.,]?[0-9]*)+|m2|m²|ha|%|-|\+/g,
             ) || [];
 
         this.areaInfos = [areaReal, unitArea];
@@ -170,7 +174,9 @@ export default class NewPeopleDocument {
             <div data-menu class="relative" 
                 data-change="${this.inputCpf.value == "" ? "Não Consta" : this.inputCpf.value}" 
                 aria-label="${
-                    this.inputCpf.value == "" ? "Não Consta" : this.inputCpf.value
+                    this.inputCpf.value == ""
+                        ? "Não Consta"
+                        : this.inputCpf.value
                 }"
             >
                 <input
@@ -263,7 +269,7 @@ export default class NewPeopleDocument {
                 class="totalCell font-bold text-gray-700 relative"
                 data-menu aria-label="${calcPercentPeople(
                     Number(areaReal.replace(",", ".")),
-                    Number(this.inputArea.value.replace(",", "."))
+                    Number(this.inputArea.value.replace(",", ".")),
                 )
                     ?.toString()
                     .replace(".", ",")}"
@@ -272,10 +278,16 @@ export default class NewPeopleDocument {
                 <div
                     data-area="percent"
                     class="min-h-[46px] table-value table-value-blue font-bold mt-2"
+                    data-full-value="${
+                        getFullPercentPeople(
+                            Number(areaReal.replace(",", ".")),
+                            Number(this.inputArea.value.replace(",", ".")),
+                        ) || ""
+                    }"
                 >
                     ${calcPercentPeople(
                         Number(areaReal.replace(",", ".")),
-                        Number(this.inputArea.value.replace(",", "."))
+                        Number(this.inputArea.value.replace(",", ".")),
                     )
                         ?.toString()
                         .replace(".", ",")}%
@@ -290,7 +302,7 @@ export default class NewPeopleDocument {
 
     addCol(): void {
         this.contentColums = document.querySelector(
-            this.selectorContentColumns
+            this.selectorContentColumns,
         ) as HTMLElement;
 
         const colWithData: HTMLDivElement | null = this.createCol();

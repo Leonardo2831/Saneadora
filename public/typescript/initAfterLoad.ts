@@ -15,7 +15,11 @@ import SaveSaneadora from "./saneadora/SaveSaneadora.js";
 import AddCommentItem from "./menuRight/AddCommentItem.js";
 import sumValue from "./sumValues.js";
 import { addEventWindowChangeActive } from "./inputs/addEventChangeRow.js";
-import { changeValueItem, removeChangeValueItem } from "./newValuesTable/changeValueItem.js";
+import {
+    changeValueItem,
+    removeChangeValueItem,
+} from "./newValuesTable/changeValueItem.js";
+import { calcNewPercent } from "./calcValues.js";
 
 export default function initAfterLoad() {
     const countObserver = 0;
@@ -31,7 +35,7 @@ export default function initAfterLoad() {
         '[data-save-result="saneadora"]',
         "http://localhost:3000/saneadoras",
         { childList: true, subtree: true, characterData: true },
-        countObserver
+        countObserver,
     );
     saveSaneadora.init();
 
@@ -46,7 +50,7 @@ export default function initAfterLoad() {
         '[data-button="newValue"]',
         '[data-button="newCancel"]',
         '[data-modal="percentBase"]',
-        "activeBaseCalc"
+        "activeBaseCalc",
     );
     newValueCadstro.init();
 
@@ -62,33 +66,33 @@ export default function initAfterLoad() {
         '[data-contentColumns="cadastro"]',
         '[data-input="areaCadastro"]',
         newValueCadstro,
-        '[data-input="valorBaseCadastro"]'
+        '[data-input="valorBaseCadastro"]',
     );
     newPeople.init();
 
     // verify base calc in cadastro
     const modalNewValue = document.querySelector(
-        '[data-formContent="cadastro"]'
+        '[data-formContent="cadastro"]',
     ) as HTMLElement;
     const classBaseCalc = "activeBaseCalc";
     const contentPercentBase = document.querySelector(
-        '[data-content="percentBase"]'
+        '[data-content="percentBase"]',
     ) as HTMLElement;
     eventRadioInput(modalNewValue, classBaseCalc, contentPercentBase);
 
     // verify base calc in modal new value
     const modalNewValueTable = document.querySelector(
-        '[data-modal="newValue"]'
+        '[data-modal="newValue"]',
     ) as HTMLElement;
     const contentPercentBaseModal = modalNewValueTable.querySelector(
-        '[data-content="percentBase"]'
+        '[data-content="percentBase"]',
     ) as HTMLElement;
 
     if (modalNewValueTable && contentPercentBaseModal) {
         eventRadioInput(
             modalNewValueTable,
             classBaseCalc,
-            contentPercentBaseModal
+            contentPercentBaseModal,
         );
     }
 
@@ -99,7 +103,7 @@ export default function initAfterLoad() {
         '[data-inputCPF="onus"]',
         '[data-select="onus"]',
         '[data-inputAto="onus"]',
-        '[data-button="addOnus"]'
+        '[data-button="addOnus"]',
     );
     newOnus.init();
 
@@ -110,7 +114,7 @@ export default function initAfterLoad() {
         '[data-inputCPF="numbers"]',
         '[data-select="numbers"]',
         '[data-inputAto="numbers"]',
-        '[data-button="addNumbers"]'
+        '[data-button="addNumbers"]',
     );
     newNumber.init();
 
@@ -123,7 +127,7 @@ export default function initAfterLoad() {
         '[data-input="cpfConjugeEstremacao"]',
         '[data-button="new-peopleEstremacao"]',
         '[data-button="new-cancelEstremacao"]',
-        '[data-button="addPeopleEstremacao"]'
+        '[data-button="addPeopleEstremacao"]',
     );
     addPeopleEstremacao.init();
 
@@ -140,14 +144,14 @@ export default function initAfterLoad() {
         '[data-button="addEstremacao"]',
         '[data-formContent="estremacao"]',
         '[data-tableContent="estremacao"]',
-        addPeopleEstremacao
+        addPeopleEstremacao,
     );
     newInfoEstremacao.init();
 
     // validate CPFs
     const validateCPFs: ValidateCPF = new ValidateCPF(
         "[data-input='cpf']",
-        "invalid"
+        "invalid",
     );
     validateCPFs.init();
 
@@ -156,7 +160,7 @@ export default function initAfterLoad() {
         "[data-table='items']",
         "[data-input='search']",
         "selectedSearch",
-        "animationEnter"
+        "animationEnter",
     );
     search.init();
 
@@ -165,7 +169,7 @@ export default function initAfterLoad() {
         "[data-content='matriculas']",
         "[data-input='search-matriculas']",
         "find",
-        "hidden"
+        "hidden",
     );
     searchMatriculas.init();
 
@@ -205,17 +209,24 @@ export default function initAfterLoad() {
             ],
             placeholder: "Escreva o início da matrícula e sua origem.",
             theme: "snow",
-        }
+        },
     );
     generateText.init();
 
     const areaMatricula = document.querySelector(
-        '[data-real="area"]'
+        '[data-real="area"]',
     ) as HTMLSpanElement;
 
-    const [, unitArea]: string[] =
+    const [areaValue, unitArea]: string[] =
         areaMatricula.textContent?.match(/([0-9]+[.,]?[0-9]*)+|[a-zA-Z]+/g) ||
         [];
+
+    if (areaValue) {
+        calcNewPercent(
+            Number(areaValue.replace(",", ".")),
+            '[data-area="percent"]',
+        );
+    }
 
     // calculando a área
     sumValue('[data-area="total"]', '[data-sum="area"]', unitArea);
