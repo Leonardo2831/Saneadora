@@ -161,6 +161,8 @@ export default function initAfterLoad() {
         "[data-input='search']",
         "selectedSearch",
         "animationEnter",
+        "[data-search='contentInfo']",
+        "error"
     );
     search.init();
 
