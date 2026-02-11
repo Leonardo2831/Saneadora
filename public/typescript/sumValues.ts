@@ -33,8 +33,6 @@ export default function sumValue(
         }
     });
 
-    console.log(sumValue);
-
     contentSum.textContent = "";
 
     contentSum.textContent = `${parseFloat(sumValue.toFixed(10))

@@ -154,9 +154,6 @@ export default class CreateNewValue {
         const inputBaseValue: HTMLInputElement | null =
             this.contentPercentBase.querySelector('[data-input="percentBase"]');
 
-        console.log(this.contentPercentBase);
-    
-
         let valueAreaRemove: string = "";
 
         if(inputBaseValue && inputBaseValue.value !== ""){

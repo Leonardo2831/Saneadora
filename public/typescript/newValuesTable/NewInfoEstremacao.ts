@@ -216,8 +216,6 @@ export default class NewInfoEstremacao {
         const rowInfo = this.createRowInfoEstremacao();
         if (!rowInfo) return;
 
-        console.log(this.tableContent);
-
         this.tableContent.appendChild(rowInfo);
 
         this.objectNewPeople.addOpenModal();
