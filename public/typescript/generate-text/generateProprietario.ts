@@ -18,6 +18,8 @@ export default function generateProprietario(tableCadastro: HTMLElement | null):
         const nameConjuge: string = isMaritalStatus ? " / " + proprietario[3] : "";
         const cpfConjuge: string = isMaritalStatus ? " / " + proprietario[4] : "";
 
+        if(proprietario[proprietario.length - 1] == "0") return "";
+
         return `<li class="text-base font-normal text-gray-700">
                     <span>
                         <b class="text-gray-800 font-bold">ATO:</b> 
