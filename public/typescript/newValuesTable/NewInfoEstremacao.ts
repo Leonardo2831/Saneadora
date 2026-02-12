@@ -36,24 +36,24 @@ export default class NewInfoEstremacao {
         buttonAdd: string,
         formContent: string,
         tableContent: string,
-        objectNewPeople: AddPeopleEstremacao
+        objectNewPeople: AddPeopleEstremacao,
     ) {
         this.inputName = document.querySelector(inputName) as HTMLInputElement;
         this.inputCPF = document.querySelector(inputCPF) as HTMLInputElement;
         this.inputConjugeName = document.querySelector(
-            inputConjugeName
+            inputConjugeName,
         ) as HTMLInputElement;
         this.inputConjugeCPF = document.querySelector(
-            inputConjugeCPF
+            inputConjugeCPF,
         ) as HTMLInputElement;
         this.inputAto = document.querySelector(inputAto) as HTMLInputElement;
         this.inputArea = document.querySelector(inputArea) as HTMLInputElement;
         this.inputMatricula = document.querySelector(
-            inputMatricula
+            inputMatricula,
         ) as HTMLInputElement;
 
         this.selectType = document.querySelector(
-            selectType
+            selectType,
         ) as HTMLSelectElement;
 
         this.buttonAdd = document.querySelector(buttonAdd) as HTMLButtonElement;
@@ -81,8 +81,7 @@ export default class NewInfoEstremacao {
             this.inputName.value === "" ||
             this.inputAto.value === "" ||
             this.inputArea.value === "" ||
-            (this.inputCPF.value !== "" &&
-                this.inputCPF.value.length < 11) ||
+            (this.inputCPF.value !== "" && this.inputCPF.value.length < 11) ||
             (this.inputConjugeCPF.value !== "" &&
                 this.inputConjugeCPF.value.length < 11 &&
                 this.inputConjugeCPF.value !== "Viúvo(a)")
@@ -118,7 +117,7 @@ export default class NewInfoEstremacao {
             document.querySelector('[data-real="area"]');
 
         const [, unitArea]: string[] =
-            areaContent?.textContent?.match(/\d+|[a-zA-Z]+/g) || [];
+            areaContent?.textContent?.match(/[0-9.,]+|[a-zA-Z]+/g) || [];
 
         const contentRowInfo = `
             <td
