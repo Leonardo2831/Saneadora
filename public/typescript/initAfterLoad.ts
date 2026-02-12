@@ -33,7 +33,7 @@ export default function initAfterLoad() {
         '[data-tableInfos="estremacao"]',
         '[data-content="textFinal"]',
         '[data-save-result="saneadora"]',
-        "http://localhost:3000/saneadoras",
+        "http://localhost:4000/saneadoras",
         { childList: true, subtree: true, characterData: true },
         countObserver,
     );

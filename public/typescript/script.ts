@@ -24,7 +24,7 @@ const loadMatriculas: LoadMatriculas = new LoadMatriculas(
     '[data-button="viewMatriculas"]',
     '[data-modal="viewMatriculas"]',
     '[data-close="viewMatriculas"]',
-    "http://localhost:3000/saneadoras",
+    "http://localhost:4000/saneadoras",
     '[data-load="matriculas"]',
     '[data-result="saneadora"]',
     '[data-modal="verifyDelete"]',
@@ -48,7 +48,7 @@ const newUpdate = new NewUpdate(
 newUpdate.init();
 
 initSaneadoraDocument(
-    "http://localhost:3000/saneadoras",
+    "http://localhost:4000/saneadoras",
     '[data-tableInfos="cadastro"]',
     '[data-tableInfos="onus"]',
     '[data-tableInfos="numeros"]',
