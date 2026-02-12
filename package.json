@@ -7,7 +7,7 @@
     "scripts": {
         "ts": "npx tsc --watch",
         "tailwind": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch",
-        "server": "npx json-server --watch public/database/saneadoras.json --port 3000"
+        "server": "npx json-server --watch public/database/saneadoras.json --port 4000"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.2",
