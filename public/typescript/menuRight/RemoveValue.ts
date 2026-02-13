@@ -1,5 +1,6 @@
 import sumValue from "../sumValues.js";
 import CreateNewValue from "../newValuesTable/CreateNewValue.js";
+import Big from "big.js";
 
 export default class RemoveValue {
     private eventClick: MouseEvent;
@@ -27,9 +28,9 @@ export default class RemoveValue {
         this.buttonRemoveValue?.removeEventListener("click", this.removeValue);
     }
 
-    calcPercentColumn(areaReal: string, areaTotal: number) {
-        const percentTotal =
-            (areaTotal * 100) / Number(areaReal.replace(",", "."));
+    calcPercentColumn(areaReal: string, areaTotal: Big) {
+        const areaRealBig = new Big(areaReal.replace(",", "."));
+        const percentTotal = areaTotal.times(100).div(areaRealBig);
 
         if (
             !this.cellTableTarget?.parentElement?.children[
@@ -38,13 +39,18 @@ export default class RemoveValue {
         )
             return;
 
+        let formattedPercent = percentTotal.toFixed(10).replace(/\.?0+$/, "");
+        if (formattedPercent === "" || formattedPercent === "-")
+            formattedPercent = "0";
+        formattedPercent = formattedPercent.replace(".", ",");
+
         this.cellTableTarget.parentElement.children[
             this.cellTableTarget.parentElement.children.length - 1
         ].children[1].setAttribute("data-full-value", percentTotal.toString());
 
         this.cellTableTarget.parentElement.children[
             this.cellTableTarget.parentElement.children.length - 1
-        ].children[1].textContent = `${percentTotal}%`;
+        ].children[1].textContent = `${formattedPercent}%`;
     }
 
     calcAreaColumn(areaReal: string, unit: string) {
@@ -63,8 +69,11 @@ export default class RemoveValue {
             const cleanValue = rawValue
                 .replace(/m2|m²|ha|%|\s/g, "")
                 .replace(",", ".");
-            return acc + Number(cleanValue);
-        }, 0);
+
+            if (!cleanValue) return acc;
+
+            return acc.plus(new Big(cleanValue));
+        }, new Big(0));
 
         if (
             !this.cellTableTarget.parentElement.children[
@@ -73,13 +82,17 @@ export default class RemoveValue {
         )
             return;
 
+        let formattedArea = areaTotal.toFixed(10).replace(/\.?0+$/, "");
+        if (formattedArea === "" || formattedArea === "-") formattedArea = "0";
+        formattedArea = formattedArea.replace(".", ",");
+
         this.cellTableTarget.parentElement.children[
             this.cellTableTarget.parentElement.children.length - 2
         ].children[1].setAttribute("data-full-value", areaTotal.toString());
 
         this.cellTableTarget.parentElement.children[
             this.cellTableTarget.parentElement.children.length - 2
-        ].children[1].textContent = `${areaTotal}${unit}`;
+        ].children[1].textContent = `${formattedArea}${unit}`;
 
         this.calcPercentColumn(areaReal, areaTotal);
     }
@@ -122,7 +135,6 @@ export default class RemoveValue {
         this.calcAreaColumn(areaReal, unitReal);
 
         const [, unit]: string[] =
-        
             valueCell.match(/([0-9]+[.,]?[0-9]*)+|m2|m²|ha|%|-|\+/g) || [];
         // calculando a área
         sumValue('[data-area="total"]', '[data-sum="area"]', unit);
