@@ -94,7 +94,7 @@ export default class ValidateCPF {
         if(cpfElement instanceof HTMLInputElement) cpfSize = cpfElement.value.length;
         else if(cpfElement instanceof HTMLParagraphElement) cpfSize = cpfElement.textContent.length;
 
-        if(cpfSize >= 11){
+        if(cpfSize >= 14 || cpfSize === 11){
             if(cpfElement instanceof HTMLInputElement) {
                 
                 if (this.validate(cpfElement.value)) {
