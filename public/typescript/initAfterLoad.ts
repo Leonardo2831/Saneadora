@@ -20,6 +20,7 @@ import {
     removeChangeValueItem,
 } from "./newValuesTable/changeValueItem.js";
 import { calcNewPercent } from "./calcValues.js";
+import ValidateCNPJ from "./inputs/ValidateCNPJ.js";
 
 export default function initAfterLoad() {
     const countObserver = 0;
@@ -154,6 +155,12 @@ export default function initAfterLoad() {
         "invalid",
     );
     validateCPFs.init();
+
+    const validateCNPJs: ValidateCNPJ = new ValidateCNPJ(
+        "[data-input='cpf']",
+        "invalid",
+    );
+    validateCNPJs.init();
 
     // search bar
     const search: Search = new Search(
