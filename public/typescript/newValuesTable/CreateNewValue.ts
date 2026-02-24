@@ -146,10 +146,6 @@ export default class CreateNewValue {
         ];
         divCell.classList.add(...classDivCell);
         divCell.setAttribute("data-menu", "");
-        divCell.setAttribute(
-            "aria-label",
-            inputValue.value.replace(/m²|m2|ha|%|-|\+/g, ""),
-        );
 
         const inputBaseValue: HTMLInputElement | null =
             this.contentPercentBase.querySelector('[data-input="percentBase"]');
@@ -168,6 +164,11 @@ export default class CreateNewValue {
 
         divCell.setAttribute("data-remove", valueAreaRemove || valueWithUnit);
         divCell.setAttribute("data-change", valueWithUnit);
+        divCell.setAttribute(
+            "aria-label",
+            (valueAreaRemove || valueWithUnit)
+                .replace(/m²|m2|ha|%|-|\+/g, ""),
+        );
 
         const insertLocal = col.children[
             col.children.length - 2
