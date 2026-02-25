@@ -163,7 +163,7 @@ export default class CreateNewValue {
         }
 
         divCell.setAttribute("data-remove", valueAreaRemove || valueWithUnit);
-        divCell.setAttribute("data-change", valueWithUnit);
+        divCell.setAttribute("data-change", valueAreaRemove || valueWithUnit);
         divCell.setAttribute(
             "aria-label",
             (valueAreaRemove || valueWithUnit)
@@ -194,7 +194,7 @@ export default class CreateNewValue {
             divCell,
             cloneButton,
             colorInput,
-            valueWithUnit,
+            valueAreaRemove || valueWithUnit,
         );
         this.changeStyleOutside();
 
