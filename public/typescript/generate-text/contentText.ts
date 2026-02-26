@@ -223,20 +223,26 @@ export default function contentText(textInitialMatricula: string): string {
             ${
                 tables.tableEstremacao?.children.length === 0
                     ? ""
-                    : `<p class="text-base font-normal text-gray-700">
-                O imóvel de matrícula ${matricula}, objeto da Certidão Saneadora,
-                que sofreu as estremações acima descritas, não é obrigatória
-                a retificação da área da gleba originária, bem como apuração
-                da área remanescente, nos termos do art. 1.151 do Prov. 93,
-                conforme se depreende do artigo do citado código de normas,
-                a saber:
-                <cite class="text-base font-normal font-italic text-gray-800">
-                    “A escritura descreverá apenas a parcela localizada,
-                    sendo desnecessária a retificação de área da gleba
-                    originária, bem como a apuração da área
-                    remanescente”.
-                </cite>
-            </p>`
+                    : 
+                `<p class="text-base font-normal text-gray-700">
+                    Para fins de disponibilidade registrária, as porcentagens dos titulares foram dimensionadas sobre a base remanescente das estremações averbadas. 
+                    Este critério de cálculo permite que a soma das participações guarde <b class="font-semibold text-base text-grat-800">perfeita equivalência com a totalidade do imóvel</b>, 
+                    consolidando a situação dominial sem a necessidade de prévia apuração física da gleba originária, conforme a sistemática normativa vigente. 
+                </p>
+                <p class="text-base font-normal text-gray-700">
+                    O imóvel de matrícula ${matricula}, objeto da Certidão Saneadora,
+                    que sofreu as estremações acima descritas, não é obrigatória
+                    a retificação da área da gleba originária, bem como apuração
+                    da área remanescente, nos termos do art. 1.151 do Prov. 93,
+                    conforme se depreende do artigo do citado código de normas,
+                    a saber:
+                    <cite class="text-base font-normal font-italic text-gray-800">
+                        “A escritura descreverá apenas a parcela localizada,
+                        sendo desnecessária a retificação de área da gleba
+                        originária, bem como a apuração da área
+                        remanescente”.
+                    </cite>
+                </p>`
             }
         `;
 
