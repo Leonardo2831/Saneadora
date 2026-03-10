@@ -236,7 +236,7 @@ export default class NewInfoEstremacao {
 
     addEventSelect() {
         this.selectType.addEventListener("change", () => {
-            if (this.selectType.value !== "Casado(a)") {
+            if (this.selectType.value !== "Casado(a)" && this.selectType.value !== "União Estável") {
                 this.inputConjugeName.disabled = true;
                 this.inputConjugeCPF.disabled = true;
 

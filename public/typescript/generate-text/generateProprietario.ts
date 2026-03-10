@@ -7,7 +7,9 @@ export default function generateProprietario(tableCadastro: HTMLElement | null):
         "Casado(a)",
         "Solteiro(a)",
         "Divorciado(a)",
+        "Separado(a) Judicialmente",
         "Viúvo(a)",
+        "União Estável",
     ];
 
     return proprietariosText.map((proprietario) => {

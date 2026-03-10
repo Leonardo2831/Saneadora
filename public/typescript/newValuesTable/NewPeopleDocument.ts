@@ -333,7 +333,7 @@ export default class NewPeopleDocument {
 
     addEventSelect() {
         this.selectState.addEventListener("change", () => {
-            if (this.selectState.value !== "Casado(a)") {
+            if (this.selectState.value !== "Casado(a)" && this.selectState.value !== "União Estável") {
                 this.inputNameConjuge.disabled = true;
                 this.inputCpfConjuge.disabled = true;
 
