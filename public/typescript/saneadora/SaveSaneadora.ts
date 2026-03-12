@@ -90,8 +90,8 @@ export default class SaveSaneadora {
             return;
         }
 
-        let idAttribute : string | null | undefined;
-        
+        let idAttribute: string | null | undefined;
+
         idAttribute = this.buttonSave?.getAttribute("data-id");
 
         const saneadoraObject: Saneadora = {
@@ -104,7 +104,7 @@ export default class SaveSaneadora {
             tableEstremacao: this.tableInfosEstremacao?.innerHTML,
         };
 
-        if(!idAttribute) this.buttonSave?.setAttribute("data-id", saneadoraObject.id.toString());
+        if (!idAttribute) this.buttonSave?.setAttribute("data-id", saneadoraObject.id.toString());
 
         const method = idAttribute ? "PUT" : "POST";
         const urlReq = idAttribute ? `${this.url}/${idAttribute}` : this.url;
@@ -137,7 +137,7 @@ export default class SaveSaneadora {
                     "show",
                     "error"
                 );
-            }, 1500);
+            }, 3000);
         } catch (error) {
             console.log(error);
 
@@ -157,7 +157,7 @@ export default class SaveSaneadora {
     }
 
     automaticSave(notification: HTMLElement) {
-        if(notification.classList.contains('hidden')) return;
+        if (notification.classList.contains('hidden')) return;
 
         const timeSave = 5 * 60 * 1000;
 
