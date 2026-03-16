@@ -167,7 +167,6 @@ export default class CreateNewValue {
         divCell.setAttribute(
             "aria-label",
             (valueAreaRemove || valueWithUnit)
-                .replace(/m²|m2|ha|%|-|\+/g, ""),
         );
 
         const insertLocal = col.children[
