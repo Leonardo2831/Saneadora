@@ -36,15 +36,23 @@ export default class NewNumber {
         this.inputAto = document.querySelector(inputAto) as HTMLInputElement;
 
         this.buttonAdd = document.querySelector(buttonAdd) as HTMLButtonElement;
-
         this.addRow = this.addRow.bind(this);
         this.createRow = this.createRow.bind(this);
+        this.deleteRow = this.deleteRow.bind(this);
     }
 
     cleanInputs() {
         this.inputNumber.value = "";
         this.inputCpf.value = "";
         this.inputAto.value = "";
+    }
+
+    deleteRow(event: Event) {
+        const target = event.target as HTMLElement;
+        const row = target.closest("tr");
+        if (row) {
+            row.remove();
+        }
     }
 
     createRow(): HTMLTableRowElement | null {
@@ -117,9 +125,19 @@ export default class NewNumber {
                     value="${this.selectType.value}"
                 />
             </td>
+            <td class="px-4 py-4 relative">
+                <figure data-deleteRow class="cursor-pointer p-3 rounded-md flex items-center justify-center bg-red-700 hover:bg-red-500 transition-colors">
+                    <img class="w-6 h-6" src="/public/images/icons/delete.svg" alt="Excluir">
+                </figure>
+            </td>
         `;
 
         row.innerHTML = rowContent;
+
+        const deleteBtn = row.querySelector("[data-deleteRow]");
+        if (deleteBtn) {
+            deleteBtn.addEventListener("click", this.deleteRow);
+        }
 
         return row;
     }

@@ -37,6 +37,15 @@ export default class NewOnus {
 
         this.createRow = this.createRow.bind(this);
         this.addRow = this.addRow.bind(this);
+        this.deleteRow = this.deleteRow.bind(this);
+    }
+
+    deleteRow(event: Event) {
+        const target = event.target as HTMLElement;
+        const row = target.closest("tr");
+        if (row) {
+            row.remove();
+        }
     }
 
     createRow(): HTMLTableRowElement | null {
@@ -47,7 +56,7 @@ export default class NewOnus {
                 this.inputAto,
                 this.inputCpf,
             ];
-            
+
             verifyExistValueInput(inputs);
 
             return null;
@@ -74,8 +83,7 @@ export default class NewOnus {
             >
                 ${typeAto}${valueAto ? "." + valueAto : ""}
             </td>
-            <td class="px-4 py-4 relative" data-menu aria-label="${
-                this.inputName.value || "Não Definido"
+            <td class="px-4 py-4 relative" data-menu aria-label="${this.inputName.value || "Não Definido"
             }">
                 <input
                     type="text"
@@ -83,22 +91,19 @@ export default class NewOnus {
                     value="${this.inputName.value || "Não Definido"}"
                 />
             </td>
-            <td class="px-4 py-4 relative" data-menu aria-label="${
-                this.inputCpf.value == "" ? "Não Consta" : this.inputCpf.value
+            <td class="px-4 py-4 relative" data-menu aria-label="${this.inputCpf.value == "" ? "Não Consta" : this.inputCpf.value
             }">
                 <input
                     type="text"
                     class="table-input"
                     data-input="cpf"
-                    value="${
-                        this.inputCpf.value == ""
-                            ? "Não Consta"
-                            : this.inputCpf.value
-                    }"
+                    value="${this.inputCpf.value == ""
+                ? "Não Consta"
+                : this.inputCpf.value
+            }"
                 />
             </td>
-            <td class="px-4 py-4 relative" data-menu aria-label="${
-                this.selectType.value
+            <td class="px-4 py-4 relative" data-menu aria-label="${this.selectType.value
             }">
                 <input
                     type="text"
@@ -122,9 +127,19 @@ export default class NewOnus {
                     Não cancelado
                 </div>
             </td>
+            <td class="px-4 py-4 relative">
+                <figure data-deleteRow class="cursor-pointer p-3 rounded-md flex items-center justify-center bg-red-700 hover:bg-red-500 transition-colors">
+                    <img class="w-6 h-6" src="/public/images/icons/delete.svg" alt="Excluir">
+                </figure>
+            </td>
         `;
 
         row.innerHTML = rowContent;
+
+        const deleteBtn = row.querySelector("[data-deleteRow]");
+        if (deleteBtn) {
+            deleteBtn.addEventListener("click", this.deleteRow);
+        }
 
         return row;
     }
