@@ -472,6 +472,23 @@
             data-formContent="estremacao"
         >
             <div class="flex flex-wrap gap-x-10 gap-y-5">
+                <!-- Tipo de estremação -->
+                <div class="input-group relative">
+                    <label class="label" for="select-typeNumber"
+                        >Tipo</label
+                    >
+                    <div class="relative min-w-[210px]">
+                        <select
+                            class="select absolute z-10"
+                            data-select="estremacao"
+                            id="select-typeNumber"
+                        >
+                            <option value="estremação">Estremção</option>
+                            <option value="desmembramento">Desmembramento</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="input-group">
                     <label class="label">Nome da Pessoa Estremada</label>
                     <input
@@ -648,7 +665,6 @@
                         <span
                             class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"
                         ></span>
-                        <button class=" ">Exportar como Tabela</button>
                     </div>
                 </section>
 
@@ -1341,10 +1357,10 @@
                         </svg>
                         <article class="text-left">
                             <h2 class="text-2xl font-bold text-gray-900 mb-1">
-                                Novo Patch 2.1.0
+                                Novo Patch 3.0.0
                             </h2>
                             <h4 class="text-sm font-medium text-gray-500 mb-6">
-                                Atualização de 10/02/2026
+                                Atualização de 16/03/2026
                             </h4>
 
                             <h3
@@ -1356,19 +1372,14 @@
                                 class="list-disc list-inside text-gray-600 space-y-1 ml-2"
                             >
                                 <li>
-                                    Agora quando se faz uma pesquisa, o item que está sendo pesquisado fica selecionado e o scroll irá até ele para melhor identificação.
+                                    Agora caso você errar consegue deletar valores de ônus e números cadastrais.
                                 </li>
                                 <li>
-                                    Agora há a verificação para CNPJ também, não apenas CPF.
-                                </li>
-                                <li>
-                                    Adicionanos a separação judicialmente, na qual é descrita como separado(a).
-                                    <br>
-                                    Também adicionamos a União Estável.
+                                    Correção de apuração de remanescente, agora se o tipo ser estremação, não será mais apurado o remanescente como é dito no art. 1.151 do Prov. 93 que não é necessário.
                                 </li>
                             </ul>
 
-                            <h3
+                            <!-- <h3
                                 class="text-lg font-semibold text-gray-800 mt-6 mb-2"
                             >
                                 Correções de Bugs
@@ -1376,12 +1387,8 @@
                             <ul
                                 class="list-disc list-inside text-gray-600 space-y-1 ml-2"
                             >
-                                <li>Na hora de estremação agora foi corrido na aba estremação quando se lançava um valor, estava definindo a unidade de medida como números, sendo algo incorreto</li>
-                                <li>Agora quando adicionar uma pessoa na estremação, irá salvar como não consta caso não definir conjugê, cpf...</li>
-                                <li>Na remoção de valores usamos o <i class="italic">Big</i> para melhores precisões. Além disso, agora quando remover o valor irá aparecer com virgulas não pontos.</li>
-                                <li>Os valores mesmo calculados com porcentagem não serão mais mostrados com porcentagem, apenas hectares para melhor compreensão.</li>
-                                <li>Agora nas pesquisa de matrícula será ignorado pontos, vírgulas...</li>
-                            </ul>
+
+                            </ul> -->
 
                             <h3
                                 class="text-lg font-semibold text-gray-800 mt-6 mb-3"
@@ -1389,11 +1396,9 @@
                                 Sobre o Patch
                             </h3>
                             <p class="text-gray-600 leading-relaxed">
-                                Este patch foi para corrigir o bug de divergências pequenas em calculos matemáticos, que ocorriam devido a falta de casas decimais.
+                                Este patch foi para corrigir a apuração da estremação, para não apurar em casos de estremação o remanescente, diferentemente do desmembramento que deve ser apurado.
                                 <br>
-                                Também foi criado a verificação de CNPJ para casos raros que se há empresas adquirindo o imóvel.
-                                <br>
-                                Além disso, foi adicionado a opção de adicionar separação judicialmente e união estável para casos mais específicos.
+                                Além disso, foi adicionado a opção de deletar valores de ônus e números cadastrais, para casos de erros.
                             </p>
                         </article>
                     </section>
