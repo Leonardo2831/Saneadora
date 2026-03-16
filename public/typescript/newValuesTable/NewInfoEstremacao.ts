@@ -7,6 +7,7 @@ import verifyExistValueInput from "../inputs/verifyExistValueInput.js";
 import addNewEstremacao from "./NewEstremacao.js";
 
 export default class NewInfoEstremacao {
+    selectTypeAto: HTMLSelectElement;
     inputName: HTMLInputElement;
     inputCPF: HTMLInputElement;
     inputConjugeName: HTMLInputElement;
@@ -25,6 +26,7 @@ export default class NewInfoEstremacao {
     objectNewPeople: AddPeopleEstremacao;
 
     constructor(
+        selectTypeAto: string,
         inputName: string,
         inputCPF: string,
         selectType: string,
@@ -38,6 +40,7 @@ export default class NewInfoEstremacao {
         tableContent: string,
         objectNewPeople: AddPeopleEstremacao,
     ) {
+        this.selectTypeAto = document.querySelector(selectTypeAto) as HTMLSelectElement;
         this.inputName = document.querySelector(inputName) as HTMLInputElement;
         this.inputCPF = document.querySelector(inputCPF) as HTMLInputElement;
         this.inputConjugeName = document.querySelector(
@@ -120,6 +123,10 @@ export default class NewInfoEstremacao {
             areaContent?.textContent?.match(/[0-9.,]+|[a-zA-Z]+/g) || [];
 
         const contentRowInfo = `
+            <td class="px-4 py-4 relative text-base font-medium text-gray-600 capitalize">
+                ${this.selectTypeAto.value}
+            </td>
+
             <td
                 class="px-4 py-4 relative text-base font-medium text-gray-600"
             >
@@ -218,7 +225,9 @@ export default class NewInfoEstremacao {
         this.tableContent.appendChild(rowInfo);
 
         this.objectNewPeople.addOpenModal();
-        addNewEstremacao('[data-tableInfos="cadastro"]', this.inputArea.value);
+        if(this.selectTypeAto.value.toLocaleLowerCase() !== "estremação"){
+            addNewEstremacao('[data-tableInfos="cadastro"]', this.inputArea.value);
+        }
 
         this.cleanInputs();
 
