@@ -206,6 +206,8 @@ export default function contentText(textInitialMatricula: string): string {
             </section>
     `;
 
+    const isEstremacao = tables.tableEstremacao?.children.length === 0 || tables.tableEstremacao?.children[0].textContent.toLocaleLowerCase() === "estremação";
+
     textFinal += `
             <section>
                 <h4 class="text-lg font-bold text-gray-800 mb-4">
@@ -221,7 +223,7 @@ export default function contentText(textInitialMatricula: string): string {
             </section>
 
             ${
-                tables.tableEstremacao?.children.length === 0
+                !isEstremacao 
                     ? ""
                     : 
                 `<p class="text-base font-normal text-gray-700">
