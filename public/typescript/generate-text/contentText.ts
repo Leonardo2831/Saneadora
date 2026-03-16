@@ -227,11 +227,6 @@ export default function contentText(textInitialMatricula: string): string {
                     ? ""
                     : 
                 `<p class="text-base font-normal text-gray-700">
-                    Para fins de disponibilidade registrária, as porcentagens dos titulares foram dimensionadas sobre a base remanescente das estremações averbadas. 
-                    Este critério de cálculo permite que a soma das participações guarde <b class="font-semibold text-base text-grat-800">perfeita equivalência com a totalidade do imóvel</b>, 
-                    consolidando a situação dominial sem a necessidade de prévia apuração física da gleba originária, conforme a sistemática normativa vigente. 
-                </p>
-                <p class="text-base font-normal text-gray-700">
                     O imóvel de matrícula ${matricula}, objeto da Certidão Saneadora,
                     que sofreu as estremações acima descritas, não é obrigatória
                     a retificação da área da gleba originária, bem como apuração
