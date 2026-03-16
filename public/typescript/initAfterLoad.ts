@@ -134,6 +134,7 @@ export default function initAfterLoad() {
 
     // new extremacao info
     const newInfoEstremacao: NewInfoEstremacao = new NewInfoEstremacao(
+        '[data-select="estremacao"]',
         '[data-inputName="estremacao"]',
         '[data-inputCPF="cpfEstremacao"]',
         '[data-select="stateEstremacao"]',
