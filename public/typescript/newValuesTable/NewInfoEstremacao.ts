@@ -225,9 +225,7 @@ export default class NewInfoEstremacao {
         this.tableContent.appendChild(rowInfo);
 
         this.objectNewPeople.addOpenModal();
-        if(this.selectTypeAto.value.toLocaleLowerCase() !== "estremação"){
-            addNewEstremacao('[data-tableInfos="cadastro"]', this.inputArea.value);
-        }
+        addNewEstremacao('[data-tableInfos="cadastro"]', this.inputArea.value);
 
         this.cleanInputs();
 

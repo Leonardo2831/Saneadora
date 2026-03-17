@@ -206,7 +206,9 @@ export default function contentText(textInitialMatricula: string): string {
             </section>
     `;
 
-    const isEstremacao = tables.tableEstremacao?.children.length === 0 || tables.tableEstremacao?.children[0].textContent.toLocaleLowerCase() === "estremação";
+    const hasEstremacao = Array.from(tables.tableEstremacao?.children || []).find((child) => child.textContent.toLocaleLowerCase() === "estremação");
+
+    const isEstremacao = tables.tableEstremacao?.children.length === 0 || hasEstremacao;
 
     textFinal += `
             <section>
@@ -226,13 +228,18 @@ export default function contentText(textInitialMatricula: string): string {
                 !isEstremacao 
                     ? ""
                     : 
-                `<p class="text-base font-normal text-gray-700">
-                    O imóvel de matrícula ${matricula}, objeto da Certidão Saneadora,
-                    que sofreu as estremações acima descritas, não é obrigatória
-                    a retificação da área da gleba originária, bem como apuração
-                    da área remanescente, nos termos do art. 1.151 do Prov. 93,
-                    conforme se depreende do artigo do citado código de normas,
-                    a saber:
+                `<p class="text-base font-normal text-gray-700">Para fins de disponibilidade registrária, 
+                as porcentagens dos titulares foram dimensionadas sobre a base remanescente dos proprietários, 
+                em virtude das estremações registradas. 
+                Este critério de cálculo permite que a soma das participações guarde perfeita equivalência com a totalidade do imóvel, 
+                consolidando a situação dominial sem a necessidade de prévia apuração física da gleba originária, 
+                conforme a sistemática normativa vigente.</p>
+                <br>
+                <p class="text-base font-normal text-gray-700">
+                    O imóvel de matrícula ${matricula}, objeto da Certidão Saneadora, que sofreu as estremações acima descritas. 
+                    Assim sendo, não é obrigatória a retificação da área da gleba originária, 
+                    bem como apuração da área remanescente, nos termos do art. 1.151 do Prov. 93 CGJ/MG, 
+                    conforme se depreende do artigo do citado código de normas, a saber:
                     <cite class="text-base font-normal font-italic text-gray-800">
                         “A escritura descreverá apenas a parcela localizada,
                         sendo desnecessária a retificação de área da gleba
