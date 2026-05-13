@@ -321,14 +321,55 @@ export default class NewPeopleDocument {
         this.buttonAddEvent.addOpenModal();
         removeEventMenuClickRight();
         addEventMenuClickRight();
+
+        this.inputName.focus();
     }
 
-    removeEventButton() {
+    getFullArea(){
+        const areaMatricula = document.querySelector(
+            '[data-real="area"]',
+        ) as HTMLSpanElement;
+
+        const [areaReal,]: string[] =
+            areaMatricula.textContent?.match(
+                /([0-9]+[.,]?[0-9]*)+|m2|m²|ha|%|-|\+/g,
+            ) || [];
+
+        return areaReal;
+    }
+
+    removeEvents() {
         this.buttonAdd.onclick = null;
+        this.inputArea.onkeydown = null;
+        this.inputBaseValue.onkeydown = null;
+        this.inputArea.onfocus = null;
+        this.inputBaseValue.onfocus = null;
+        this.inputArea.onblur = null;
+        this.inputBaseValue.onblur = null;
     }
 
-    addEventButton() {
+    addEvents() {
         this.buttonAdd.onclick = this.addCol;
+
+        this.inputArea.onfocus = () => {
+            this.inputArea.nextElementSibling?.classList.remove('hidden');
+        };
+        this.inputBaseValue.onfocus = () => {
+            this.inputBaseValue.nextElementSibling?.classList.remove('hidden');
+        };
+        this.inputArea.onblur = () => {
+            this.inputArea.nextElementSibling?.classList.add('hidden');
+        };
+        this.inputBaseValue.onblur = () => {
+            this.inputBaseValue.nextElementSibling?.classList.add('hidden');
+        };
+
+        this.inputArea.onkeydown = (event: KeyboardEvent) => {
+            if (event.key === "Enter") this.inputArea.value = this.getFullArea();
+        };
+        this.inputBaseValue.onkeydown = (event: KeyboardEvent) => {
+            if (event.key === "Enter") this.inputBaseValue.value = this.getFullArea();
+        };
     }
 
     addEventSelect() {
@@ -350,10 +391,10 @@ export default class NewPeopleDocument {
     }
 
     init() {
-        this.removeEventButton();
+        this.removeEvents();
         this.cleanInputs();
 
-        if (this.buttonAdd) this.addEventButton();
+        if (this.buttonAdd) this.addEvents();
         if (this.selectState) this.addEventSelect();
 
         return this;

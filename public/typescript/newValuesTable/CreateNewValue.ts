@@ -230,10 +230,37 @@ export default class CreateNewValue {
         addEventMenuClickRight();
     }
 
+    getValueAreaProp(): string {
+        if (this.eventItemAdd) {
+            return (
+                this.eventItemAdd.parentElement
+                    ?.nextElementSibling?.getAttribute("aria-label")
+                    ?.replace(/[^0-9,]/g, "").replace(',', '.') || ""
+            );
+        } 
+        return "";
+    }
+
     addEventNewValue() {
         this.buttonNewValue.addEventListener("click", (event: Event) => {
             event.stopPropagation();
             this.addNewValueInTable();
+        });
+
+        const inputValue: HTMLInputElement | null =
+            this.modalNewValue.querySelector('[data-input="newValue"]');
+        const inputBaseValue: HTMLInputElement | null =
+            this.contentPercentBase.querySelector('[data-input="percentBase"]');
+
+        inputValue?.addEventListener("keydown", (event: KeyboardEvent) => {
+            if (event.key === "Enter") {
+                inputValue.value = this.getValueAreaProp();
+            }
+        });
+        inputBaseValue?.addEventListener("keydown", (event: KeyboardEvent) => {
+            if (event.key === "Enter") {
+                inputBaseValue.value = this.getValueAreaProp();
+            }
         });
     }
 
