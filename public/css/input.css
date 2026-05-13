@@ -55,6 +55,7 @@
     --animate-showRight: showRight 0.5s forwards;
     --animate-showBottom: showBottom 0.5s forwards;
     --animate-showTop: showTop 0.5s forwards;
+    --animate-showItem: showItem 0.5s forwards;
 
     --animate-animationEnter: animationEnter 0.5s forwards;
 
@@ -129,6 +130,15 @@
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes showItem {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
