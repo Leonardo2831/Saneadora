@@ -138,7 +138,7 @@
             data-form="true"
             data-formContent="cadastro"
         >
-            <div class="flex flex-wrap gap-x-10 gap-y-5">
+            <div class="flex flex-wrap gap-x-10 gap-y-5 min-h-[195px]">
                 <!-- Nome da Pessoa -->
                 <div class="input-group">
                     <label class="label">Nome da Pessoa</label>
@@ -227,6 +227,7 @@
                         data-input="areaCadastro"
                         placeholder="Digite o valor da pessoa"
                     />
+                    <span class="hidden mt-1 text-sm max-w-[250px] animate-showItem text-gray-600">Pressione <b class="font-semibold">Enter</b> para adicionar valor total da área</span>
                 </div>
 
                 <!-- Área da pessoa -->
@@ -288,6 +289,7 @@
                         data-input="valorBaseCadastro"
                         placeholder="Digite o valor de base"
                     />
+                    <span class="hidden mt-1 text-sm max-w-[250px] animate-showItem text-gray-600">Pressione <b class="font-semibold">Enter</b> para adicionar valor total da área</span>
                 </div>
 
                 <div class="flex flex-1 items-end justify-end">
@@ -864,6 +866,7 @@
                                         class="appearance-input modal-input"
                                         placeholder="Digite a matrícula"
                                     />
+                                    <span class="mt-1 text-sm text-gray-600">Pressione <b class="font-semibold">Enter</b> para pegar valor total da pessoa</span>
                                 </div>
 
                                 <div class="input-group gap-1">
@@ -935,6 +938,7 @@
                                         class="appearance-input modal-input"
                                         placeholder="Digite a área que será usada como base"
                                     />
+                                    <span class="mt-1 text-sm text-gray-600">Pressione <b class="font-semibold">Enter</b> para pegar valor total da pessoa</span>
                                 </div>
 
                                 <!-- Botões de criar e fechar -->
@@ -1373,6 +1377,12 @@
                             >
                                 <li>
                                     Agora caso você errar consegue deletar valores de ônus e números cadastrais.
+                                </li>
+                                <li>
+                                    Você consegue pegar o valor total de uma pessoa adicionanda com "Enter" caso ir efetuar uma nova alienação.
+                                </li>
+                                <li>
+                                    Pode pegar valor total da matrícula para adicionar a uma pessoa ou para cálculos posteriores com porcentagem, utilizando o "Enter".
                                 </li>
                             </ul>
 
