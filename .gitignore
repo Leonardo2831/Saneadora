@@ -1,3 +1,4 @@
-/node_modules
-/public/database
-/public/js
+/node_modules/
+/public/database/
+public/js/
+*.pem
