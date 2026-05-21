@@ -85,11 +85,17 @@ export default class NewPeopleDocument {
         this.inputCpf.value = "";
         this.inputCpf.classList.remove("invalid");
 
+        if (this.selectState) {
+            this.selectState.value = "Casado(a)";
+        }
+
         this.inputNameConjuge.value = "";
         this.inputNameConjuge.classList.remove("invalid");
+        this.inputNameConjuge.disabled = false;
 
         this.inputCpfConjuge.value = "";
         this.inputCpfConjuge.classList.remove("invalid");
+        this.inputCpfConjuge.disabled = false;
 
         this.inputAto.value = "";
         this.inputAto.classList.remove("invalid");
