@@ -5,6 +5,7 @@ import {
 import type AddPeopleEstremacao from "./AddPeopleEstremacao.js";
 import verifyExistValueInput from "../inputs/verifyExistValueInput.js";
 import addNewEstremacao from "./NewEstremacao.js";
+import eventSelectRetificacao from "../inputs/eventSelectRetificacao.js";
 
 export default class NewInfoEstremacao {
     selectTypeAto: HTMLSelectElement;
@@ -80,25 +81,27 @@ export default class NewInfoEstremacao {
     }
 
     createRowInfoEstremacao(): HTMLElement | null {
-        if (
-            this.inputName.value === "" ||
-            this.inputAto.value === "" ||
-            this.inputArea.value === "" ||
-            (this.inputCPF.value !== "" && this.inputCPF.value.length < 11) ||
-            (this.inputConjugeCPF.value !== "" &&
-                this.inputConjugeCPF.value.length < 11 &&
-                this.inputConjugeCPF.value !== "Viúvo(a)")
-        ) {
-            const inputs: HTMLInputElement[] = [
-                this.inputName,
-                this.inputAto,
-                this.inputArea,
-                this.inputCPF,
-                this.inputConjugeCPF,
-            ];
-            verifyExistValueInput(inputs);
+        if (this.selectTypeAto.value !== "retificacao") {
+            if (
+                this.inputName.value === "" ||
+                this.inputAto.value === "" ||
+                this.inputArea.value === "" ||
+                (this.inputCPF.value !== "" && this.inputCPF.value.length < 11) ||
+                (this.inputConjugeCPF.value !== "" &&
+                    this.inputConjugeCPF.value.length < 11 &&
+                    this.inputConjugeCPF.value !== "Viúvo(a)")
+            ) {
+                const inputs: HTMLInputElement[] = [
+                    this.inputName,
+                    this.inputAto,
+                    this.inputArea,
+                    this.inputCPF,
+                    this.inputConjugeCPF,
+                ];
+                verifyExistValueInput(inputs);
 
-            return null;
+                return null;
+            }
         }
 
         const rowInfo = document.createElement("tr");
@@ -265,6 +268,17 @@ export default class NewInfoEstremacao {
             this.addEventButtonAdd();
         }
         if (this.selectType) this.addEventSelect();
+
+        if (this.selectTypeAto) {
+            eventSelectRetificacao(
+                this.selectTypeAto,
+                this.inputName,
+                this.inputCPF,
+                this.inputConjugeName,
+                this.inputConjugeCPF,
+                this.selectType
+            );
+        }
 
         return this;
     }

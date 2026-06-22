@@ -66,7 +66,7 @@ function createHeaderEstremacao(
         const n1 = Math.round(Number(v1) * factor);
         const n2 = Math.round(Number(v2) * factor);
 
-        return ((Math.abs(n1) - Math.abs(n2)) / factor)
+        return ((Math.abs(n1) + n2) / factor)
             .toFixed(maxDec)
             .replace(".", ",");
     };

@@ -257,6 +257,9 @@ export default class CreateNewValue {
                 inputValue.value = this.getValueAreaProp();
             }
         });
+        inputValue?.addEventListener("keydown", (event: KeyboardEvent) => {
+            if(event.key === "F10") inputValue.value = (Number(inputValue.value.replace(/,/g, '.')) * 10000).toString().replace(/\./g, ',');
+        });
         inputBaseValue?.addEventListener("keydown", (event: KeyboardEvent) => {
             if (event.key === "Enter") {
                 inputBaseValue.value = this.getValueAreaProp();

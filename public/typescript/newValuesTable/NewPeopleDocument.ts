@@ -168,8 +168,7 @@ export default class NewPeopleDocument {
             <header class="uppercase h-[50px] px-4 py-4 text-left text-xs font-semibold text-gray-500 tracking-wider">
                 ${typeAto}${valueAto ? "." + valueAto : ""}
             </header>
-            <div data-menu class="relative" data-change="${this.inputName.value}" aria-label="${
-                this.inputName.value
+            <div data-menu class="relative" data-change="${this.inputName.value}" aria-label="${this.inputName.value
             }">
                 <input
                     type="text"
@@ -179,64 +178,55 @@ export default class NewPeopleDocument {
             </div>
             <div data-menu class="relative" 
                 data-change="${this.inputCpf.value == "" ? "Não Consta" : this.inputCpf.value}" 
-                aria-label="${
-                    this.inputCpf.value == ""
-                        ? "Não Consta"
-                        : this.inputCpf.value
-                }"
+                aria-label="${this.inputCpf.value == ""
+                ? "Não Consta"
+                : this.inputCpf.value
+            }"
             >
                 <input
                     type="text"
                     class="table-input"
                     data-input="cpf"
-                    value="${
-                        this.inputCpf.value == ""
-                            ? "Não Consta"
-                            : this.inputCpf.value
-                    }"
+                    value="${this.inputCpf.value == ""
+                ? "Não Consta"
+                : this.inputCpf.value
+            }"
                 />
             </div>
-            <div data-menu data-change="${
-                this.inputNameConjuge.value == ""
-                    ? "Não Consta"
-                    : this.inputNameConjuge.value
-            }" class="relative" aria-label="${
-                this.inputNameConjuge.value == ""
-                    ? "Não Consta"
-                    : this.inputNameConjuge.value
+            <div data-menu data-change="${this.inputNameConjuge.value == ""
+                ? "Não Consta"
+                : this.inputNameConjuge.value
+            }" class="relative" aria-label="${this.inputNameConjuge.value == ""
+                ? "Não Consta"
+                : this.inputNameConjuge.value
             }">
                 <input
                     type="text"
                     class="table-input"
-                    value="${
-                        this.inputNameConjuge.value == ""
-                            ? "Não Consta"
-                            : this.inputNameConjuge.value
-                    }"
+                    value="${this.inputNameConjuge.value == ""
+                ? "Não Consta"
+                : this.inputNameConjuge.value
+            }"
                 />
             </div>
-            <div data-menu data-change="${
-                this.inputCpfConjuge.value == ""
-                    ? "Não Consta"
-                    : this.inputCpfConjuge.value
-            }" class="relative" aria-label="${
-                this.inputCpfConjuge.value == ""
-                    ? "Não Consta"
-                    : this.inputCpfConjuge.value
+            <div data-menu data-change="${this.inputCpfConjuge.value == ""
+                ? "Não Consta"
+                : this.inputCpfConjuge.value
+            }" class="relative" aria-label="${this.inputCpfConjuge.value == ""
+                ? "Não Consta"
+                : this.inputCpfConjuge.value
             }">
                 <input
                     type="text"
                     class="table-input"
                     data-input="cpf"
-                    value="${
-                        this.inputCpfConjuge.value == ""
-                            ? "Não Consta"
-                            : this.inputCpfConjuge.value
-                    }"
+                    value="${this.inputCpfConjuge.value == ""
+                ? "Não Consta"
+                : this.inputCpfConjuge.value
+            }"
                 />
             </div>
-            <div class="min-h-[100px] relative" data-menu data-remove="${
-                this.inputArea.value
+            <div class="min-h-[100px] relative" data-menu data-remove="${this.inputArea.value
             }${unitArea}" aria-label="${this.inputArea.value}">
                 <p
                     class="text-center text-xs font-medium text-gray-600 uppercase mb-1.5"
@@ -274,29 +264,28 @@ export default class NewPeopleDocument {
             <div
                 class="totalCell font-bold text-gray-700 relative"
                 data-menu aria-label="${calcPercentPeople(
-                    Number(areaReal.replace(",", ".")),
-                    Number(this.inputArea.value.replace(",", ".")),
-                )
-                    ?.toString()
-                    .replace(".", ",")}"
+                Number(areaReal.replace(",", ".")),
+                Number(this.inputArea.value.replace(",", ".")),
+            )
+                ?.toString()
+                .replace(".", ",")}"
             >
                 <span>% PESSOA:</span>
                 <div
                     data-area="percent"
                     class="min-h-[46px] table-value table-value-blue font-bold mt-2"
-                    data-full-value="${
-                        getFullPercentPeople(
-                            Number(areaReal.replace(",", ".")),
-                            Number(this.inputArea.value.replace(",", ".")),
-                        ) || ""
-                    }"
+                    data-full-value="${getFullPercentPeople(
+                    Number(areaReal.replace(",", ".")),
+                    Number(this.inputArea.value.replace(",", ".")),
+                ) || ""
+            }"
                 >
                     ${calcPercentPeople(
-                        Number(areaReal.replace(",", ".")),
-                        Number(this.inputArea.value.replace(",", ".")),
-                    )
-                        ?.toString()
-                        .replace(".", ",")}%
+                Number(areaReal.replace(",", ".")),
+                Number(this.inputArea.value.replace(",", ".")),
+            )
+                ?.toString()
+                .replace(".", ",")}%
                 </div>
             </div>
         `;
@@ -331,7 +320,7 @@ export default class NewPeopleDocument {
         this.inputName.focus();
     }
 
-    getFullArea(){
+    getFullArea() {
         const areaMatricula = document.querySelector(
             '[data-real="area"]',
         ) as HTMLSpanElement;
@@ -375,6 +364,10 @@ export default class NewPeopleDocument {
         };
         this.inputBaseValue.onkeydown = (event: KeyboardEvent) => {
             if (event.key === "Enter") this.inputBaseValue.value = this.getFullArea();
+        };
+
+        this.inputArea.onkeydown = (event: KeyboardEvent) => {
+            if (event.key === "F10") this.inputArea.value = (Number(this.inputArea.value.replace(/,/g, ".")) * 10000).toString().replace(/,/g, ',');
         };
     }
 
